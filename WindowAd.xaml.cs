@@ -46,7 +46,7 @@ namespace CP
                                select new
                                {
                                    Name = real.NameReal,
-                                   AdddressReal = $"Адрес: {real.Adress}",
+                                   AdddressReal = real.Adress,
                                    Status = $"Статус: {real.ProOrAre}",
                                    Opisan = real.Description,
                                    ClientName = owner.Name,
@@ -86,12 +86,7 @@ namespace CP
                 else
                     MessageBox.Show("Что то пошло не так, пинайте админа(Тимура)");
                 
-
             }
-
-            
-
-
 
         }
 

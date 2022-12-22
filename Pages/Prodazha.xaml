@@ -79,12 +79,12 @@
                             <TextBlock FontSize="16" Text="{Binding Path=Name}" Foreground="Blue" FontWeight="Bold" HorizontalAlignment="Left" MouseLeftButtonUp="NameClick"/>
                             <TextBlock FontSize="16" Text="{Binding Path=AdressReal}" HorizontalAlignment="Left" />
                             <TextBlock FontSize="16" Text="{Binding Path=Status}" HorizontalAlignment="Left" />
-                            <WrapPanel ItemHeight="130" ItemWidth="120">
-                                <Image Source="{Binding Path=Image1}"/>
-                                <Image Source="{Binding Path=Image2}"/>
-                                <Image Source="{Binding Path=Image3}"/>
-                                <Image Source="{Binding Path=Image4}"/>
-                                <Image Source="{Binding Path=Image5}"/>
+                            <WrapPanel ItemHeight="130" ItemWidth="120" x:Name="Fotki" Cursor="SizeAll" >
+                                <Image Source="{Binding Path=Image1}" Stretch="UniformToFill"/>
+                                <Image Source="{Binding Path=Image2}" Stretch="Fill"/>
+                                <Image Source="{Binding Path=Image3}" Stretch="Fill"/>
+                                <Image Source="{Binding Path=Image4}" Stretch="Fill"/>
+                                <Image Source="{Binding Path=Image5}" Stretch="Fill"/>
                             </WrapPanel>
                             <TextBlock FontSize="16" Text="{Binding Path=Opisan}" HorizontalAlignment="Left" />
                             <TextBlock FontSize="16" Text="{Binding Path=Contact}" HorizontalAlignment="Right"/>

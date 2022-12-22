@@ -15,7 +15,6 @@ public partial class RealContext : DbContext
         : base(options)
     {
     }
-
     public virtual DbSet<Admin> Admins { get; set; }
 
     public virtual DbSet<BathroomType> BathroomTypes { get; set; }

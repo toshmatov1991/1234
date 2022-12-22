@@ -42,15 +42,16 @@ namespace CP
                                join objtype in await db.ObjectTypes.ToListAsync() on real.TypeObject equals objtype.Id
                                join foto in await db.Photos.ToListAsync() on real.IdPhoto equals foto.Id
                                join owner in await db.Clients.ToListAsync() on real.Salesman equals owner.Id
+                               join are in await db.Districts.ToListAsync() on real.Area equals are.Id
                                where real.Id == idAD
                                select new
                                {
                                    Name = real.NameReal,
-                                   AdddressReal = real.Adress,
+                                   AdddressReal = $"{are.Name}, {real.Adress}",
                                    Status = $"Статус: {real.ProOrAre}",
                                    Opisan = real.Description,
                                    ClientName = owner.Name,
-                                   Contact = $"Контакт: {owner.Numberphone}",
+                                   Contact = $"Владелец: {owner.Firstname} {owner.Name} {owner.Lastname}\nТелефон: {owner.Numberphone}",
                                    Image1 = LoadImage(foto.Image1),
                                    Image2 = LoadImage(foto.Image2),
                                    Image3 = LoadImage(foto.Image3),

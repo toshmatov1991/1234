@@ -29,7 +29,7 @@
             <TextBlock FontSize="34" x:Name="Name" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="5" />
             <TextBlock x:Name="Status" Height="35" Width="170" FontSize="22" Grid.Row="1" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <TextBlock FontSize="22" Text="Адрес: " Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <TextBox x:Name="Adddress" FontSize="22" Grid.Row="1"  SpellCheck.IsEnabled="True" Language="ru-ru" VerticalAlignment="Bottom" Grid.ColumnSpan="4" Margin="81,0,0,86" Grid.RowSpan="2"/>
+            <TextBox x:Name="Adddress" FontSize="22" Grid.Row="1"  SpellCheck.IsEnabled="True" Language="ru-ru" VerticalAlignment="Bottom" Grid.ColumnSpan="4" Margin="81,0,0,86" Grid.RowSpan="2" IsEnabled="False"/>
             <WrapPanel ItemHeight="120" ItemWidth="100" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="3" Margin="0,41,0,6">
                 <Image x:Name="Image1"/>
                 <Image x:Name="Image2"/>
@@ -43,7 +43,7 @@
                 <Image x:Name="Image10"/>
             </WrapPanel>
             <TextBox FontSize="22" x:Name="Opisan" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
-            <TextBox FontSize="20" VerticalAlignment="Center" x:Name="Contact" Grid.Row="6" Grid.ColumnSpan="2"/>
+            <TextBox FontSize="20" VerticalAlignment="Center" x:Name="Contact" Grid.Row="6" Grid.ColumnSpan="2" IsEnabled="False"/>
         </Grid>
     </Border>
 </Window>

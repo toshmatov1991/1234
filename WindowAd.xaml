@@ -7,6 +7,19 @@
         Icon="Resources\icon.png"
         ResizeMode="CanMinimize"
         Title="Агенство Недвижимости" Width="1100" Height="720">
+    <Window.Resources>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="Height" Value="400"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Margin" Value="-50"/>
+                    <Setter Property="MinWidth" Value="500"/>
+                    <Setter Property="MinHeight" Value="500"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Border BorderBrush="Black" Padding="5">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -26,24 +39,25 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock FontSize="34" x:Name="Name" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="5" />
-            <TextBlock x:Name="Status" Height="35" Width="170" FontSize="22" Grid.Row="1" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBlock FontSize="22" Text="Адрес: " Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <TextBox x:Name="Adddress" FontSize="22" Grid.Row="1"  SpellCheck.IsEnabled="True" Language="ru-ru" VerticalAlignment="Bottom" Grid.ColumnSpan="4" Margin="81,0,0,86" Grid.RowSpan="2" IsEnabled="False"/>
+            <TextBlock FontSize="34" x:Name="Name" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="3" />
+            <TextBlock FontSize="30" x:Name="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="284" Margin="76,-1,0,0" />
+            <TextBlock x:Name="Status" Height="35" Width="170" FontSize="22" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,71,0,0" Grid.RowSpan="2"/>
+            <TextBlock FontSize="22" Text="Адрес: " Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,16" />
+            <TextBlock x:Name="Adddress" FontSize="22" Grid.Row="1" VerticalAlignment="Bottom" Grid.ColumnSpan="4" Margin="81,0,0,14" IsEnabled="False"/>
             <WrapPanel ItemHeight="120" ItemWidth="100" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="3" Margin="0,41,0,6">
-                <Image x:Name="Image1"/>
-                <Image x:Name="Image2"/>
-                <Image x:Name="Image3"/>
-                <Image x:Name="Image4"/>
-                <Image x:Name="Image5"/>
-                <Image x:Name="Image6"/>
-                <Image x:Name="Image7"/>
-                <Image x:Name="Image8"/>
-                <Image x:Name="Image9"/>
-                <Image x:Name="Image10"/>
+                <Image x:Name="Image1" Stretch="Uniform" />
+                <Image x:Name="Image2" Stretch="Uniform"  />
+                <Image x:Name="Image3" Stretch="Uniform"  />
+                <Image x:Name="Image4" Stretch="Uniform"  />
+                <Image x:Name="Image5" Stretch="Uniform"  />
+                <Image x:Name="Image6" Stretch="Uniform"  />
+                <Image x:Name="Image7" Stretch="Uniform"  />
+                <Image x:Name="Image8" Stretch="Uniform"  />
+                <Image x:Name="Image9" Stretch="Uniform"  />
+                <Image x:Name="Image10" Stretch="Uniform" Margin="0 0 20 0" />
             </WrapPanel>
-            <TextBox FontSize="22" x:Name="Opisan" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
-            <TextBox FontSize="20" VerticalAlignment="Center" x:Name="Contact" Grid.Row="6" Grid.ColumnSpan="2" IsEnabled="False"/>
+            <TextBox FontSize="22" x:Name="Opisan" TextWrapping ="Wrap"  AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,64,0,22"/>
+            <TextBlock FontSize="20" VerticalAlignment="Top" x:Name="Contact" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,4,0,0"/>
         </Grid>
     </Border>
 </Window>

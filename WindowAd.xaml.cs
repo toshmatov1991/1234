@@ -51,6 +51,7 @@ namespace CP
                                    Status = $"Статус: {real.ProOrAre}",
                                    Opisan = real.Description,
                                    ClientName = owner.Name,
+                                   Price = $"Цена: {real.Price} рублей",
                                    Contact = $"Владелец: {owner.Firstname} {owner.Name} {owner.Lastname}\nТелефон: {owner.Numberphone}",
                                    Image1 = LoadImage(foto.Image1),
                                    Image2 = LoadImage(foto.Image2),
@@ -82,6 +83,7 @@ namespace CP
                         Image10.Source = item.Image10;
                         Opisan.Text = item.Opisan;
                         Contact.Text = item.Contact;
+                        Price.Text = item.Price;
                     }
                 }
                 else

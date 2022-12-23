@@ -2,3 +2,6 @@
 
 # CS8629: Тип значения, допускающего NULL, может быть NULL.
 dotnet_diagnostic.CS8629.severity = none
+
+# CS8604: Возможно, аргумент-ссылка, допускающий значение NULL.
+dotnet_diagnostic.CS8604.severity = none

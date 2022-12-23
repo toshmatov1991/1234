@@ -21,7 +21,7 @@
         </Style>
     </Window.Resources>
     <Border BorderBrush="Black" Padding="5">
-        <Grid>
+        <Grid Margin="56,43,-56,-44">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -56,8 +56,14 @@
                 <Image x:Name="Image9" Stretch="Uniform"  />
                 <Image x:Name="Image10" Stretch="Uniform" Margin="0 0 20 0" />
             </WrapPanel>
-            <TextBox FontSize="22" x:Name="Opisan" TextWrapping ="Wrap"  AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,64,0,22"/>
-            <TextBlock FontSize="20" VerticalAlignment="Top" x:Name="Contact" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,4,0,0"/>
+            <TextBox FontSize="22" x:Name="Opisan" TextWrapping ="Wrap"  AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,48,0,38"/>
+            <TextBlock FontSize="20" VerticalAlignment="Top" x:Name="Contact" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,54,0,0"/>
+            <Button Content="Свидетельство о  праве собственности" HorizontalContentAlignment="Left" FontSize="20" VerticalAlignment="Top" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,4,69,0" Grid.Column="0" Click="Button_Click"/>
+            <TextBlock FontSize="20" x:Name="yearPostroy" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Margin="64,60,16,67" Grid.RowSpan="2"/>
+            <TextBlock FontSize="20" x:Name="otdelka" Grid.Column="3" Grid.Row="5"  Grid.ColumnSpan="2" Height="41" VerticalAlignment="Bottom" Margin="64,0,30,18"/>
+            <TextBlock FontSize="20" x:Name="sanuzell" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" Margin="63,76,17,50" Grid.RowSpan="2"/>
+            <TextBlock FontSize="20" x:Name="balkon" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Margin="63,41,17,85" Grid.RowSpan="2"/>
+
         </Grid>
     </Border>
 </Window>

@@ -43,15 +43,19 @@ namespace CP
                                join foto in await db.Photos.ToListAsync() on real.IdPhoto equals foto.Id
                                join owner in await db.Clients.ToListAsync() on real.Salesman equals owner.Id
                                join are in await db.Districts.ToListAsync() on real.Area equals are.Id
+                               join sanuzel in await db.BathroomTypes.ToListAsync() on real.BathroomId equals sanuzel.Id
                                where real.Id == idAD
                                select new
                                {
-                                   Name = real.NameReal,
+                                   Name = $"{real.NameReal}, {real.Square} м², {real.Floor}/{real.NumberOfStoreys} эт.",
                                    AdddressReal = $"{are.Name}, {real.Adress}",
                                    Status = $"Статус: {real.ProOrAre}",
                                    Opisan = real.Description,
                                    ClientName = owner.Name,
+                                   sanuz = $"Санузел: {sanuzel.Type}",
+                                   yearPostroy = $"Год постройки: {real.YearOfConstruction}",
                                    Price = $"Цена: {real.Price} рублей",
+                                   otdel = $"Отделка: {real.Finishing}",
                                    Contact = $"Владелец: {owner.Firstname} {owner.Name} {owner.Lastname}\nТелефон: {owner.Numberphone}",
                                    Image1 = LoadImage(foto.Image1),
                                    Image2 = LoadImage(foto.Image2),
@@ -62,7 +66,8 @@ namespace CP
                                    Image7 = LoadImage(foto.Image7),
                                    Image8 = LoadImage(foto.Image8),
                                    Image9 = LoadImage(foto.Image9),
-                                   Image10 = LoadImage(foto.Image10)
+                                   Image10 = LoadImage(foto.Image10),
+                                   balk = real.BalconyGlazing
                                };
                 if (goquerty != null)
                 {
@@ -84,6 +89,10 @@ namespace CP
                         Opisan.Text = item.Opisan;
                         Contact.Text = item.Contact;
                         Price.Text = item.Price;
+                        yearPostroy.Text = item.yearPostroy;
+                        sanuzell.Text = item.sanuz;
+                        otdelka.Text = item.otdel;
+                        balkon.Text = item.balk;
                     }
                 }
                 else
@@ -117,6 +126,9 @@ namespace CP
             else return null;
         }
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //ShowDialog открыть окно с данными свидетельства о собственности
+        }
     }
 }

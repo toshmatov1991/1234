@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Another\icon.png" />
     <None Remove="Resources\ffe.gif" />
     <None Remove="Resources\icon.png" />
     <None Remove="Resources\loading_icon_149916.png" />
@@ -18,9 +19,12 @@
     <Content Include="Resources\ffe.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\icon.png">
+    <Content Include="Another\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\pros.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

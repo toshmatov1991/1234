@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace CP
+namespace CP.Another
 {
     public partial class WindowAd : Window
     {

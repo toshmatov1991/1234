@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using CP.Models;
+using CP.Another;
 using Microsoft.EntityFrameworkCore;
 
 namespace CP

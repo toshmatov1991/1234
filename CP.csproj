@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Another\1.jfif" />
     <None Remove="Another\icon.png" />
     <None Remove="Resources\ffe.gif" />
     <None Remove="Resources\icon.png" />
@@ -16,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Another\1.jfif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\ffe.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

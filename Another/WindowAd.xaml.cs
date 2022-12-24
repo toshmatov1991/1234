@@ -129,7 +129,8 @@ namespace CP.Another
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //ShowDialog открыть окно с данными свидетельства о собственности
-
+            SOPS oPS = new(12);
+            oPS.ShowDialog();
         }
     }
 }

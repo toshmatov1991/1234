@@ -14,12 +14,9 @@ using System.Windows.Shapes;
 
 namespace CP.Another
 {
-    /// <summary>
-    /// Логика взаимодействия для Dogovor.xaml
-    /// </summary>
     public partial class Dogovor : Window
     {
-        public Dogovor()
+        public Dogovor(int t)
         {
             InitializeComponent();
         }

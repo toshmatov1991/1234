@@ -9,12 +9,12 @@
         Title="Агенство Недвижимости" Width="1100" Height="720">
     <Window.Resources>
         <Style TargetType="{x:Type Image}">
-            <Setter Property="Width" Value="400"/>
-            <Setter Property="Height" Value="400"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="200"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Margin" Value="-50"/>
-                    <Setter Property="MinWidth" Value="500"/>
+                    <Setter Property="Margin" Value="-10"/>
+                    <Setter Property="MinWidth" Value="400"/>
                     <Setter Property="MinHeight" Value="500"/>
                 </Trigger>
             </Style.Triggers>
@@ -40,8 +40,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock FontSize="34" x:Name="Name" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Top"/>
-            <TextBlock FontSize="30" x:Name="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="284" Margin="76,-1,0,0" />
-            <Button Content="Заключить договор" Background="AliceBlue" FontSize="30" HorizontalAlignment="Left" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="299" Margin="60,80,0,30" Grid.RowSpan="2" Click="Button_Click_1" />
+            <TextBlock FontSize="30" x:Name="Price" HorizontalAlignment="Left" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="336" Margin="40,-1,0,48" />
+            <Button Content="Заключить договор" Background="AliceBlue" FontSize="30" HorizontalAlignment="Left" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="299" Margin="39,80,0,30" Grid.RowSpan="2" Click="Button_Click_1" />
             <TextBlock x:Name="Status" Height="35" Width="170" FontSize="22" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,61,0,0" Grid.RowSpan="2"/>
             <TextBlock FontSize="22" Text="Адрес: " Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,27,0,0" />
             <TextBlock x:Name="Adddress" FontSize="22" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="4" Margin="81,27,0,0" IsEnabled="False"/>

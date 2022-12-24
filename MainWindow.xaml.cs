@@ -26,12 +26,11 @@ namespace CP
         public MainWindow()
         {
             InitializeComponent();
-            //User user = new("");
-            //user.Show();
-            //Close();
+            User user = new("");
+            user.Show();
+            Close();
             //StartToBD();
-            WindowAd window = new(12);
-            window.Show();
+
             Close();
 
 

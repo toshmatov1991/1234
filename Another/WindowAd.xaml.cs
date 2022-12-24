@@ -126,14 +126,14 @@ namespace CP.Another
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //ShowDialog открыть окно с данными свидетельства о собственности
-            SOPS oPS = new(12);
+            SOPS oPS = new(idAD);
             oPS.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Заключить договор
-            Dogovor dogovor = new();
+            Dogovor dogovor = new(idAD);
             dogovor.ShowDialog();
         }
     }

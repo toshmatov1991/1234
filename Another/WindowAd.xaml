@@ -39,31 +39,31 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock FontSize="34" x:Name="Name" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="3" />
+            <TextBlock FontSize="34" x:Name="Name" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Top"/>
             <TextBlock FontSize="30" x:Name="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="284" Margin="76,-1,0,0" />
-            <TextBlock x:Name="Status" Height="35" Width="170" FontSize="22" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,71,0,0" Grid.RowSpan="2"/>
-            <TextBlock FontSize="22" Text="Адрес: " Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,16" />
-            <TextBlock x:Name="Adddress" FontSize="22" Grid.Row="1" VerticalAlignment="Bottom" Grid.ColumnSpan="4" Margin="81,0,0,14" IsEnabled="False"/>
-            <WrapPanel ItemHeight="120" ItemWidth="100" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="3" Margin="0,41,0,6">
-                <Image x:Name="Image1" Stretch="Uniform" />
-                <Image x:Name="Image2" Stretch="Uniform"  />
-                <Image x:Name="Image3" Stretch="Uniform"  />
-                <Image x:Name="Image4" Stretch="Uniform"  />
-                <Image x:Name="Image5" Stretch="Uniform"  />
-                <Image x:Name="Image6" Stretch="Uniform"  />
-                <Image x:Name="Image7" Stretch="Uniform"  />
-                <Image x:Name="Image8" Stretch="Uniform"  />
-                <Image x:Name="Image9" Stretch="Uniform"  />
-                <Image x:Name="Image10" Stretch="Uniform" Margin="0 0 20 0" />
+            <Button Content="Заключить договор" Background="AliceBlue" FontSize="30" HorizontalAlignment="Left" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="299" Margin="60,80,0,30" Grid.RowSpan="2" Click="Button_Click_1" />
+            <TextBlock x:Name="Status" Height="35" Width="170" FontSize="22" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,61,0,0" Grid.RowSpan="2"/>
+            <TextBlock FontSize="22" Text="Адрес: " Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,27,0,0" />
+            <TextBlock x:Name="Adddress" FontSize="22" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="4" Margin="81,27,0,0" IsEnabled="False"/>
+            <WrapPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="0,86,0,48">
+                <Image x:Name="Image1" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image2" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image3" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image4" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image5" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image6" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image7" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image8" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image9" Stretch="Uniform" Height="120" Width="100"/>
+                <Image x:Name="Image10" Stretch="Uniform" Height="120" Width="100"/>
             </WrapPanel>
-            <TextBlock FontSize="22" x:Name="Opisan" TextWrapping ="Wrap" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,48,0,53"/>
-            <TextBlock FontSize="20" VerticalAlignment="Top" x:Name="Contact" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,24,0,0"/>
-            <Button Content="Свидетельство о  праве собственности" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" VerticalAlignment="Top" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,85,59,0" Grid.Column="0" Click="Button_Click" Height="37" Grid.RowSpan="2"/>
+            <TextBlock FontSize="22" x:Name="Opisan" TextWrapping ="Wrap" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,48,0,2"/>
+            <TextBlock FontSize="20" VerticalAlignment="Top" x:Name="Contact" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,10,0,0"/>
+            <Button Content="Свидетельство о  праве собственности" Background="AliceBlue" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" VerticalAlignment="Top" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,81,59,0" Grid.Column="0" Click="Button_Click" Height="37" Grid.RowSpan="2"/>
             <TextBlock FontSize="20" x:Name="yearPostroy" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Margin="64,60,16,67" Grid.RowSpan="2"/>
             <TextBlock FontSize="20" x:Name="otdelka" Grid.Column="3" Grid.Row="5"  Grid.ColumnSpan="2" Height="41" VerticalAlignment="Bottom" Margin="64,0,30,18"/>
             <TextBlock FontSize="20" x:Name="sanuzell" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" Margin="63,76,17,50" Grid.RowSpan="2"/>
             <TextBlock FontSize="20" x:Name="balkon" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Margin="63,41,17,85" Grid.RowSpan="2"/>
-
         </Grid>
     </Border>
 </Window>

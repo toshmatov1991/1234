@@ -96,14 +96,11 @@ namespace CP.Another
                     }
                 }
                 else
-                    MessageBox.Show("Что то пошло не так, пинайте админа(Тимура)");
+                    MessageBox.Show("Что то пошло не так");
                 
             }
 
         }
-
-
-
 
         private static BitmapImage? LoadImage(byte[] imageData)
         {
@@ -131,6 +128,13 @@ namespace CP.Another
             //ShowDialog открыть окно с данными свидетельства о собственности
             SOPS oPS = new(12);
             oPS.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Заключить договор
+            Dogovor dogovor = new();
+            dogovor.ShowDialog();
         }
     }
 }

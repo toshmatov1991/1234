@@ -31,7 +31,7 @@ namespace CP
             Close();
             //StartToBD();
 
-            Close();
+            
 
 
 

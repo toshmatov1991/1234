@@ -6,6 +6,11 @@
         mc:Ignorable="d" Icon="icon.png" ResizeMode="CanMinimize"
         Title="Dogovor" Height="633" Width="900">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
     </Grid>
 </Window>

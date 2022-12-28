@@ -26,8 +26,10 @@ namespace CP
         public MainWindow()
         {
             InitializeComponent();
-            User user = new("");
-            user.Show();
+            //User user = new("");
+            //user.Show();
+            Dogovor dogovor = new(1);
+            dogovor.Show();
             Close();
             //StartToBD();
 

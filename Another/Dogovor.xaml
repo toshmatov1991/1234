@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Icon="icon.png" ResizeMode="CanMinimize"
+        mc:Ignorable="d" Icon="icon.png" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
         Title="Dogovor" Height="720" Width="1000">
     <Border Padding="7">
         <Grid>
@@ -20,15 +20,23 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Договор купли-продажи квартиры" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="45" FontWeight="DemiBold"/>
-            <TextBlock Text="   г. Томск" Grid.Row="1" HorizontalAlignment="Left" FontSize="30" VerticalAlignment="Top"/>
-            <TextBlock Text="Дата" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"/>
-            <TextBlock Text="Гражданин" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="30"/>
-            <TextBlock x:Name="FIO" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="30"/>
-            <TextBlock Text="Паспорт" Grid.Row="2" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,12,0,0"/>
-            <TextBlock x:Name="passPort" Grid.ColumnSpan="3" Grid.Row="2" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,12,0,0"/>
-            <TextBlock Text="Именуем в дальнейшем продавец, с одной стороны,
-                       и гражданин" Grid.Row="2" VerticalAlignment="Bottom" FontSize="30" Grid.ColumnSpan="3"/>
+            <TextBlock Text="Договор купли-продажи квартиры" FontSize="40" FontWeight="DemiBold" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="   г. Томск" Grid.Row="1" HorizontalAlignment="Left" FontSize="20" VerticalAlignment="Top"/>
+            <TextBlock Text="Дата" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Margin="0,115,22,0" Grid.RowSpan="2"/>
+            <TextBlock Text="Гражданин" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="20" Margin="0,0,0,40"/>
+            <TextBlock x:Name="FIO" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="20"/>
+            <TextBlock Text="паспорт" Grid.Row="1" Grid.RowSpan="2" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,88,0,0"/>
+            <TextBlock x:Name="passPort" Grid.ColumnSpan="3" Grid.Row="2" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,12,0,0"/>
+            <TextBlock Text="именуем в дальнейшем продавец, с одной стороны, и гражданин" Grid.Row="2" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="3" Margin="0,18,0,0"/>
+            <TextBlock Text="и гражданин" Grid.Row="2" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="3" Margin="0,61,0,0"/>
+            <TextBlock Text="паспорт" Grid.Row="2" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,103,0,0"/>
+            <TextBlock Text="именуем в дальнейшем покупатель, с другой стороны, заключили Договор о нижеследующем:" Grid.Row="3" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="3" Margin="0,27,0,0"/>
+            <TextBlock Text="Предмет договора" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="33" FontWeight="DemiBold" Grid.Row="3" Grid.ColumnSpan="3"/>
+            <TextBlock Text="Продавец обязуется передать в собственность Покупателя " Grid.Row="4" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="3" HorizontalAlignment="Left"/>
+            <TextBlock Text="кадастровый номер: " VerticalAlignment="Top" Grid.Row="4" FontSize="20" HorizontalAlignment="Left" Margin="0,32,0,0"/>
+            <TextBlock Text="общая площадь: " VerticalAlignment="Top" Grid.Row="4" FontSize="20" HorizontalAlignment="Left" Margin="108,32,0,0" Grid.Column="1"/>
+            <TextBlock Text="расположенный по адресу: " VerticalAlignment="Top" Grid.Row="4" FontSize="20" HorizontalAlignment="Left" Margin="14,32,0,0" Grid.Column="2"/>
+
         </Grid>
     </Border>
 </Window>

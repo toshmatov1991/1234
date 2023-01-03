@@ -14,23 +14,14 @@ using System.Windows.Shapes;
 
 namespace CP.Another
 {
-    public partial class Dogovor : Window
+    /// <summary>
+    /// Логика взаимодействия для SalessMan.xaml
+    /// </summary>
+    public partial class SalessMan : Window
     {
-        public Dogovor(int t)
+        public SalessMan()
         {
             InitializeComponent();
-            Fire();
-
-            //Сделаю + к ТекстБоксу
         }
-
-        private static async void Fire()
-        {
-            await Task.Delay(2000);
-            SalessMan salessMan = new();
-            salessMan.ShowDialog();
-        }
-
-
     }
 }

@@ -41,6 +41,7 @@
             <TextBlock TextWrapping="Wrap" Text="Свидетельство о праве собственности на " FontSize="18" Grid.Row="5" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBlock Text="Договор купли-продажи от " FontSize="18" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,60,0,0"/>
             <Button Content="Заключить договор" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="5" Width="250" Height="55" Background="AliceBlue" FontSize="21" BorderBrush="Black" FontWeight="DemiBold"/>
+            <Button Content="Выбрать покупателя" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="5" Width="250" Height="55" Background="AliceBlue" FontSize="21" BorderBrush="Black" FontWeight="DemiBold"/>
         </Grid>
     </Border>
 </Window>

@@ -19,14 +19,7 @@ namespace CP.Another
         public Dogovor(int t)
         {
             InitializeComponent();
+            //Сделаю + к ТекстБоксу
         }
-
-
-
-
-
-
-
-
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Icon="icon.png"
+        mc:Ignorable="d" Icon="icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         Title="Внести данные о покупателе" Height="675" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,9 +21,9 @@
             <RowDefinition Height="83.426"/>
             <RowDefinition Height="83*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Поиск" FontStyle="Italic" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="180,0,0,0" Width="66"/>
-        <TextBox FontSize="18" x:Name="poisk" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="3" VerticalAlignment="Center" Width="500" Height="30"/>
-        <ListView x:Name="listviewCards" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4">
+        <TextBlock Text="Поиск" FontStyle="Italic" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="251,0,0,0" Width="66"/>
+        <TextBox FontSize="18" x:Name="poisk" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="3" VerticalAlignment="Center" Width="500" Height="30" KeyUp="PoissKK"/>
+        <ListView x:Name="listviewCards" Width="1150" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4">
             <ListView.ToolTip>
                 <ToolTip>
                     Выберите любого клиента двойным кликом мыши
@@ -38,7 +38,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=s, Mode=OneWay}" Header="Паспорт Серия" Width="110"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=number, Mode=OneWay}" Header="Паспорт Номер" Width="110"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=dv, Mode=OneWay}" Header="Дата выдачи" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=kv, Mode=OneWay}" Header="Кем выдан" Width="200"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=kv, Mode=OneWay}" Header="Кем выдан" Width="300"/>
                 </GridView>
             </ListView.View>
         </ListView>

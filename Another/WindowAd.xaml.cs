@@ -38,12 +38,12 @@ namespace CP.Another
 
             using (RealContext db = new())
             {
-                var goquerty = from real in await db.Realties.ToListAsync()
-                               join objtype in await db.ObjectTypes.ToListAsync() on real.TypeObject equals objtype.Id
-                               join foto in await db.Photos.ToListAsync() on real.IdPhoto equals foto.Id
-                               join owner in await db.Clients.ToListAsync() on real.Salesman equals owner.Id
-                               join are in await db.Districts.ToListAsync() on real.Area equals are.Id
-                               join sanuzel in await db.BathroomTypes.ToListAsync() on real.BathroomId equals sanuzel.Id
+                var goquerty = from real in await db.Realties.AsNoTracking().ToListAsync()
+                               join objtype in await db.ObjectTypes.AsNoTracking().ToListAsync() on real.TypeObject equals objtype.Id
+                               join foto in await db.Photos.AsNoTracking().ToListAsync() on real.IdPhoto equals foto.Id
+                               join owner in await db.Clients.AsNoTracking().ToListAsync() on real.Salesman equals owner.Id
+                               join are in await db.Districts.AsNoTracking().ToListAsync() on real.Area equals are.Id
+                               join sanuzel in await db.BathroomTypes.AsNoTracking().ToListAsync() on real.BathroomId equals sanuzel.Id
                                where real.Id == idAD
                                select new
                                {

@@ -26,17 +26,7 @@ namespace CP
         public MainWindow()
         {
             InitializeComponent();
-            //User user = new("");
-            //user.Show();
-            Dogovor dogovor = new(1);
-            dogovor.Show();
-            Close();
-            //StartToBD();
-
-            
-
-
-
+            StartToBD();
         }
 
         bool logOne = true;
@@ -45,7 +35,7 @@ namespace CP
         {
             using (RealContext db = new())
             {
-                var adm = db.Admins.ToList();
+                var adm = db.Admins.AsNoTracking().ToList();
                 foreach (var item in adm) { }
             }
         }

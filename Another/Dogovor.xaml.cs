@@ -19,6 +19,7 @@ namespace CP.Another
         public Dogovor(int t)
         {
             InitializeComponent();
+            date.Text += "Привет 20201212";
             //Сделаю + к ТекстБоксу
         }
     }

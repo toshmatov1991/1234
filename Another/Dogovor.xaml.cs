@@ -16,12 +16,11 @@ namespace CP.Another
 {
     public partial class Dogovor : Window
     {
-        public Dogovor(int t)
+        public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
             Fire();
-
-            //Сделаю + к ТекстБоксу
+            ZapolnitDogovor();
         }
 
         private static async void Fire()
@@ -30,6 +29,15 @@ namespace CP.Another
             SalessMan salessMan = new();
             salessMan.ShowDialog();
         }
+
+
+        private void ZapolnitDogovor()
+        {
+            //Подчеркнуть текст
+            date.Text = DateTime.Now.ToString();
+            date.TextDecorations = TextDecorations.Underline;
+        }
+
 
 
     }

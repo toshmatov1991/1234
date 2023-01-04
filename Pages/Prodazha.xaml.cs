@@ -25,17 +25,19 @@ namespace CP.Pages
 {
     public partial class Prodazha : Page
     {
+        int myrieltor = 0;
         List<int> kolko = new();
         List<string> list1 = new() { "Продажа", "Аренда" };
         List<string> list2 = new() { "Квартира", "Дом/дача", "Коммерческая", "Гараж/погреб", "Земля" };
         List<string> list3 = new() { "Кировский", "Советский", "Октябрьский", "Ленинский", "Северск", "Томский", "Асиновский", "Область", "Другое" };
         int start = 0;
         int end = 1000000000;
-        public Prodazha()
+        public Prodazha(int realtor)
         {
             InitializeComponent();
             AddListFor();
             StartSale();
+            myrieltor = realtor;
         }
         private void AddListFor()
         {
@@ -54,11 +56,11 @@ namespace CP.Pages
 
                 using (RealContext db = new())
                 {
-                    var goquerty = from real in await db.Realties.ToListAsync()
-                                   join objtype in await db.ObjectTypes.ToListAsync() on real.TypeObject equals objtype.Id
-                                   join foto in await db.Photos.ToListAsync() on real.IdPhoto equals foto.Id
-                                   join owner in await db.Clients.ToListAsync() on real.Salesman equals owner.Id
-                                   join dist in await db.Districts.ToListAsync() on real.Area equals dist.Id
+                    var goquerty = from real in await db.Realties.AsNoTracking().ToListAsync()
+                                   join objtype in await db.ObjectTypes.AsNoTracking().ToListAsync() on real.TypeObject equals objtype.Id
+                                   join foto in await db.Photos.AsNoTracking().ToListAsync() on real.IdPhoto equals foto.Id
+                                   join owner in await db.Clients.AsNoTracking().ToListAsync() on real.Salesman equals owner.Id
+                                   join dist in await db.Districts.AsNoTracking().ToListAsync() on real.Area equals dist.Id
                                    where real.Actual == 1
                                    && list1.Contains(real.ProOrAre)
                                    && list2.Contains(objtype.Name)
@@ -122,7 +124,7 @@ namespace CP.Pages
                 else if (r[i] == ',')
                     break;
             }
-            WindowAd ad = new(Convert.ToInt32(str));
+            WindowAd ad = new(Convert.ToInt32(str), myrieltor);
             ad.Show();
         }
         private void Button_Click(object sender, RoutedEventArgs e)

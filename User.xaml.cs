@@ -16,16 +16,18 @@ namespace CP
 {
     public partial class User : Window
     {
-        public User(string str)
+        int qwe = 0;
+        public User(string str, int us)
         {
             InitializeComponent();
+            qwe = us;
             Title = str;
-            MainFrame.Content = new Pages.Prodazha();
+            MainFrame.Content = new Pages.Prodazha(qwe);
         }
 
         private void LeFt(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.Content = new Pages.Prodazha();
+            MainFrame.Content = new Pages.Prodazha(qwe);
         }
 
         private void AdDRealse(object sender, MouseButtonEventArgs e)

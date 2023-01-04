@@ -20,10 +20,12 @@ namespace CP.Another
     public partial class WindowAd : Window
     {
         private int idAD;
-        public WindowAd(int id)
+        int mestniyrieltor = 0;
+        public WindowAd(int id, int realtor)
         {
             InitializeComponent();
             idAD = id;
+            mestniyrieltor = realtor;
             StartSale();
         }
 
@@ -133,7 +135,7 @@ namespace CP.Another
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Заключить договор
-            Dogovor dogovor = new(idAD);
+            Dogovor dogovor = new(idAD, mestniyrieltor);
             dogovor.ShowDialog();
         }
     }

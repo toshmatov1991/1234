@@ -35,8 +35,11 @@ namespace CP
         {
             using (RealContext db = new())
             {
-                var adm = db.Admins.AsNoTracking().ToList();
+                var adm = db.Admins.ToList();
+                var usr = db.Realtors.ToList();
                 foreach (var item in adm) { }
+                foreach (var item in usr) { }
+               
             }
         }
 
@@ -80,7 +83,7 @@ namespace CP
                             if (item.Login == login.Text && item.Password == password.Password)
                             {
                                 temp++;
-                                User user = new($"{item.Firstname} {item.Name} {item.Lastname}");
+                                User user = new($"{item.Firstname} {item.Name} {item.Lastname}", (int)item.Id);
                                 user.Show();
                                 Close();
                                 break;

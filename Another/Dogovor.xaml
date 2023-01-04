@@ -34,6 +34,7 @@
             <TextBlock Text="Предмет договора" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="33" FontWeight="DemiBold" Grid.Row="2" Grid.Column="1" Margin="0,115,0,0" Grid.RowSpan="2"/>
             <TextBlock Text="Продавец обязуется передать в собственность Покупателя " Grid.Row="3" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="66,45,0,0"/>
             <TextBlock Text="кадастровый номер: " VerticalAlignment="Top" Grid.Row="3" FontSize="18" HorizontalAlignment="Left" Margin="0,81,0,0" Grid.RowSpan="2"/>
+            <TextBlock Text="123414235425" VerticalAlignment="Top" Grid.Row="3" FontSize="18" HorizontalAlignment="Left" Margin="179,81,0,0" Grid.RowSpan="2"/>
             <TextBlock Text="общая площадь: " VerticalAlignment="Top" Grid.Row="3" FontSize="18" HorizontalAlignment="Left" Margin="108,81,0,0" Grid.Column="1" Grid.RowSpan="2"/>
             <TextBlock Text="расположенный по адресу: " VerticalAlignment="Top" Grid.Row="4" FontSize="18" HorizontalAlignment="Left" Margin="0,21,0,0" Grid.Column="0"/>
             <TextBlock Text="а покупатель обязуется принять ее и уплатить за нее денежную сумму в размере: " FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="4" Grid.ColumnSpan="3" Margin="0,59,0,0"/>

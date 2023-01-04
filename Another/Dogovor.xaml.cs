@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +17,11 @@ namespace CP.Another
 {
     public partial class Dogovor : Window
     {
+        int iddd = 0;
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
+            iddd = t;
             Fire();
             ZapolnitDogovor();
         }
@@ -34,8 +37,31 @@ namespace CP.Another
         private void ZapolnitDogovor()
         {
             //Подчеркнуть текст
-            date.Text = DateTime.Now.ToString();
+            //Дата
+            date.Text = DateTime.Now.DayOfYear.ToString();
             date.TextDecorations = TextDecorations.Underline;
+
+
+            using (RealContext db = new())
+            {
+                var getmysalesman = from real in db.Realties.AsNoTracking().ToList()
+                                    join clie in db.Clients.AsNoTracking().ToList() on real.Salesman equals clie.Id
+                                    join pass in db.Passports.AsNoTracking().ToList() on clie.PasswordFk equals pass.Id
+                                    join svidetelstvo in db.Proofs.AsNoTracking().ToList() on real.Certificate equals svidetelstvo.Id
+                                    where real.Id == iddd
+                                    select new
+                                    {
+                                        clie.Id,
+                                        fio = $"{clie.Firstname} {clie.Name} {clie.Lastname}",
+                                        ps = $"{pass.Serial} №{pass.Number}, выдан {pass.Dateof} {pass.Isby}",
+
+                                    };
+            }
+
+
+
+           //FIO.Text; //ФИО
+           //passPort.Text;//Паспортные данные продавца
         }
 
 

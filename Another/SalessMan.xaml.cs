@@ -17,7 +17,7 @@ namespace CP.Another
 {
     public partial class SalessMan : Window
     {
-        public SalessMan()
+        public SalessMan(ref int pokupateli)
         {
             InitializeComponent();
             GetMyClients();

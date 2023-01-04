@@ -18,6 +18,7 @@ namespace CP.Another
     public partial class Dogovor : Window
     {
         int iddd = 0;
+        int pokupatel = 0;
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
@@ -26,10 +27,10 @@ namespace CP.Another
             ZapolnitDogovor();
         }
 
-        private static async void Fire()
+        private async void Fire()
         {
             await Task.Delay(2000);
-            SalessMan salessMan = new();
+            SalessMan salessMan = new(ref pokupatel);
             salessMan.ShowDialog();
         }
 
@@ -60,8 +61,14 @@ namespace CP.Another
 
 
 
-           //FIO.Text; //ФИО
-           //passPort.Text;//Паспортные данные продавца
+            //FIO.Text; //ФИО
+            //passPort.Text;//Паспортные данные продавца
+            //kadastr.Text; //Кадастровый номер
+            //kvadrat.Text; //Площадь
+            //adress.Text; //Адрес
+            //serianomer.Text//Свидетельство о праве собственности
+            //datadogovora.Text//Дата заключения договора
+
         }
 
 

@@ -15,14 +15,18 @@ using System.Windows.Shapes;
 
 namespace CP.Another
 {
-    public partial class SalessMan : Window
+    unsafe public partial class SalessMan : Window
     {
+        int i = 0;
         public SalessMan(ref int pokupateli)
         {
+            //Здесь просто задаю id покупателя
             InitializeComponent();
             GetMyClients();
-        }
 
+           
+        }
+      
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить в базу клиента
@@ -49,6 +53,7 @@ namespace CP.Another
                                  kv = pass.Isby
                              };
                 listviewCards.ItemsSource = getget.ToList();
+               
             }
         }
 
@@ -78,5 +83,45 @@ namespace CP.Another
                 listviewCards.ItemsSource = getget.ToList();
             }
         }
+
+        //Получение id покупателя при двойном клике на любую запись в таблице
+        private void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var str = GetMyId(listviewCards.SelectedItem.ToString());
+            i = Convert.ToInt32(str);
+            using(RealContext db = new())
+            {
+                var ddd = db.Clients.AsNoTracking().Where(u => u.Id == i).ToList();
+                foreach (var item in ddd)
+                {
+                    str = $"{item.Firstname} {item.Name} {item.Lastname}";
+                }
+            }
+            MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {str}?", "Вы уверены в своем выборе?!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(dialog == MessageBoxResult.Yes)
+            {
+
+                Close();
+            }
+            else if(dialog == MessageBoxResult.No)
+            {
+                return;
+            }
+        }
+
+        private static string GetMyId(string dsa)
+        {
+            string s = "";
+            for (int i = 0; i < dsa.Length; i++)
+            {
+                if (char.IsDigit(dsa[i]))
+                    s += dsa[i];
+                else if (dsa[i] == ',')
+                    break;
+            }
+            return s;
+        }
+
+
     }
 }

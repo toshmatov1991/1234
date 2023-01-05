@@ -18,7 +18,7 @@ namespace CP.Another
     public partial class Dogovor : Window
     {
         int iddd = 0;
-        int pokupatel = 0;
+        public int pokupatel = 0;
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();

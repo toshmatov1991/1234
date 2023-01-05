@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Поиск" FontStyle="Italic" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="251,0,0,0" Width="66"/>
         <TextBox FontSize="18" x:Name="poisk" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="3" VerticalAlignment="Center" Width="500" Height="30" KeyUp="PoissKK"/>
-        <ListView x:Name="listviewCards" Width="1150" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4">
+        <ListView x:Name="listviewCards" Width="1150" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4" MouseDoubleClick="GetSalesDoubleClick">
             <ListView.ToolTip>
                 <ToolTip>
                     Выберите любого клиента двойным кликом мыши

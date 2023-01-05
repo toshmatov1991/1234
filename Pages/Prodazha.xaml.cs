@@ -255,11 +255,6 @@ namespace CP.Pages
                 list3.Add(drugoe.Content.ToString());
             }
 
-            //Количество комнат
-            //one
-            //two
-            //three
-            //four
             var asd = new List<int>();
             asd.Clear();
             int ter = 0;

@@ -18,7 +18,7 @@ namespace CP.Another
     public partial class Dogovor : Window
     {
         int iddd = 0;
-        public int pokupatel = 0;
+       
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
@@ -29,8 +29,9 @@ namespace CP.Another
 
         private async void Fire()
         {
+
             await Task.Delay(2000);
-            SalessMan salessMan = new(ref pokupatel);
+            SalessMan salessMan = new();
             salessMan.ShowDialog();
         }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,31 +16,29 @@ using System.Windows.Shapes;
 
 namespace CP.Another
 {
-    unsafe public partial class SalessMan : Window
+    public partial class SalessMan : Window
     {
         int i = 0;
-        public SalessMan(ref int pokupateli)
+
+        public SalessMan()
         {
             //Здесь просто задаю id покупателя
             InitializeComponent();
             GetMyClients();
-
-           
         }
-      
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить в базу клиента
 
         }
 
-        private async void GetMyClients()
+        private void GetMyClients()
         {
             poisk.Focus();
             using (RealContext db = new())
             {
-                var getget = from clie in await db.Clients.AsNoTracking().ToListAsync()
-                             join pass in await db.Passports.AsNoTracking().ToListAsync() on clie.PasswordFk equals pass.Id
+                var getget = from clie in  db.Clients.AsNoTracking().ToList()
+                             join pass in  db.Passports.AsNoTracking().ToList() on clie.PasswordFk equals pass.Id
                              select new
                              {
                                  clie.Id,
@@ -57,14 +56,14 @@ namespace CP.Another
             }
         }
 
-        private async void PoissKK(object sender, KeyEventArgs e)
+        private void PoissKK(object sender, KeyEventArgs e)
         {
             //Динамический поиск
             string str = poisk.Text.ToLower().Replace(" ", "");
             using (RealContext db = new())
             {
-                var getget = from clie in await db.Clients.AsNoTracking().ToListAsync()
-                             join pass in await db.Passports.AsNoTracking().ToListAsync() on clie.PasswordFk equals pass.Id
+                var getget = from clie in db.Clients.AsNoTracking().ToList()
+                             join pass in db.Passports.AsNoTracking().ToList() on clie.PasswordFk equals pass.Id
                              where    clie.Firstname.ToLower().Contains(str) 
                                    || clie.Name.ToLower().Contains(str)
                                    || clie.Lastname.ToLower().Contains(str)
@@ -85,7 +84,7 @@ namespace CP.Another
         }
 
         //Получение id покупателя при двойном клике на любую запись в таблице
-        private void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var str = GetMyId(listviewCards.SelectedItem.ToString());
             i = Convert.ToInt32(str);
@@ -100,7 +99,10 @@ namespace CP.Another
             MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {str}?", "Вы уверены в своем выборе?!", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(dialog == MessageBoxResult.Yes)
             {
-
+                using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
+                {
+                    await writer.WriteLineAsync(i.ToString());
+                }
                 Close();
             }
             else if(dialog == MessageBoxResult.No)

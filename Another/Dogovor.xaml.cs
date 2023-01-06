@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace CP.Another
         {
 
             await Task.Delay(2000);
-            SalessMan salessMan = new();
+            SalessMan salessMan = new(iddd);
             salessMan.ShowDialog();
         }
 
@@ -71,6 +72,33 @@ namespace CP.Another
             //datadogovora.Text//Дата заключения договора
 
         }
+
+        private async Task GoVperde()
+        {
+            await Task.Run(async () =>
+            {
+                while (true)
+                {
+                    if(pokupatel.Text == "" || pokupatel.Text == null)
+                    {
+                        using (StreamReader reader = new StreamReader("SalesMan.txt"))
+                        {
+                            string text = await reader.ReadToEndAsync();
+                            //Запрос на заполнение данных покупателя
+
+                        }
+                    }
+                   
+                }
+            });
+
+
+
+
+        }
+
+
+
 
 
 

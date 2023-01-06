@@ -28,7 +28,8 @@
             <TextBlock Text="паспорт серии" Grid.Row="1" FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,78,0,0"/>
             <TextBlock x:Name="passPort" Text="Паспорт" Grid.Row="1" FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Margin="142,80,0,0"/>
             <TextBlock Text="именуем в дальнейшем продавец, с одной стороны" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="0,108,0,0" Grid.RowSpan="2"/>
-            <TextBlock Text="и гражданин" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="0,8,0,0"/>
+            <TextBlock Text="и гражданин: " Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="0,8,0,0"/>
+            <TextBlock x:Name="pokupatel" TextDecorations="Underline" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="122,9,-122,0"/>
             <TextBlock Text="паспорт" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="0,44,0,0"/>
             <TextBlock Text="именуем в дальнейшем покупатель, с другой стороны, заключили Договор о нижеследующем:" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="0,78,0,0"/>
             <TextBlock Text="Предмет договора" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="33" FontWeight="DemiBold" Grid.Row="2" Grid.Column="1" Margin="0,115,0,0" Grid.RowSpan="2"/>

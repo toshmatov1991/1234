@@ -19,12 +19,14 @@ namespace CP.Another
     public partial class SalessMan : Window
     {
         int i = 0;
+        int r = 0;
 
-        public SalessMan()
+        public SalessMan(int reald)
         {
             //Здесь просто задаю id покупателя
             InitializeComponent();
             GetMyClients();
+            r = reald;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -39,6 +41,7 @@ namespace CP.Another
             {
                 var getget = from clie in  db.Clients.AsNoTracking().ToList()
                              join pass in  db.Passports.AsNoTracking().ToList() on clie.PasswordFk equals pass.Id
+                             where clie.Id != r
                              select new
                              {
                                  clie.Id,
@@ -67,6 +70,7 @@ namespace CP.Another
                              where    clie.Firstname.ToLower().Contains(str) 
                                    || clie.Name.ToLower().Contains(str)
                                    || clie.Lastname.ToLower().Contains(str)
+                                   && clie.Id != r
                              select new
                              {
                                  clie.Id,

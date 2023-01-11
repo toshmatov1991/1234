@@ -18,6 +18,7 @@ using System.Windows.Threading;
 using CP.Models;
 using CP.Another;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace CP
 {
@@ -27,6 +28,7 @@ namespace CP
         {
             InitializeComponent();
             StartToBD();
+            NullIsTextFile();
         }
 
         bool logOne = true;
@@ -42,6 +44,12 @@ namespace CP
                
             }
         }
+
+        private void NullIsTextFile()
+        {
+            File.Create("SalesMan.txt");
+        }
+
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

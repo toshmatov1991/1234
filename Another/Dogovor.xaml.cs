@@ -26,11 +26,12 @@ namespace CP.Another
             iddd = t;
             Fire();
             ZapolnitDogovor();
+            Pocupatel();
         }
 
         private async void Fire()
         {
-
+            //Открывается окно выбора покупателя)
             await Task.Delay(2000);
             SalessMan salessMan = new(iddd);
             salessMan.ShowDialog();
@@ -41,6 +42,7 @@ namespace CP.Another
         {
             //Подчеркнуть текст
             //Дата
+            //Заполнить договор - данные продавца и недвижимости
             date.Text = DateTime.Now.DayOfYear.ToString();
             date.TextDecorations = TextDecorations.Underline;
 
@@ -73,22 +75,59 @@ namespace CP.Another
 
         }
 
+
+        private async void Pocupatel()
+        {
+            await GoVperde();
+        }
+
+
         private async Task GoVperde()
         {
-            await Task.Run(async () =>
+            //Заполнить данные о покупателе
+            //Асинхронный метод, непрерывный цикл, если данные о покупателе пустые, то срабатывает условие и заполняются данные о покупателе
+            await Task.Run(() =>
             {
                 while (true)
                 {
-                    if(pokupatel.Text == "" || pokupatel.Text == null)
+                    Dispatcher.Invoke(() =>
                     {
-                        using (StreamReader reader = new StreamReader("SalesMan.txt"))
+                        if (pokupatel.Text == "" || pokupatel.Text == null)
                         {
-                            string text = await reader.ReadToEndAsync();
-                            //Запрос на заполнение данных покупателя
+                            string text = "";
+                            using (StreamReader reader = new StreamReader("SalesMan.txt"))
+                                text = reader.ReadToEnd();
+                            if (text == null || text == "")
+                                return;
 
+                            else
+                            {
+                                using (RealContext db = new())
+                                {
+                                    var getmypoc = from poc in db.Clients.AsNoTracking().ToList()
+                                                   join pas in db.Passports.AsNoTracking().ToList() on poc.PasswordFk equals pas.Id
+                                                   where poc.Id == Convert.ToInt32(text)
+                                                   select new
+                                                   {
+                                                       fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
+                                                       paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
+                                                   };
+                                    //pokupatel покупатель
+                                    //paspoc его поспортные данные
+                                    foreach (var item in getmypoc)
+                                    {
+                                        Dispatcher.Invoke(() =>
+                                        {
+                                            pokupatel.Text = item.fiipoc;
+                                            paspoc.Text = item.paspoci;
+                                        });
+
+                                    }
+                                }
+                            }
                         }
-                    }
-                   
+
+                    });
                 }
             });
 

@@ -139,7 +139,7 @@ namespace CP.Another
             //Заключить договор
             Dogovor dogovor = new(idAD, mestniyrieltor);
             dogovor.Show();
-            File.Create("SalesMan.txt");
+            
         }
 
 

@@ -25,9 +25,9 @@ namespace CP.Another
         {
             InitializeComponent();
             iddd = t;
-            Fire();
             ZapolnitDogovor();
             Pocupatel();
+            Fire();
         }
 
         private async void Fire()
@@ -40,6 +40,7 @@ namespace CP.Another
 
         private void ZapolnitDogovor()
         {
+            //File.Create("SalesMan.txt");
             //Подчеркнуть текст
             //Дата
             //Заполнить договор - данные продавца и недвижимости
@@ -68,18 +69,17 @@ namespace CP.Another
                                     };
                 foreach (var item in getmysalesman)
                 {
-                    FIO.Text = item.fio;
-                    passPort.Text = item.ps;
-                    kadastr.Text = item.kadastrnumber;
-                    kvadrat.Text = item.ploshad;
-                    adress.Text = item.adrecc;
-                    serianomer.Text = item.obshee;
-                    datadogovora.Text = DateTime.Now.DayOfYear.ToString();
+                   FIO.Text = item.fio;
+                   passPort.Text = item.ps;
+                   kadastr.Text = item.kadastrnumber;
+                   kvadrat.Text = item.ploshad;
+                   adress.Text = item.adrecc;
+                   serianomer.Text = item.obshee;
                 }
             }
         }
 
-
+        #region Заполнение данных о покупателе
         private async void Pocupatel()
         {
             await GoVperde();
@@ -117,8 +117,12 @@ namespace CP.Another
                                   
                                     foreach (var item in getmypoc)
                                     {
-                                        pokupatel.Text = item.fiipoc;
-                                        paspoc.Text = item.paspoci;
+                                        Dispatcher.Invoke(() =>
+                                        {
+                                            pokupatel.Text = item.fiipoc;
+                                            paspoc.Text = item.paspoci;
+                                        });
+                                       
                                     }
                                 }
                             }
@@ -127,12 +131,7 @@ namespace CP.Another
                     });
                 }
             });
-
-
-
-
         }
-
-
+        #endregion
     }
 }

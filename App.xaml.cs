@@ -10,5 +10,6 @@ namespace CP
 {
     public partial class App : Application
     {
+
     }
 }

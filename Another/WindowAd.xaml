@@ -44,7 +44,7 @@
             <Button Content="Заключить договор" Background="AliceBlue" FontSize="30" HorizontalAlignment="Left" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Width="299" Margin="39,80,0,30" Grid.RowSpan="2" Click="Button_Click_1" />
             <TextBlock x:Name="Status" Height="35" Width="170" FontSize="22" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,61,0,0" Grid.RowSpan="2"/>
             <TextBlock FontSize="22" Text="Адрес: " Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,27,0,0" />
-            <TextBlock x:Name="Adddress" FontSize="22" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="4" Margin="81,27,0,0" IsEnabled="False"/>
+            <TextBlock x:Name="Adddress" FontSize="22" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="4" Margin="81,27,0,0" IsEnabled="False" HorizontalAlignment="Left" Width="791"/>
             <WrapPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="0,86,0,48">
                 <Image x:Name="Image1" Stretch="Uniform" Height="120" Width="100"/>
                 <Image x:Name="Image2" Stretch="Uniform" Height="120" Width="100"/>

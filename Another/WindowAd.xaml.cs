@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -98,9 +99,10 @@ namespace CP.Another
                     }
                 }
                 else
-                    MessageBox.Show("Что то пошло не так");
-                
+                    MessageBox.Show("Что то пошло не так");  
             }
+
+           
 
         }
 
@@ -136,7 +138,10 @@ namespace CP.Another
         {
             //Заключить договор
             Dogovor dogovor = new(idAD, mestniyrieltor);
-            dogovor.ShowDialog();
+            dogovor.Show();
+            File.Create("SalesMan.txt");
         }
+
+
     }
 }

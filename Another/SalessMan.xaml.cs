@@ -31,11 +31,16 @@ namespace CP.Another
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить в базу клиента
+            
+
+
+
 
         }
 
         private void GetMyClients()
         {
+            //Общая загрузка списка клиентов агенства
             poisk.Focus();
             using (RealContext db = new())
             {
@@ -86,7 +91,6 @@ namespace CP.Another
                 listviewCards.ItemsSource = getget.ToList();
             }
         }
-
         //Получение id покупателя при двойном клике на любую запись в таблице
         private async void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -113,21 +117,19 @@ namespace CP.Another
             {
                 return;
             }
-        }
 
-        private static string GetMyId(string dsa)
-        {
-            string s = "";
-            for (int i = 0; i < dsa.Length; i++)
+            static string GetMyId(string dsa)
             {
-                if (char.IsDigit(dsa[i]))
-                    s += dsa[i];
-                else if (dsa[i] == ',')
-                    break;
+                string s = "";
+                for (int i = 0; i < dsa.Length; i++)
+                {
+                    if (char.IsDigit(dsa[i]))
+                        s += dsa[i];
+                    else if (dsa[i] == ',')
+                        break;
+                }
+                return s;
             }
-            return s;
         }
-
-
     }
 }

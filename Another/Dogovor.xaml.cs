@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -32,11 +33,10 @@ namespace CP.Another
         private async void Fire()
         {
             //Открывается окно выбора покупателя)
-            await Task.Delay(2000);
+            await Task.Delay(1200);
             SalessMan salessMan = new(iddd);
             salessMan.ShowDialog();
         }
-
 
         private void ZapolnitDogovor()
         {
@@ -53,26 +53,30 @@ namespace CP.Another
                                     join clie in db.Clients.AsNoTracking().ToList() on real.Salesman equals clie.Id
                                     join pass in db.Passports.AsNoTracking().ToList() on clie.PasswordFk equals pass.Id
                                     join svidetelstvo in db.Proofs.AsNoTracking().ToList() on real.Certificate equals svidetelstvo.Id
+                                    join type in db.ObjectTypes.AsNoTracking().ToList() on real.TypeObject equals type.Id
                                     where real.Id == iddd
                                     select new
                                     {
                                         clie.Id,
                                         fio = $"{clie.Firstname} {clie.Name} {clie.Lastname}",
                                         ps = $"{pass.Serial} №{pass.Number}, выдан {pass.Dateof} {pass.Isby}",
-
+                                        summa = real.Price,
+                                        kadastrnumber = svidetelstvo.Registr,
+                                        ploshad = real.Square.ToString(),
+                                        adrecc = real.Adress,
+                                        obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} регистрационный номер: {svidetelstvo.Registr}"
                                     };
+                foreach (var item in getmysalesman)
+                {
+                    FIO.Text = item.fio;
+                    passPort.Text = item.ps;
+                    kadastr.Text = item.kadastrnumber;
+                    kvadrat.Text = item.ploshad;
+                    adress.Text = item.adrecc;
+                    serianomer.Text = item.obshee;
+                    datadogovora.Text = DateTime.Now.DayOfYear.ToString();
+                }
             }
-
-
-
-            //FIO.Text; //ФИО
-            //passPort.Text;//Паспортные данные продавца
-            //kadastr.Text; //Кадастровый номер
-            //kvadrat.Text; //Площадь
-            //adress.Text; //Адрес
-            //serianomer.Text//Свидетельство о праве собственности
-            //datadogovora.Text//Дата заключения договора
-
         }
 
 
@@ -80,8 +84,6 @@ namespace CP.Another
         {
             await GoVperde();
         }
-
-
         private async Task GoVperde()
         {
             //Заполнить данные о покупателе
@@ -112,16 +114,11 @@ namespace CP.Another
                                                        fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
                                                        paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
                                                    };
-                                    //pokupatel покупатель
-                                    //paspoc его поспортные данные
+                                  
                                     foreach (var item in getmypoc)
                                     {
-                                        Dispatcher.Invoke(() =>
-                                        {
-                                            pokupatel.Text = item.fiipoc;
-                                            paspoc.Text = item.paspoci;
-                                        });
-
+                                        pokupatel.Text = item.fiipoc;
+                                        paspoc.Text = item.paspoci;
                                     }
                                 }
                             }
@@ -135,10 +132,6 @@ namespace CP.Another
 
 
         }
-
-
-
-
 
 
     }

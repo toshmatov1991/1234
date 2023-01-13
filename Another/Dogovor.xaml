@@ -49,7 +49,7 @@
             <TextBlock Text="Договор купли-продажи от " FontSize="18" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,60,0,0"/>
             <TextBlock x:Name="datadogovora" FontSize="18" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="241,61,0,0"/>
             <Button Content="Заключить договор" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="5" Width="212" Height="55" Background="AliceBlue" FontSize="21" BorderBrush="Black" FontWeight="DemiBold" Margin="0,0,24,-1"/>
-            <Button Content="Добавить/изменить покупателя" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="5" Width="332" Height="55" Background="AliceBlue" FontSize="21" BorderBrush="Black" FontWeight="DemiBold" Margin="62,0,0,-1" Grid.ColumnSpan="2"/>
+            <Button Content="Добавить/изменить покупателя" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="5" Width="332" Height="55" Background="AliceBlue" FontSize="21" BorderBrush="Black" FontWeight="DemiBold" Margin="62,0,0,-1" Grid.ColumnSpan="2" Click="Button_Click"/>
         </Grid>
     </Border>
 </Window>

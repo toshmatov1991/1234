@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using iText.Kernel.Geom;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,8 @@ namespace CP.Another
             SalessMan salessMan = new(iddd);
             salessMan.ShowDialog();
         }
+
+
 
         private void ZapolnitDogovor()
         {
@@ -139,5 +142,26 @@ namespace CP.Another
             
         }
         #endregion
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Добавить или изменить покупателя
+            try
+            {
+                pokupatel.Text = "";
+                paspoc.Text = "";
+                using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
+                {
+                    await writer.WriteLineAsync("");
+                }
+                SalessMan salessMan = new(iddd);
+                salessMan.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+        }
     }
 }

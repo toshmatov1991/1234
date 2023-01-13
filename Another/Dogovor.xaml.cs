@@ -20,7 +20,7 @@ namespace CP.Another
     public partial class Dogovor : Window
     {
         int iddd = 0;
-       
+        bool gform= true;
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
@@ -88,49 +88,55 @@ namespace CP.Another
         {
             //Заполнить данные о покупателе
             //Асинхронный метод, непрерывный цикл, если данные о покупателе пустые, то срабатывает условие и заполняются данные о покупателе
-            await Task.Run(() =>
+            try
             {
-                while (true)
+                await Task.Run(() =>
                 {
-                    Dispatcher.Invoke(() =>
+                    
+                    while (gform)
                     {
-                        if (pokupatel.Text == "" || pokupatel.Text == null)
+                        Dispatcher.Invoke(async () =>
                         {
-                            string text = "";
-                            using (StreamReader reader = new StreamReader("SalesMan.txt"))
-                                text = reader.ReadToEnd();
-                            if (text == null || text == "")
-                                return;
-
-                            else
+                            if (pokupatel.Text == "" || pokupatel.Text == null)
                             {
-                                using (RealContext db = new())
+                                string text = "";
+                                using (StreamReader reader = new StreamReader("SalesMan.txt"))
+                                    text = reader.ReadToEnd();
+                                if (text == null || text == "")
+                                    return;
+
+                                else
                                 {
-                                    var getmypoc = from poc in db.Clients.AsNoTracking().ToList()
-                                                   join pas in db.Passports.AsNoTracking().ToList() on poc.PasswordFk equals pas.Id
-                                                   where poc.Id == Convert.ToInt32(text)
-                                                   select new
-                                                   {
-                                                       fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
-                                                       paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
-                                                   };
-                                  
-                                    foreach (var item in getmypoc)
+                                    using (RealContext db = new())
                                     {
-                                        Dispatcher.Invoke(() =>
+                                        var getmypoc = from poc in await db.Clients.AsNoTracking().ToListAsync()
+                                                       join pas in await db.Passports.AsNoTracking().ToListAsync() on poc.PasswordFk equals pas.Id
+                                                       where poc.Id == Convert.ToInt32(text)
+                                                       select new
+                                                       {
+                                                           fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
+                                                           paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
+                                                       };
+
+                                        foreach (var item in getmypoc)
                                         {
                                             pokupatel.Text = item.fiipoc;
                                             paspoc.Text = item.paspoci;
-                                        });
-                                       
+
+
+                                        }
                                     }
                                 }
                             }
-                        }
-
-                    });
-                }
-            });
+                        });
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString());
+            }
+            
         }
         #endregion
     }

@@ -19,6 +19,7 @@ using CP.Models;
 using CP.Another;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using System.Runtime.Intrinsics.Arm;
 
 namespace CP
 {
@@ -29,20 +30,23 @@ namespace CP
             InitializeComponent();
             StartToBD();
             NullIsTextFile();
+            User user = new("Приветики", 1);
+            user.Show();
+            Close();
         }
 
         bool logOne = true;
 
         private static void StartToBD()
         {
-            using (RealContext db = new())
+            using (RealContext db = new()) 
             {
                 var adm = db.Admins.ToList();
-                var usr = db.Realtors.ToList();
-                foreach (var item in adm) { }
-                foreach (var item in usr) { }
-               
-            }
+            foreach (var item in adm) { }
+            var usr = db.Realtors.ToList();
+            foreach (var i in usr) { }
+            };
+            
         }
 
         private void NullIsTextFile()

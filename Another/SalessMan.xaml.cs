@@ -38,9 +38,12 @@ namespace CP.Another
 
         }
 
+
+
+        //Общая загрузка списка клиентов агенства
         private void GetMyClients()
         {
-            //Общая загрузка списка клиентов агенства
+            
             poisk.Focus();
             using (RealContext db = new())
             {
@@ -64,6 +67,7 @@ namespace CP.Another
             }
         }
 
+        //Динамический поиск без нареканий
         private void PoissKK(object sender, KeyEventArgs e)
         {
             //Динамический поиск
@@ -91,6 +95,7 @@ namespace CP.Another
                 listviewCards.ItemsSource = getget.ToList();
             }
         }
+
         //Получение id покупателя при двойном клике на любую запись в таблице
         private async void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
         {

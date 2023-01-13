@@ -163,5 +163,14 @@ namespace CP.Another
             }
            
         }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
+            {
+                await writer.WriteLineAsync("");
+            }
+            Close();
+        }
     }
 }

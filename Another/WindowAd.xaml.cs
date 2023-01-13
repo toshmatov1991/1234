@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -138,10 +139,23 @@ namespace CP.Another
         {
             //Заключить договор
             Dogovor dogovor = new(idAD, mestniyrieltor);
-            dogovor.Show();
+            dogovor.ShowDialog();
             
         }
 
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
+            {
+                await writer.WriteLineAsync("");
+            }
+            Close();
+        }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            e.Cancel = true;
+        }
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
         Icon="icon.png"
         ResizeMode="CanMinimize"
         Title="Агенство Недвижимости" Width="1100" Height="720">
@@ -64,6 +64,7 @@
             <TextBlock FontSize="20" x:Name="otdelka" Grid.Column="3" Grid.Row="5"  Grid.ColumnSpan="2" Height="41" VerticalAlignment="Bottom" Margin="64,0,30,18"/>
             <TextBlock FontSize="20" x:Name="sanuzell" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" Margin="63,76,17,50" Grid.RowSpan="2"/>
             <TextBlock FontSize="20" x:Name="balkon" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Margin="63,41,17,85" Grid.RowSpan="2"/>
+            <Button Content="Закрыть" Grid.Column="4" VerticalAlignment="Top" Height="51" FontSize="18" Background="AliceBlue" Click="Button_Click_2" Margin="34,-46,52,0"/>
         </Grid>
     </Border>
 </Window>

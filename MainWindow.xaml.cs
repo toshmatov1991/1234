@@ -49,9 +49,12 @@ namespace CP
             
         }
 
-        private void NullIsTextFile()
+        private async void NullIsTextFile()
         {
-            File.Create("SalesMan.txt");
+            using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
+            {
+                await writer.WriteLineAsync("");
+            }
         }
 
 

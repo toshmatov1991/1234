@@ -25,11 +25,11 @@ namespace CP
 {
     public partial class MainWindow : Window
     {
+        public static int salesmanhik = 0;
         public MainWindow()
         {
             InitializeComponent();
             StartToBD();
-            NullIsTextFile();
             User user = new("Приветики", 1);
             user.Show();
             Close();
@@ -48,15 +48,6 @@ namespace CP
             };
             
         }
-
-        private async void NullIsTextFile()
-        {
-            using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
-            {
-                await writer.WriteLineAsync("");
-            }
-        }
-
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

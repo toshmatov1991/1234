@@ -18,9 +18,8 @@ namespace CP.Another
 {
     public partial class SalessMan : Window
     {
-        int i = 0;
+        //Переменная для того чтобы не выбрать в качестве покупателя продавца
         int r = 0;
-
         public SalessMan(int reald)
         {
             //Здесь просто задаю id покупателя
@@ -40,7 +39,7 @@ namespace CP.Another
 
 
 
-        //Общая загрузка списка клиентов агенства
+        //Общая загрузка списка клиентов агенства (Без нареканий)
         private void GetMyClients()
         {
             
@@ -67,15 +66,15 @@ namespace CP.Another
             }
         }
 
-        //Динамический поиск без нареканий
-        private void PoissKK(object sender, KeyEventArgs e)
+        //Динамический поиск (Без нареканий)
+        private async void PoissKK(object sender, KeyEventArgs e)
         {
             //Динамический поиск
             string str = poisk.Text.ToLower().Replace(" ", "");
             using (RealContext db = new())
             {
-                var getget = from clie in db.Clients.AsNoTracking().ToList()
-                             join pass in db.Passports.AsNoTracking().ToList() on clie.PasswordFk equals pass.Id
+                var getget = from clie in await db.Clients.AsNoTracking().ToListAsync()
+                             join pass in await db.Passports.AsNoTracking().ToListAsync() on clie.PasswordFk equals pass.Id
                              where    clie.Firstname.ToLower().Contains(str) 
                                    || clie.Name.ToLower().Contains(str)
                                    || clie.Lastname.ToLower().Contains(str)
@@ -96,14 +95,16 @@ namespace CP.Another
             }
         }
 
+
+
         //Получение id покупателя при двойном клике на любую запись в таблице
         private async void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var str = GetMyId(listviewCards.SelectedItem.ToString());
-            i = Convert.ToInt32(str);
+            MainWindow.salesmanhik = Convert.ToInt32(str);
             using(RealContext db = new())
             {
-                var ddd = db.Clients.AsNoTracking().Where(u => u.Id == i).ToList();
+                var ddd = await db.Clients.AsNoTracking().Where(u => u.Id == MainWindow.salesmanhik).ToListAsync();
                 foreach (var item in ddd)
                 {
                     str = $"{item.Firstname} {item.Name} {item.Lastname}";
@@ -112,10 +113,6 @@ namespace CP.Another
             MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {str}?", "Вы уверены в своем выборе?!", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(dialog == MessageBoxResult.Yes)
             {
-                using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
-                {
-                    await writer.WriteLineAsync(i.ToString());
-                }
                 Close();
             }
             else if(dialog == MessageBoxResult.No)

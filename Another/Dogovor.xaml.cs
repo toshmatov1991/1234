@@ -21,29 +21,18 @@ namespace CP.Another
     public partial class Dogovor : Window
     {
         int iddd = 0;
-        bool gform= true;
+        static int actual = 0;
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
             iddd = t;
             ZapolnitDogovor();
             Pocupatel();
-            Fire();
         }
 
-        private async void Fire()
-        {
-            //Открывается окно выбора покупателя)
-            await Task.Delay(1200);
-            SalessMan salessMan = new(iddd);
-            salessMan.ShowDialog();
-        }
-
-
-
+        #region Заполнить данные о продавце (без нареканий)
         private void ZapolnitDogovor()
         {
-            //File.Create("SalesMan.txt");
             //Подчеркнуть текст
             //Дата
             //Заполнить договор - данные продавца и недвижимости
@@ -72,17 +61,18 @@ namespace CP.Another
                                     };
                 foreach (var item in getmysalesman)
                 {
-                   FIO.Text = item.fio;
-                   passPort.Text = item.ps;
-                   kadastr.Text = item.kadastrnumber;
-                   kvadrat.Text = item.ploshad;
-                   adress.Text = item.adrecc;
-                   serianomer.Text = item.obshee;
+                    FIO.Text = item.fio;
+                    passPort.Text = item.ps;
+                    kadastr.Text = item.kadastrnumber;
+                    kvadrat.Text = item.ploshad;
+                    adress.Text = item.adrecc;
+                    serianomer.Text = item.obshee;
                 }
             }
         }
+        #endregion
 
-        #region Заполнение данных о покупателе
+        #region Заполнение данных о покупателе (решение идет)
         private async void Pocupatel()
         {
             await GoVperde();
@@ -96,16 +86,14 @@ namespace CP.Another
                 await Task.Run(() =>
                 {
                     
-                    while (gform)
+                    while (true)
                     {
                         Dispatcher.Invoke(async () =>
                         {
-                            if (pokupatel.Text == "" || pokupatel.Text == null)
+                            if (pokupatel.Text == "")
                             {
-                                string text = "";
-                                using (StreamReader reader = new StreamReader("SalesMan.txt"))
-                                    text = reader.ReadToEnd();
-                                if (text == null || text == "")
+                                
+                                if (MainWindow.salesmanhik == 0)
                                     return;
 
                                 else
@@ -114,7 +102,7 @@ namespace CP.Another
                                     {
                                         var getmypoc = from poc in await db.Clients.AsNoTracking().ToListAsync()
                                                        join pas in await db.Passports.AsNoTracking().ToListAsync() on poc.PasswordFk equals pas.Id
-                                                       where poc.Id == Convert.ToInt32(text)
+                                                       where poc.Id == Convert.ToInt32(MainWindow.salesmanhik)
                                                        select new
                                                        {
                                                            fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
@@ -125,8 +113,6 @@ namespace CP.Another
                                         {
                                             pokupatel.Text = item.fiipoc;
                                             paspoc.Text = item.paspoci;
-
-
                                         }
                                     }
                                 }
@@ -137,40 +123,37 @@ namespace CP.Another
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message.ToString());
+                MessageBox.Show(e.Message);
             }
             
         }
         #endregion
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить или изменить покупателя
-            try
-            {
-                pokupatel.Text = "";
-                paspoc.Text = "";
-                using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
-                {
-                    await writer.WriteLineAsync("");
-                }
-                SalessMan salessMan = new(iddd);
-                salessMan.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-           
+            pokupatel.Text = "";
+            paspoc.Text = "";
+            
+            SalessMan salessMan = new(iddd);
+            salessMan.ShowDialog();
         }
 
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
-            {
-                await writer.WriteLineAsync("");
-            }
+            //Закрыть окно
             Close();
         }
+
+        private void Update()
+        {
+            while (true)
+            {
+
+            }
+        }
+
+
+
     }
 }

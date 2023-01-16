@@ -143,19 +143,11 @@ namespace CP.Another
             
         }
 
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            using (StreamWriter writer = new StreamWriter("SalesMan.txt", false))
-            {
-                await writer.WriteLineAsync("");
-            }
             Close();
         }
 
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            base.OnClosing(e);
-            e.Cancel = true;
-        }
+       
     }
 }

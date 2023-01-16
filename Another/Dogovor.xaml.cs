@@ -98,6 +98,7 @@ namespace CP.Another
 
                                 else
                                 {
+                                    actual = MainWindow.salesmanhik;
                                     using (RealContext db = new())
                                     {
                                         var getmypoc = from poc in await db.Clients.AsNoTracking().ToListAsync()
@@ -145,11 +146,29 @@ namespace CP.Another
             Close();
         }
 
-        private void Update()
+        private async void Update()
         {
             while (true)
             {
+                if(actual != MainWindow.salesmanhik && MainWindow.salesmanhik > 0)
+                {
+                    using (RealContext db = new())
+                    {
+                        var getmypoc = from poc in await db.Clients.AsNoTracking().ToListAsync()
+                                       join pas in await db.Passports.AsNoTracking().ToListAsync() on poc.PasswordFk equals pas.Id
+                                       where poc.Id == Convert.ToInt32(MainWindow.salesmanhik)
+                                       select new
+                                       {
+                                           fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
+                                           paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
+                                       };
 
+                        foreach (var item in getmypoc)
+                        {
+                            pokupatel.Text = item.fiipoc;
+                            paspoc.Text = item.paspoci;
+                        }
+                    }
             }
         }
 

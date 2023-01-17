@@ -69,6 +69,43 @@ namespace CP.Another
                 else if (temp == 0)
                 {
                     //Проверки прошли, теперь добавим клиента в базу
+                    using(RealContext db = new())
+                    {
+                        try
+                        {
+                            //Сначала вставим данные в таблицу паспорт
+                            db.Database.ExecuteSqlRaw("INSERT INTO passport(serial, number, dateof, isby) VALUES({0}, {1}, {2}, {3})", seria.Text, numb.Text, datevidach.Text, kemvidan.Text);
+
+                            //После получим id последнего элемента, который мы добавили в таблицу Паспорт
+                            int d = db.Passports.Count();
+
+                            //Вставим данные в таблицу Клиент
+                            db.Database.ExecuteSqlRaw("INSERT INTO Client(firstname, name, lastname, passwordFK, numberphone) VALUES({0}, {1}, {2}, {3}, {4})", first.Text, nam.Text, last.Text, d, numberfhone.Text);
+
+                            MessageBox.Show("Новый клиент добавлен в базу!", "Это успех!", MessageBoxButton.OK, MessageBoxImage.None);
+
+                            //Обновление таблицы
+                            GetMyClients();
+
+                            var getep = db.Clients.ToList().Last();
+                          
+                             MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {getep.Firstname} {getep.Name} {getep.Lastname}? в договор", "Ваш ход!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                             if (dialog == MessageBoxResult.Yes)
+                             {
+                                MainWindow.salesmanhik = (int)getep.Id;
+                                 Close();
+                             }
+                             else if (dialog == MessageBoxResult.No)
+                             {
+                                 return;
+                             }
+
+                }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Произошла ошибка :(", MessageBoxButton.OK, MessageBoxImage.None);
+                        }
+                    }
 
                     
                 }

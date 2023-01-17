@@ -29,8 +29,7 @@ namespace CP.Another
             InitializeComponent();
             iddd = t;
             ZapolnitDogovor();
-            Thread thread = new Thread(Update);
-            thread.Start();
+            new Thread(Update).Start();
         }
 
         #region Заполнить данные о продавце (без нареканий)
@@ -76,81 +75,6 @@ namespace CP.Another
         #endregion
 
         #region Заполнение данных о покупателе (решение идет)
-        //private async void Pocupatel()
-        //{
-        //    await GoVperde();
-        //}
-        //private async Task GoVperde()
-        //{
-        //    //Заполнить данные о покупателе
-        //    //Асинхронный метод, непрерывный цикл, если данные о покупателе пустые, то срабатывает условие и заполняются данные о покупателе
-        //    try
-        //    {
-        //        await Task.Run(() =>
-        //        {
-
-        //            while (true)
-        //            {
-        //                Dispatcher.Invoke(async () =>
-        //                {
-        //                    if (pokupatel.Text == "")
-        //                    {
-
-        //                        if (MainWindow.salesmanhik == 0)
-        //                            return;
-
-        //                        else
-        //                        {
-        //                            actual = MainWindow.salesmanhik;
-        //                            using (RealContext db = new())
-        //                            {
-        //                                var getmypoc = from poc in await db.Clients.AsNoTracking().ToListAsync()
-        //                                               join pas in await db.Passports.AsNoTracking().ToListAsync() on poc.PasswordFk equals pas.Id
-        //                                               where poc.Id == Convert.ToInt32(MainWindow.salesmanhik)
-        //                                               select new
-        //                                               {
-        //                                                   fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
-        //                                                   paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
-        //                                               };
-
-        //                                foreach (var item in getmypoc)
-        //                                {
-        //                                    pokupatel.Text = item.fiipoc;
-        //                                    paspoc.Text = item.paspoci;
-        //                                }
-        //                            }
-        //                        }
-        //                    }
-        //                });
-        //            }
-        //        });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.Message);
-        //    }
-
-        //}
-        #endregion
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Добавить или изменить покупателя
-            pokupatel.Text = "";
-            paspoc.Text = "";
-
-            SalessMan salessMan = new(iddd);
-            salessMan.ShowDialog();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //Закрыть окно
-            //Прервать поток 
-            potok = false;
-            Close();
-        }
-
         private async void Update()
         {
             while (potok)
@@ -184,5 +108,26 @@ namespace CP.Another
 
 
         }
+        #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Добавить или изменить покупателя
+            pokupatel.Text = "";
+            paspoc.Text = "";
+
+            SalessMan salessMan = new(iddd);
+            salessMan.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Закрыть окно
+            //Прервать поток 
+            potok = false;
+            Close();
+        }
+
+    
     }
 }

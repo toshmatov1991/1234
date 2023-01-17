@@ -38,7 +38,9 @@ namespace CP.Another
             //Подчеркнуть текст
             //Дата
             //Заполнить договор - данные продавца и недвижимости
-            date.Text = DateTime.Now.DayOfYear.ToString();
+            date.Text = DateTime.Now.ToString().Substring(0, 10);
+            datadogovora.Text = DateTime.Now.ToString().Substring(0, 10);
+            datadogovora.TextDecorations = TextDecorations.Underline;
             date.TextDecorations = TextDecorations.Underline;
 
 
@@ -59,7 +61,7 @@ namespace CP.Another
                                         kadastrnumber = svidetelstvo.Registr,
                                         ploshad = real.Square.ToString(),
                                         adrecc = real.Adress,
-                                        obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} регистрационный номер: {svidetelstvo.Registr}"
+                                        obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} \nрегистрационный номер: {svidetelstvo.Registr}"
                                     };
                 foreach (var item in getmysalesman)
                 {
@@ -74,7 +76,7 @@ namespace CP.Another
         }
         #endregion
 
-        #region Заполнение данных о покупателе (решение идет)
+        #region Заполнение данных о покупателе (решено)
         private async void Update()
         {
             while (potok)

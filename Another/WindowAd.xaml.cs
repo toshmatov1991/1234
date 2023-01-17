@@ -92,7 +92,7 @@ namespace CP.Another
                         Image10.Source = item.Image10;
                         Opisan.Text = item.Opisan;
                         Contact.Text = item.Contact;
-                        Price.Text = item.Price;
+                        pricec.Text = item.Price;
                         yearPostroy.Text = item.yearPostroy;
                         sanuzell.Text = item.sanuz;
                         otdelka.Text = item.otdel;

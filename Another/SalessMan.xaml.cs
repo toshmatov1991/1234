@@ -35,17 +35,46 @@ namespace CP.Another
             //last - отчество
             //numberfhone - номер телефона
             //
-            //
-            //
-            //
-            //
-            //
-            //
-            //
+            //seria - паспорт серия
+            //numb - паспорт номер
+            //datevidach - дата выдачи
+            //kemvidan - кем выдан
+            List<TextBox> textBoxes = new() { first, nam, last, numberfhone, seria, numb, datevidach, kemvidan };
+            int temp = 0;
+            foreach (var item in textBoxes)
+            {
+                if (item.Text == "" || item.Text == null)
+                temp++;
+            }
 
+            if (temp > 0)
+                MessageBox.Show("Не заполнено одно из полей!", "Пропущено поле", MessageBoxButton.OK, MessageBoxImage.None);
+            else if(temp == 0)
+            {
+                string ste = first.Text + nam.Text + last.Text + kemvidan.Text + datevidach.Text + numb.Text;
+                for (int j = 0; j < ste.Length; j++)
+                {
+                    if (char.IsDigit(ste[j]))
+                        temp++;
+                        break;
+                }
+                ste = numberfhone.Text + seria.Text;
+                for (int i = 0; i < ste.Length; i++)
+                {
+                    if (!char.IsDigit(ste[i]))
+                        temp++;
+                }
+                if (temp > 0)
+                    MessageBox.Show("Текстовые поля не должны содержать цифры\nЧисловые поля буквы", "Некорректно заполнено одно из полей!", MessageBoxButton.OK, MessageBoxImage.None);
+                else if (temp == 0)
+                {
+                    //Проверки прошли, теперь добавим клиента в базу
 
-
-
+                    
+                }
+            }
+            
+           
         }
 
 
@@ -106,9 +135,7 @@ namespace CP.Another
             }
         }
 
-
-
-        //Получение id покупателя при двойном клике на любую запись в таблице
+        //Получение id покупателя при двойном клике на любую запись в таблице(без нареканий)
         private async void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var str = GetMyId(listviewCards.SelectedItem.ToString());

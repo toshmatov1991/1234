@@ -12,18 +12,13 @@
   <ItemGroup>
     <None Remove="Another\1.jfif" />
     <None Remove="Another\icon.png" />
-    <None Remove="Resources\ffe.gif" />
     <None Remove="Resources\icon.png" />
     <None Remove="Resources\loading_icon_149916.png" />
-    <None Remove="Resources\pros.gif" />
     <None Remove="SalesMan.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Another\1.jfif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\ffe.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Another\icon.png">
@@ -32,9 +27,6 @@
     <Resource Include="Resources\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Resources\pros.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +36,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>

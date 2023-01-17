@@ -85,14 +85,14 @@ namespace CP.Another
             {
                 await Task.Run(() =>
                 {
-                    
+
                     while (true)
                     {
                         Dispatcher.Invoke(async () =>
                         {
                             if (pokupatel.Text == "")
                             {
-                                
+
                                 if (MainWindow.salesmanhik == 0)
                                     return;
 
@@ -126,7 +126,7 @@ namespace CP.Another
             {
                 MessageBox.Show(e.Message);
             }
-            
+
         }
         #endregion
 
@@ -135,7 +135,7 @@ namespace CP.Another
             //Добавить или изменить покупателя
             pokupatel.Text = "";
             paspoc.Text = "";
-            
+
             SalessMan salessMan = new(iddd);
             salessMan.ShowDialog();
         }
@@ -150,7 +150,7 @@ namespace CP.Another
         {
             while (true)
             {
-                if(actual != MainWindow.salesmanhik && MainWindow.salesmanhik > 0)
+                if (actual != MainWindow.salesmanhik && MainWindow.salesmanhik > 0)
                 {
                     using (RealContext db = new())
                     {
@@ -169,10 +169,11 @@ namespace CP.Another
                             paspoc.Text = item.paspoci;
                         }
                     }
+                }
             }
+
+
+
         }
-
-
-
     }
 }

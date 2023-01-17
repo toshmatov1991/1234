@@ -87,7 +87,7 @@ namespace CP.Another
                             //Обновление таблицы
                             GetMyClients();
 
-                            var getep = db.Clients.ToList().Last();
+                            var getep = db.Clients.Last();
                           
                              MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {getep.Firstname} {getep.Name} {getep.Lastname}? в договор", "Ваш ход!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                              if (dialog == MessageBoxResult.Yes)
@@ -173,17 +173,15 @@ namespace CP.Another
         }
 
         //Получение id покупателя при двойном клике на любую запись в таблице(без нареканий)
-        private async void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
+        private void GetSalesDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var str = GetMyId(listviewCards.SelectedItem.ToString());
             MainWindow.salesmanhik = Convert.ToInt32(str);
             using(RealContext db = new())
             {
-                var ddd = await db.Clients.AsNoTracking().Where(u => u.Id == MainWindow.salesmanhik).ToListAsync();
-                foreach (var item in ddd)
-                {
-                    str = $"{item.Firstname} {item.Name} {item.Lastname}";
-                }
+                var getep = db.Clients.FirstOrDefault(u => u.Id == MainWindow.salesmanhik);
+                str = $"{getep.Firstname} {getep.Name} {getep.Lastname}";
+                
             }
             MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {str}?", "Вы уверены в своем выборе?!", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(dialog == MessageBoxResult.Yes)

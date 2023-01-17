@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,13 +22,15 @@ namespace CP.Another
     public partial class Dogovor : Window
     {
         int iddd = 0;
-        static int actual = 0;
+        public static int actual = 0;
+        bool potok = true;
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
             iddd = t;
             ZapolnitDogovor();
-            Pocupatel();
+            Thread thread = new Thread(Update);
+            thread.Start();
         }
 
         #region Заполнить данные о продавце (без нареканий)
@@ -73,61 +76,61 @@ namespace CP.Another
         #endregion
 
         #region Заполнение данных о покупателе (решение идет)
-        private async void Pocupatel()
-        {
-            await GoVperde();
-        }
-        private async Task GoVperde()
-        {
-            //Заполнить данные о покупателе
-            //Асинхронный метод, непрерывный цикл, если данные о покупателе пустые, то срабатывает условие и заполняются данные о покупателе
-            try
-            {
-                await Task.Run(() =>
-                {
+        //private async void Pocupatel()
+        //{
+        //    await GoVperde();
+        //}
+        //private async Task GoVperde()
+        //{
+        //    //Заполнить данные о покупателе
+        //    //Асинхронный метод, непрерывный цикл, если данные о покупателе пустые, то срабатывает условие и заполняются данные о покупателе
+        //    try
+        //    {
+        //        await Task.Run(() =>
+        //        {
 
-                    while (true)
-                    {
-                        Dispatcher.Invoke(async () =>
-                        {
-                            if (pokupatel.Text == "")
-                            {
+        //            while (true)
+        //            {
+        //                Dispatcher.Invoke(async () =>
+        //                {
+        //                    if (pokupatel.Text == "")
+        //                    {
 
-                                if (MainWindow.salesmanhik == 0)
-                                    return;
+        //                        if (MainWindow.salesmanhik == 0)
+        //                            return;
 
-                                else
-                                {
-                                    actual = MainWindow.salesmanhik;
-                                    using (RealContext db = new())
-                                    {
-                                        var getmypoc = from poc in await db.Clients.AsNoTracking().ToListAsync()
-                                                       join pas in await db.Passports.AsNoTracking().ToListAsync() on poc.PasswordFk equals pas.Id
-                                                       where poc.Id == Convert.ToInt32(MainWindow.salesmanhik)
-                                                       select new
-                                                       {
-                                                           fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
-                                                           paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
-                                                       };
+        //                        else
+        //                        {
+        //                            actual = MainWindow.salesmanhik;
+        //                            using (RealContext db = new())
+        //                            {
+        //                                var getmypoc = from poc in await db.Clients.AsNoTracking().ToListAsync()
+        //                                               join pas in await db.Passports.AsNoTracking().ToListAsync() on poc.PasswordFk equals pas.Id
+        //                                               where poc.Id == Convert.ToInt32(MainWindow.salesmanhik)
+        //                                               select new
+        //                                               {
+        //                                                   fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
+        //                                                   paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
+        //                                               };
 
-                                        foreach (var item in getmypoc)
-                                        {
-                                            pokupatel.Text = item.fiipoc;
-                                            paspoc.Text = item.paspoci;
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+        //                                foreach (var item in getmypoc)
+        //                                {
+        //                                    pokupatel.Text = item.fiipoc;
+        //                                    paspoc.Text = item.paspoci;
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                });
+        //            }
+        //        });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show(e.Message);
+        //    }
 
-        }
+        //}
         #endregion
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -143,12 +146,14 @@ namespace CP.Another
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Закрыть окно
+            //Прервать поток 
+            potok = false;
             Close();
         }
 
         private async void Update()
         {
-            while (true)
+            while (potok)
             {
                 if (actual != MainWindow.salesmanhik && MainWindow.salesmanhik > 0)
                 {
@@ -165,9 +170,13 @@ namespace CP.Another
 
                         foreach (var item in getmypoc)
                         {
-                            pokupatel.Text = item.fiipoc;
-                            paspoc.Text = item.paspoci;
+                            Dispatcher.Invoke(() =>
+                            {
+                                pokupatel.Text = item.fiipoc;
+                                paspoc.Text = item.paspoci;
+                            });
                         }
+                        actual = MainWindow.salesmanhik;
                     }
                 }
             }

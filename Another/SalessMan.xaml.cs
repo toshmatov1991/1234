@@ -30,7 +30,18 @@ namespace CP.Another
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить в базу клиента
-            
+            //first - фамилия
+            //nam - имя
+            //last - отчество
+            //numberfhone - номер телефона
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
 
 
 

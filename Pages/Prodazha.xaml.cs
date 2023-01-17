@@ -115,6 +115,8 @@ namespace CP.Pages
         }
         private void NameClick(object sender, MouseButtonEventArgs e)
         {
+            //Обнуляем нашего покупателя
+            MainWindow.salesmanhik = 0;
             var r = prodazhaList.SelectedItem.ToString();
             string str = "";
             for (int i = 0; i < r.Length; i++)

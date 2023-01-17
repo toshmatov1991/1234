@@ -44,9 +44,8 @@
         </ListView>
         <TextBlock Text="Вы можете выбрать покупателя из базы данных клиентов компании или добавить нового клиента: " Grid.Row="5" FontSize="18" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,6,0,0"/>
         <TextBlock Text="Фамилия" Foreground="Brown" Grid.Row="6" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,10,0,0"/>
-        <TextBlock Text="Отчество" Foreground="Brown" Grid.Row="6" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,69,0,0" Grid.RowSpan="2"/>
-        <TextBlock Text="Дата рождения" Foreground="Brown" Grid.Row="7" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,15,0,0"/>
-        <TextBlock Text="Номер телефона" Foreground="Brown" Grid.Row="7" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,47,0,0"/>
+        <TextBlock Text="Отчество" Foreground="Brown" Grid.Row="6" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,70,0,0" Grid.RowSpan="2"/>
+        <TextBlock Text="Номер телефона" Foreground="Brown" Grid.Row="7" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,17,0,0"/>
         <TextBlock Text="Имя" Grid.Row="6" Foreground="Brown" FontSize="18" HorizontalAlignment="Left" Margin="47,41,0,19"/>
         <TextBlock Text="Паспорт" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="22" FontStyle="Italic"/>
         <TextBlock Text="Покупатель" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="22" FontStyle="Italic"/>
@@ -56,10 +55,9 @@
         <TextBlock Text="Кем выдан:" Foreground="Brown" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="108,38,0,0"/>
         <Button Content="Добавить в базу клиента" Background="AliceBlue" Grid.Column="2" Grid.Row="7" Width="200" Height="50" FontSize="15" Grid.RowSpan="2" Click="Button_Click"/>
         <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="first" Grid.Row="6" Margin="145,13,38,49"/>
-        <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="nam" Grid.Row="6" Margin="146,43,37,19"/>
-        <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="last" Grid.Row="6" Margin="146,73,37,72" Grid.RowSpan="2"/>
-        <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="numberfhone" Grid.Row="7" Margin="146,51,37,10"/>
-        <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="dateofbr" Grid.Row="7" Margin="146,20,37,41"/>
+        <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="nam" Grid.Row="6" Margin="178,43,72,18"/>
+        <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="last" Grid.Row="6" Margin="177,75,73,73" Grid.RowSpan="2"/>
+        <TextBox VerticalContentAlignment="Stretch" Width="150" Height="23" FontSize="15" x:Name="numberfhone" Grid.Row="7" Margin="177,21,73,43"/>
         <TextBox VerticalContentAlignment="Stretch" Grid.Column="1" FontSize="15" x:Name="seria" Grid.Row="5" Margin="172,86,150,60" Grid.RowSpan="2"/>
         <TextBox VerticalContentAlignment="Stretch" Grid.Column="1" FontSize="15" x:Name="numb" Grid.Row="5" Margin="331,87,345,59" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <TextBox VerticalContentAlignment="Stretch" Grid.Column="2" FontSize="15" x:Name="datevidach" Grid.Row="5" Margin="220,87,33,60" Grid.RowSpan="2"/>

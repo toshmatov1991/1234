@@ -106,12 +106,10 @@ namespace CP.Another
                     }
                 }
             }
-
-
-
         }
         #endregion
 
+        //Добавить или изменить покупателя(без нареканий)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить или изменить покупателя
@@ -122,14 +120,26 @@ namespace CP.Another
             salessMan.ShowDialog();
         }
 
+        //Закрыть окно(вроде без нареканий)
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Закрыть окно
-            //Прервать поток 
+            //Прервать поток(типо)
             potok = false;
             Close();
         }
 
-    
+        //Заключить договор(в работе)
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //Заключить договор
+            //Сверстать ПДФ + изменения в БД + сохранить пдф
+            //Продавец FIO - passPort
+            //Покупатель pokupatel - paspoc
+
+
+
+
+        }
     }
 }

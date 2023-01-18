@@ -1,18 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CP.Another
 {
@@ -27,6 +19,8 @@ namespace CP.Another
             GetMyClients();
             r = reald;
         }
+
+        //Добавить в базу клиента
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить в базу клиента
@@ -114,8 +108,6 @@ namespace CP.Another
            
         }
 
-
-
         //Общая загрузка списка клиентов агенства (Без нареканий)
         private void GetMyClients()
         {
@@ -181,7 +173,6 @@ namespace CP.Another
             {
                 var getep = db.Clients.FirstOrDefault(u => u.Id == MainWindow.salesmanhik);
                 str = $"{getep.Firstname} {getep.Name} {getep.Lastname}";
-                
             }
             MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {str}?", "Вы уверены в своем выборе?!", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(dialog == MessageBoxResult.Yes)

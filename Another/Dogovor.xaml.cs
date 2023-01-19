@@ -140,7 +140,7 @@ namespace CP.Another
         }
 
         //Заключить договор(в работе)
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             //Заключить договор
             //Сверстать ПДФ + изменения в БД + сохранить пдф
@@ -151,13 +151,15 @@ namespace CP.Another
                 MessageBox.Show("Не заполнены данные о покупателе", "Внимательней", MessageBoxButton.OK, MessageBoxImage.None);
             else
             {
-                await PDFReaders();
+                Thread thread = new(PDFReaders);
+                thread.IsBackground = true;
+                thread.Start();
             }
 
         }
 
         //Верстка PDF документа
-        private async Task PDFReaders() 
+        private void PDFReaders() 
         {
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter("123.pdf"));
 
@@ -182,19 +184,13 @@ namespace CP.Another
             //Открываем окно виндовс для сохранения документа
             //if (dialog.ShowDialog() == true)
             //{
-            await Task.Run(() =>
-            {
+           
                 Dispatcher.Invoke(() =>
                 {
                     //string str = dialog.FileName;
 
                     //Формат документа = pdf
                     //PdfDocument pdfDoc = new PdfDocument(new PdfWriter(str));
-
-                   
-
-                 
-
 
                     Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
                     paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(14).SetMarginLeft(125).SetBold();
@@ -216,22 +212,16 @@ namespace CP.Another
                     //Закрываем документ
                    
                 });
-            });
+            
             doc.Close();
 
-            try
-            {
                 //string commandText = @"C:\Users\toshm\OneDrive\Рабочий стол\1.pdf";
-                MessageBox.Show("Привет мир");
+              
                 var proc = new Process();
                 proc.StartInfo.FileName = "123.pdf";
                 proc.StartInfo.UseShellExecute = true;
                 proc.Start();
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message);
-            }
+             
         }
 
       

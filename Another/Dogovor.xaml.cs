@@ -1,5 +1,12 @@
-﻿using iText.Kernel.Geom;
+﻿using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Borders;
+using iText.Layout.Element;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +18,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -136,10 +142,93 @@ namespace CP.Another
             //Сверстать ПДФ + изменения в БД + сохранить пдф
             //Продавец FIO - passPort
             //Покупатель pokupatel - paspoc
+            if (pokupatel.Text == "" || paspoc.Text == "" || pokupatel.Text == "" && paspoc.Text == "")
+                MessageBox.Show("Не заполнены данные о покупателе", "Внимательней", MessageBoxButton.OK, MessageBoxImage.None);
+            else
+            {
 
-
+                return;
+            }
 
 
         }
+
+        //Верстка PDF документа
+        private static void PDFReaders()
+        {
+            //Сохранить документ //Задаем фильтр
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.FileName = "Договор купли-продажи квартиры";
+            dialog.DefaultExt = "pdf";
+            dialog.Filter = "PDF document (*.pdf)|*.pdf";
+
+            //Открываем окно виндовс для сохранения документа
+            if (dialog.ShowDialog() == true)
+            {
+                string str = dialog.FileName;
+
+                //Формат документа = pdf
+                PdfDocument pdfDoc = new PdfDocument(new PdfWriter(str));
+
+                //Создание документа + задаем формат pdf и A4 
+                Document doc = new Document(pdfDoc, iText.Kernel.Geom.PageSize.A4);
+
+                //Задаем стиль
+                iText.Layout.Style _styleone = new iText.Layout.Style().SetFontColor(ColorConstants.BLUE).SetFontSize(11).SetBorder(new SolidBorder(ColorConstants.BLACK, 0, 5));
+
+
+                //Чтоб поддерживал кириллицу в pdf документе
+                PdfFont f2 = PdfFontFactory.CreateFont("arial.ttf", "Identity-H");
+
+                //Cell - Просто строка //SetFont(f2 - задаем русский шрифт, иначе не видит русские буквы)
+                Cell cell2 = new Cell().Add(new iText.Layout.Element.Paragraph($"Гражданину:  Лазареву Святославу Андреевичу{""}")).SetFont(f2).SetMarginLeft(-20);
+
+                //Вторая строка
+                Cell cell3 = new Cell().Add(new Paragraph($"проживающему:   Пушкина 71б{""}")).SetFont(f2);
+
+                Paragraph paragraph = new("Повестка");
+                paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER).SetFont(f2).SetMarginLeft(220).SetFontSize(25);
+
+                Cell cell5 = new Cell().Add(new Paragraph(""));
+                //Cell cell6 = new Cell().Add(new Paragraph("Серия: ")).SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER).SetFont(f2).SetMarginLeft(320);
+                Paragraph paragraph2 = new Paragraph("Серия: 777").SetFont(f2).SetMarginLeft(390);
+                Cell cell6 = new Cell().Add(new Paragraph(""));
+
+                Cell cell7 = new Cell().Add(new Paragraph($"В соответствии с Федеральным законом от 28 марта 1998 г. N53-ФЗ \"О Воинской обязанности и военной службе\" Вы обязаны" +
+                    $"{"Такого то числа"} к {"таком"} часам явиться в военный комиссариат:")).SetFont(f2);
+                Cell cell8 = new Cell().Add(new Paragraph($"адрес военкомата")).SetFont(f2);
+                Cell cell9 = new Cell().Add(new Paragraph($"для  {" Причина"}")).SetFont(f2);
+                Cell cell10 = new Cell().Add(new Paragraph("\n")).SetFont(f2);
+                Cell cell11 = new Cell().Add(new Paragraph($"При себе иметь паспорт, а также: {"ЧТО НУЖНО СПИСОК"}")).SetFont(f2);
+                Cell cell12 = new Cell().Add(new Paragraph("\n")).SetFont(f2);
+                Cell cell13 = new Cell().Add(new Paragraph("Военный комиссар области, города, района")).SetFont(f2);
+                Cell cell14 = new Cell().Add(new Paragraph("\n")).SetFont(f2);
+                Cell cell15 = new Cell().Add(new Paragraph($"М.П. {""}")).SetFont(f2);
+                //Добавляем в документ
+                doc.Add(cell2);
+                doc.Add(cell3);
+                doc.Add(paragraph);
+                doc.Add(cell5);
+                doc.Add(paragraph2);
+                doc.Add(cell6);
+                doc.Add(cell7);
+                doc.Add(cell8);
+                doc.Add(cell9);
+                doc.Add(cell10);
+                doc.Add(cell11);
+                doc.Add(cell12);
+                doc.Add(cell13);
+                doc.Add(cell14);
+                doc.Add(cell15);
+
+                //Закрываем документ
+                doc.Close();
+            }
+            
+        }
+
+
+
     }
 }

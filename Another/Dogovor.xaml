@@ -31,7 +31,7 @@
             <TextBlock Text="и гражданин: " Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="0,8,0,0"/>
             <TextBlock x:Name="pokupatel" Text="" TextDecorations="Underline" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="122,9,-122,0"/>
             <TextBlock Text="паспорт" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="0,44,0,0"/>
-            <TextBlock x:Name="paspoc" Text="серия номер" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="84,44,-84,0"/>
+            <TextBlock x:Name="paspoc" Text="" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="84,44,-84,0"/>
             <TextBlock Text="именуем в дальнейшем покупатель, с другой стороны, заключили Договор о нижеследующем:" Grid.Row="2" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="3" Margin="0,78,0,0"/>
             <TextBlock Text="Предмет договора" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="33" FontWeight="DemiBold" Grid.Row="2" Grid.Column="1" Margin="0,115,0,0" Grid.RowSpan="2"/>
             <TextBlock Text="Продавец обязуется передать в собственность Покупателя " Grid.Row="3" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="66,45,0,0"/>

@@ -146,16 +146,27 @@ namespace CP.Another
             //Сверстать ПДФ + изменения в БД + сохранить пдф
             //Продавец FIO - passPort
             //Покупатель pokupatel - paspoc
+            ManualResetEvent _requestTermination = new ManualResetEvent(false);
+            Thread thread;
             if (pokupatel.Text == "" || paspoc.Text == "" || pokupatel.Text == "" && paspoc.Text == "")
                 MessageBox.Show("Не заполнены данные о покупателе", "Внимательней", MessageBoxButton.OK, MessageBoxImage.None);
             else
             {
-                Thread thread = new Thread(PDFReaders);
+                thread = new Thread(PDFReaders);
                 thread.IsBackground = true;
                 thread.Start();
+
+
+                
             }
 
+            void Dispose()
+            {
+                _requestTermination.Set();
 
+                // you could enter a maximum wait time in the Join(...)
+                thread.Join();
+            }
         }
 
         //Верстка PDF документа
@@ -189,16 +200,16 @@ namespace CP.Another
 
 
                 Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
-                Paragraph paragraph1 = paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(17).SetPaddingLeft(90);
+                paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(14).SetMarginLeft(125).SetBold();
 
                 //Вторая строка
-                Cell cell3 = new Cell().Add(new Paragraph($"Город Томск")).SetFont(f2);
-                Cell cell4 = new Cell().Add(new Paragraph($"{DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2).SetHorizontalAlignment((iText.Layout.Properties.HorizontalAlignment?)HorizontalAlignment.Right);
+                Cell cell3 = new Cell().Add(new Paragraph($"город Томск\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0{DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
+               
                
                 //Добавляем в документ
                 doc.Add(paragraph);
                 doc.Add(cell3);
-                doc.Add(cell4);
+              
                
                 //Закрываем документ
                 doc.Close();

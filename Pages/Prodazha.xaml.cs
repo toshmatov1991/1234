@@ -127,7 +127,7 @@ namespace CP.Pages
                     break;
             }
             WindowAd ad = new(Convert.ToInt32(str), myrieltor);
-            ad.Show();
+            ad.ShowDialog();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

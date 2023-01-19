@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Icon="icon.png" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" Icon="icon.png" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
         Title="Договор купли-продажи" Height="730" Width="1000">
     <Border Padding="5">
         <Grid>
@@ -42,7 +42,7 @@
             <TextBlock Text="расположенный по адресу: " VerticalAlignment="Top" Grid.Row="4" FontSize="18" HorizontalAlignment="Left" Margin="0,21,0,0" Grid.Column="0"/>
             <TextBlock Text="Алтайская 126 " x:Name="adress" VerticalAlignment="Top" Grid.Row="4" FontSize="18" HorizontalAlignment="Left" Margin="236,22,0,0" Grid.Column="0" Grid.ColumnSpan="2"/>
             <TextBlock Text="а покупатель обязуется принять ее и уплатить за нее денежную сумму в размере: " FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="4" Grid.ColumnSpan="3" Margin="0,59,0,0"/>
-            <TextBlock Text="3 000 000 " FontSize="18" VerticalAlignment="Top" Grid.Row="4"  Grid.Column="2" Width="82" Margin="35,60,213,0"/>
+            <TextBlock Text="" x:Name="den" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4"  Grid.Column="2" Width="280" Margin="39,61,0,0"/>
             <TextBlock Text="Право собственности Продавца по Договору основывается на следующих документах: " FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="4" Grid.ColumnSpan="3" Margin="66,95,0,0"/>
             <TextBlock TextWrapping="Wrap" Text="Свидетельство о праве собственности на " FontSize="18" Grid.Row="5" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBlock TextWrapping="Wrap" Text="" x:Name="serianomer" FontSize="18" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,1,0,0" Grid.Column="1"/>

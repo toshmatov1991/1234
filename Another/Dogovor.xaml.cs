@@ -10,6 +10,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,8 +26,10 @@ using System.Windows.Shapes;
 
 namespace CP.Another
 {
+
     public partial class Dogovor : Window
     {
+     
         int iddd = 0;
         public static int actual = 0;
         bool potok = true;
@@ -63,7 +66,7 @@ namespace CP.Another
                                         clie.Id,
                                         fio = $"{clie.Firstname} {clie.Name} {clie.Lastname}",
                                         ps = $"{pass.Serial} №{pass.Number}, выдан {pass.Dateof} {pass.Isby}",
-                                        summa = real.Price,
+                                        summa = $"{real.Price} рублей",
                                         kadastrnumber = svidetelstvo.Registr,
                                         ploshad = real.Square.ToString(),
                                         adrecc = real.Adress,
@@ -77,6 +80,7 @@ namespace CP.Another
                     kvadrat.Text = item.ploshad;
                     adress.Text = item.adrecc;
                     serianomer.Text = item.obshee;
+                    den.Text = item.summa;
                 }
             }
         }
@@ -146,33 +150,35 @@ namespace CP.Another
                 MessageBox.Show("Не заполнены данные о покупателе", "Внимательней", MessageBoxButton.OK, MessageBoxImage.None);
             else
             {
-
-                return;
+                Thread thread = new Thread(PDFReaders);
+                thread.IsBackground = true;
+                thread.Start();
             }
 
 
         }
 
         //Верстка PDF документа
-        private static void PDFReaders()
+        private void PDFReaders()
         {
             //Сохранить документ //Задаем фильтр
-            SaveFileDialog dialog = new SaveFileDialog();
+            //SaveFileDialog dialog = new SaveFileDialog();
 
-            dialog.FileName = "Договор купли-продажи квартиры";
-            dialog.DefaultExt = "pdf";
-            dialog.Filter = "PDF document (*.pdf)|*.pdf";
+            //dialog.FileName = "123";
+            //dialog.DefaultExt = "pdf";
+            //dialog.Filter = "PDF document (*.pdf)|*.pdf";
 
             //Открываем окно виндовс для сохранения документа
-            if (dialog.ShowDialog() == true)
-            {
-                string str = dialog.FileName;
+            //if (dialog.ShowDialog() == true)
+            //{
+                //string str = dialog.FileName;
 
                 //Формат документа = pdf
-                PdfDocument pdfDoc = new PdfDocument(new PdfWriter(str));
+                //PdfDocument pdfDoc = new PdfDocument(new PdfWriter(str));
+                PdfDocument pdfDoc = new PdfDocument(new PdfWriter("123.pdf"));
 
                 //Создание документа + задаем формат pdf и A4 
-                Document doc = new Document(pdfDoc, iText.Kernel.Geom.PageSize.A4);
+                Document doc = new Document(pdfDoc, PageSize.A4);
 
                 //Задаем стиль
                 iText.Layout.Style _styleone = new iText.Layout.Style().SetFontColor(ColorConstants.BLUE).SetFontSize(11).SetBorder(new SolidBorder(ColorConstants.BLACK, 0, 5));
@@ -181,54 +187,49 @@ namespace CP.Another
                 //Чтоб поддерживал кириллицу в pdf документе
                 PdfFont f2 = PdfFontFactory.CreateFont("arial.ttf", "Identity-H");
 
-                //Cell - Просто строка //SetFont(f2 - задаем русский шрифт, иначе не видит русские буквы)
-                Cell cell2 = new Cell().Add(new iText.Layout.Element.Paragraph($"Гражданину:  Лазареву Святославу Андреевичу{""}")).SetFont(f2).SetMarginLeft(-20);
+
+                Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
+                Paragraph paragraph1 = paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(17).SetPaddingLeft(90);
 
                 //Вторая строка
-                Cell cell3 = new Cell().Add(new Paragraph($"проживающему:   Пушкина 71б{""}")).SetFont(f2);
-
-                Paragraph paragraph = new("Повестка");
-                paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER).SetFont(f2).SetMarginLeft(220).SetFontSize(25);
-
-                Cell cell5 = new Cell().Add(new Paragraph(""));
-                //Cell cell6 = new Cell().Add(new Paragraph("Серия: ")).SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER).SetFont(f2).SetMarginLeft(320);
-                Paragraph paragraph2 = new Paragraph("Серия: 777").SetFont(f2).SetMarginLeft(390);
-                Cell cell6 = new Cell().Add(new Paragraph(""));
-
-                Cell cell7 = new Cell().Add(new Paragraph($"В соответствии с Федеральным законом от 28 марта 1998 г. N53-ФЗ \"О Воинской обязанности и военной службе\" Вы обязаны" +
-                    $"{"Такого то числа"} к {"таком"} часам явиться в военный комиссариат:")).SetFont(f2);
-                Cell cell8 = new Cell().Add(new Paragraph($"адрес военкомата")).SetFont(f2);
-                Cell cell9 = new Cell().Add(new Paragraph($"для  {" Причина"}")).SetFont(f2);
-                Cell cell10 = new Cell().Add(new Paragraph("\n")).SetFont(f2);
-                Cell cell11 = new Cell().Add(new Paragraph($"При себе иметь паспорт, а также: {"ЧТО НУЖНО СПИСОК"}")).SetFont(f2);
-                Cell cell12 = new Cell().Add(new Paragraph("\n")).SetFont(f2);
-                Cell cell13 = new Cell().Add(new Paragraph("Военный комиссар области, города, района")).SetFont(f2);
-                Cell cell14 = new Cell().Add(new Paragraph("\n")).SetFont(f2);
-                Cell cell15 = new Cell().Add(new Paragraph($"М.П. {""}")).SetFont(f2);
+                Cell cell3 = new Cell().Add(new Paragraph($"Город Томск")).SetFont(f2);
+                Cell cell4 = new Cell().Add(new Paragraph($"{DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2).SetHorizontalAlignment((iText.Layout.Properties.HorizontalAlignment?)HorizontalAlignment.Right);
+               
                 //Добавляем в документ
-                doc.Add(cell2);
-                doc.Add(cell3);
                 doc.Add(paragraph);
-                doc.Add(cell5);
-                doc.Add(paragraph2);
-                doc.Add(cell6);
-                doc.Add(cell7);
-                doc.Add(cell8);
-                doc.Add(cell9);
-                doc.Add(cell10);
-                doc.Add(cell11);
-                doc.Add(cell12);
-                doc.Add(cell13);
-                doc.Add(cell14);
-                doc.Add(cell15);
-
+                doc.Add(cell3);
+                doc.Add(cell4);
+               
                 //Закрываем документ
                 doc.Close();
-            }
             
+
+            string commandText = "123.pdf";
+            var proc = new Process();
+            proc.StartInfo.FileName = commandText;
+            proc.StartInfo.UseShellExecute = true;
+            proc.Start();
+
+
         }
 
-
-
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //Запустить пдф
+            try
+            {
+                //string commandText = @"C:\Users\toshm\OneDrive\Рабочий стол\1.pdf";
+                string commandText = "123.pdf";
+                var proc = new Process();
+                proc.StartInfo.FileName = commandText;
+                proc.StartInfo.UseShellExecute = true;
+                proc.Start();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message);
+            }
+           
+        }
     }
 }

@@ -65,7 +65,7 @@ namespace CP.Another
                                     {
                                         clie.Id,
                                         fio = $"{clie.Firstname} {clie.Name} {clie.Lastname}",
-                                        ps = $"{pass.Serial} №{pass.Number}, выдан {pass.Dateof} {pass.Isby}",
+                                        ps = $"{pass.Serial} № {pass.Number}, выдан {pass.Dateof} {pass.Isby}",
                                         summa = $"{real.Price} рублей",
                                         kadastrnumber = svidetelstvo.Registr,
                                         ploshad = real.Square.ToString(),
@@ -200,8 +200,18 @@ namespace CP.Another
                     //Продавец
 
                      
-                    Cell cell4 = new Cell().Add(new Paragraph($"Гражданин(ка) {FIO.Text},")).SetFont(f2);
+                    Cell cell4 = new Cell().Add(new Paragraph($"Гражданин(ка): {FIO.Text},")).SetFont(f2);
                     Cell cell5 = new Cell().Add(new Paragraph($"паспорт серии {passPort.Text}")).SetFont(f2);
+                    Cell cell6 = new Cell().Add(new Paragraph("именуем в дальнейшем продавец, с одной стороны")).SetFont(f2);
+                    Cell cell7 = new Cell().Add(new Paragraph($"и гражданин: {pokupatel.Text}")).SetFont(f2);
+                    Cell cell8 = new Cell().Add(new Paragraph($"паспорт серии {paspoc.Text}")).SetFont(f2);
+                    Cell cell9 = new Cell().Add(new Paragraph("именуем в дальнейшем покупатель, с другой стороны, заключили Договор о нижеследующем:")).SetFont(f2);
+
+                    Paragraph paragraph1 = new("Предмет договора");
+                    paragraph1.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(16).SetMarginLeft(185).SetBold();
+
+                    Cell cell10 = new Cell().Add(new Paragraph($"Продавец обязуется передать в собственность Покупателя: {paspoc.Text}")).SetFont(f2);
+
 
 
                     //Добавляем в документ
@@ -209,6 +219,11 @@ namespace CP.Another
                     doc.Add(cell3);
                     doc.Add(cell4);
                     doc.Add(cell5);
+                    doc.Add(cell6);
+                    doc.Add(cell7);
+                    doc.Add(cell8);
+                    doc.Add(cell9);
+                    doc.Add(paragraph1);
                     //Закрываем документ
                    
                 });

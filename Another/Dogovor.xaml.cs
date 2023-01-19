@@ -140,38 +140,38 @@ namespace CP.Another
         }
 
         //Заключить договор(в работе)
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
         {
             //Заключить договор
             //Сверстать ПДФ + изменения в БД + сохранить пдф
             //Продавец FIO - passPort
             //Покупатель pokupatel - paspoc
-            ManualResetEvent _requestTermination = new ManualResetEvent(false);
-            Thread thread;
+
             if (pokupatel.Text == "" || paspoc.Text == "" || pokupatel.Text == "" && paspoc.Text == "")
                 MessageBox.Show("Не заполнены данные о покупателе", "Внимательней", MessageBoxButton.OK, MessageBoxImage.None);
             else
             {
-                thread = new Thread(PDFReaders);
-                thread.IsBackground = true;
-                thread.Start();
-
-
-                
+                await PDFReaders();
             }
 
-            void Dispose()
-            {
-                _requestTermination.Set();
-
-                // you could enter a maximum wait time in the Join(...)
-                thread.Join();
-            }
         }
 
         //Верстка PDF документа
-        private void PDFReaders()
+        private async Task PDFReaders() 
         {
+            PdfDocument pdfDoc = new PdfDocument(new PdfWriter("123.pdf"));
+
+            //Создание документа + задаем формат pdf и A4 
+            Document doc = new Document(pdfDoc, PageSize.A4);
+
+            //Задаем стиль
+            iText.Layout.Style _styleone = new iText.Layout.Style().SetFontColor(ColorConstants.BLUE).SetFontSize(11).SetBorder(new SolidBorder(ColorConstants.BLACK, 0, 5));
+
+
+            //Чтоб поддерживал кириллицу в pdf документе
+            PdfFont f2 = PdfFontFactory.CreateFont("arial.ttf", "Identity-H");
+
+
             //Сохранить документ //Задаем фильтр
             //SaveFileDialog dialog = new SaveFileDialog();
 
@@ -182,57 +182,49 @@ namespace CP.Another
             //Открываем окно виндовс для сохранения документа
             //if (dialog.ShowDialog() == true)
             //{
-                //string str = dialog.FileName;
+            await Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    //string str = dialog.FileName;
 
-                //Формат документа = pdf
-                //PdfDocument pdfDoc = new PdfDocument(new PdfWriter(str));
-                PdfDocument pdfDoc = new PdfDocument(new PdfWriter("123.pdf"));
+                    //Формат документа = pdf
+                    //PdfDocument pdfDoc = new PdfDocument(new PdfWriter(str));
 
-                //Создание документа + задаем формат pdf и A4 
-                Document doc = new Document(pdfDoc, PageSize.A4);
+                   
 
-                //Задаем стиль
-                iText.Layout.Style _styleone = new iText.Layout.Style().SetFontColor(ColorConstants.BLUE).SetFontSize(11).SetBorder(new SolidBorder(ColorConstants.BLACK, 0, 5));
-
-
-                //Чтоб поддерживал кириллицу в pdf документе
-                PdfFont f2 = PdfFontFactory.CreateFont("arial.ttf", "Identity-H");
+                 
 
 
-                Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
-                paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(14).SetMarginLeft(125).SetBold();
+                    Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
+                    paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(14).SetMarginLeft(125).SetBold();
 
-                //Вторая строка
-                Cell cell3 = new Cell().Add(new Paragraph($"город Томск\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0{DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
-               
-               
-                //Добавляем в документ
-                doc.Add(paragraph);
-                doc.Add(cell3);
-              
-               
-                //Закрываем документ
-                doc.Close();
-            
-
-            string commandText = "123.pdf";
-            var proc = new Process();
-            proc.StartInfo.FileName = commandText;
-            proc.StartInfo.UseShellExecute = true;
-            proc.Start();
+                    //Вторая строка Город и дата
+                    Cell cell3 = new Cell().Add(new Paragraph($"город Томск\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0{DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
+                    //Продавец
 
 
-        }
+                    Cell cell4 = new Cell().Add(new Paragraph($"Гражданин(ка) {FIO.Text},")).SetFont(f2);
+                    Cell cell5 = new Cell().Add(new Paragraph($"паспорт серии {passPort.Text}")).SetFont(f2);
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            //Запустить пдф
+
+                    //Добавляем в документ
+                    doc.Add(paragraph);
+                    doc.Add(cell3);
+                    doc.Add(cell4);
+                    doc.Add(cell5);
+                    //Закрываем документ
+                   
+                });
+            });
+            doc.Close();
+
             try
             {
                 //string commandText = @"C:\Users\toshm\OneDrive\Рабочий стол\1.pdf";
-                string commandText = "123.pdf";
+                MessageBox.Show("Привет мир");
                 var proc = new Process();
-                proc.StartInfo.FileName = commandText;
+                proc.StartInfo.FileName = "123.pdf";
                 proc.StartInfo.UseShellExecute = true;
                 proc.Start();
             }
@@ -240,7 +232,8 @@ namespace CP.Another
             {
                 MessageBox.Show(r.Message);
             }
-           
         }
+
+      
     }
 }

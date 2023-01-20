@@ -65,12 +65,13 @@ namespace CP.Another
                                     {
                                         clie.Id,
                                         fio = $"{clie.Firstname} {clie.Name} {clie.Lastname}",
-                                        ps = $"{pass.Serial} № {pass.Number}, выдан {pass.Dateof} {pass.Isby}",
+                                        ps = $"{pass.Serial} №  {pass.Number}, выдан {pass.Dateof} {pass.Isby}",
                                         summa = $"{real.Price} рублей",
                                         kadastrnumber = svidetelstvo.Registr,
                                         ploshad = real.Square.ToString(),
                                         adrecc = real.Adress,
-                                        obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} \nрегистрационный номер: {svidetelstvo.Registr}"
+                                        obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} \nрегистрационный номер: {svidetelstvo.Registr}",
+                                        type = type.Name
                                     };
                 foreach (var item in getmysalesman)
                 {
@@ -80,7 +81,8 @@ namespace CP.Another
                     kvadrat.Text = item.ploshad;
                     adress.Text = item.adrecc;
                     serianomer.Text = item.obshee;
-                    den.Text = item.summa;
+                    den.Text = $"{item.summa} рублей";
+                    dom.Text = item.type;
                 }
             }
         }
@@ -101,7 +103,7 @@ namespace CP.Another
                                        select new
                                        {
                                            fiipoc = $"{poc.Firstname} {poc.Name} {poc.Lastname}",
-                                           paspoci = $"серии {pas.Serial} №{pas.Number}, выдан {pas.Dateof} {pas.Isby}"
+                                           paspoci = $"серии {pas.Serial} № {pas.Number}, выдан {pas.Dateof} {pas.Isby}"
                                        };
 
                         foreach (var item in getmypoc)
@@ -204,13 +206,20 @@ namespace CP.Another
                     Cell cell5 = new Cell().Add(new Paragraph($"паспорт серии {passPort.Text}")).SetFont(f2);
                     Cell cell6 = new Cell().Add(new Paragraph("именуем в дальнейшем продавец, с одной стороны")).SetFont(f2);
                     Cell cell7 = new Cell().Add(new Paragraph($"и гражданин: {pokupatel.Text}")).SetFont(f2);
-                    Cell cell8 = new Cell().Add(new Paragraph($"паспорт серии {paspoc.Text}")).SetFont(f2);
+                    Cell cell8 = new Cell().Add(new Paragraph($"паспорт {paspoc.Text}")).SetFont(f2);
                     Cell cell9 = new Cell().Add(new Paragraph("именуем в дальнейшем покупатель, с другой стороны, заключили Договор о нижеследующем:")).SetFont(f2);
 
                     Paragraph paragraph1 = new("Предмет договора");
                     paragraph1.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(16).SetMarginLeft(185).SetBold();
 
-                    Cell cell10 = new Cell().Add(new Paragraph($"Продавец обязуется передать в собственность Покупателя: {paspoc.Text}")).SetFont(f2);
+                    Cell cell10 = new Cell().Add(new Paragraph($"\u00A0\u00A0\u00A0\u00A0\u00A0Продавец обязуется передать в собственность Покупателя: {dom.Text}")).SetFont(f2);
+                    Cell cell11 = new Cell().Add(new Paragraph($"кадастровый номер: {kadastr.Text}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0общая площадь: {kvadrat.Text}м²")).SetFont(f2);
+                    Cell cell12 = new Cell().Add(new Paragraph($"расположенный по адресу: {adress.Text}")).SetFont(f2);
+                    Cell cell13 = new Cell().Add(new Paragraph($"а покупатель обязуется принять ее и уплатить за нее сумму в размере: {den.Text}")).SetFont(f2);
+                    Cell cell14 = new Cell().Add(new Paragraph($"\u00A0\u00A0\u00A0\u00A0\u00A0Право собственности Продавца по Договору основывается на следующих документах: ")).SetFont(f2);
+                    Cell cell15 = new Cell().Add(new Paragraph($"Свидетельство о праве собственности на {serianomer.Text}\n")).SetFont(f2);
+                    Cell cell16 = new Cell().Add(new Paragraph($"Договор купли-продажи от {DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
+                   
 
 
 
@@ -224,8 +233,17 @@ namespace CP.Another
                     doc.Add(cell8);
                     doc.Add(cell9);
                     doc.Add(paragraph1);
+                    doc.Add(cell10);
+                    doc.Add(cell11);
+                    doc.Add(cell12);
+                    doc.Add(cell13);
+                    doc.Add(cell14);
+                    doc.Add(cell15);
+                    doc.Add(cell16);
+
+
                     //Закрываем документ
-                   
+
                 });
             
             doc.Close();

@@ -138,7 +138,7 @@ namespace CP.Another
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //Заключить договор
+            //Заключить договор аренда или продажа
             Dogovor dogovor = new(idAD, mestniyrieltor);
             dogovor.ShowDialog();
             

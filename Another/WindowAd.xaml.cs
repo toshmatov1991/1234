@@ -139,12 +139,12 @@ namespace CP.Another
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Заключить договор аренда или продажа
-            if(Status.Text == "Продажа")
+            if(Status.Text == "Статус: Продажа")
             {
                 Dogovor dogovor = new(idAD, mestniyrieltor);
                 dogovor.ShowDialog();
             }
-            else if(Status.Text == "Аренда")
+            else if(Status.Text == "Статус: Аренда")
             {
                 Arenda arenda = new(idAD, mestniyrieltor);
                 arenda.ShowDialog();

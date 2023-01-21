@@ -84,7 +84,7 @@ namespace CP.Another
                                         adrecc = real.Adress,
                                         obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} \nрегистрационный номер: {svidetelstvo.Registr}",
                                         type = type.Name,
-                                        summaComis = real.Price
+                                        su = real.Price
                                     };
                 foreach (var item in getmysalesman)
                 {
@@ -97,6 +97,7 @@ namespace CP.Another
                     serianomer.Text = item.obshee;
                     den.Text = $"{item.summa}";
                     dom.Text = item.type;
+                    summaComis = Convert.ToDouble(item.su);
                 }
             }
         }

@@ -139,9 +139,16 @@ namespace CP.Another
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Заключить договор аренда или продажа
-            Dogovor dogovor = new(idAD, mestniyrieltor);
-            dogovor.ShowDialog();
-            
+            if(Status.Text == "Продажа")
+            {
+                Dogovor dogovor = new(idAD, mestniyrieltor);
+                dogovor.ShowDialog();
+            }
+            else if(Status.Text == "Аренда")
+            {
+                Arenda arenda = new(idAD, mestniyrieltor);
+                arenda.ShowDialog();
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

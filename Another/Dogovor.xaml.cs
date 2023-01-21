@@ -306,7 +306,7 @@ namespace CP.Another
 
                     Dispatcher.Invoke(() =>
                     {
-                        Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
+                        Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ НЕДВИЖИМОСТИ");
                         paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(14).SetMarginLeft(125).SetBold();
 
                         //Вторая строка Город и дата

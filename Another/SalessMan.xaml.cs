@@ -81,7 +81,7 @@ namespace CP.Another
                             //Обновление таблицы
                             GetMyClients();
 
-                            var getep = db.Clients.Last();
+                            var getep = db.Clients.OrderBy(u => u.Id).Last();
                           
                              MessageBoxResult dialog = MessageBox.Show($"Добавить покупателя: {getep.Firstname} {getep.Name} {getep.Lastname}? в договор", "Ваш ход!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                              if (dialog == MessageBoxResult.Yes)

@@ -6,6 +6,7 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.Logging;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,10 @@ namespace CP.Another
         int iddd = 0;
         public static int actual = 0;
         bool potok = true;
+        bool cl = true;
+        int prodavec = 0;
+
+
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
@@ -47,6 +52,7 @@ namespace CP.Another
             //Подчеркнуть текст
             //Дата
             //Заполнить договор - данные продавца и недвижимости
+            DOG.IsEnabled = false;
             date.Text = DateTime.Now.ToString().Substring(0, 10);
             datadogovora.Text = DateTime.Now.ToString().Substring(0, 10);
             datadogovora.TextDecorations = TextDecorations.Underline;
@@ -68,20 +74,21 @@ namespace CP.Another
                                         ps = $"{pass.Serial} №  {pass.Number}, выдан {pass.Dateof} {pass.Isby}",
                                         summa = $"{real.Price} рублей",
                                         kadastrnumber = svidetelstvo.Registr,
-                                        ploshad = real.Square.ToString(),
+                                        ploshad = $"{real.Square} м²",
                                         adrecc = real.Adress,
                                         obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} \nрегистрационный номер: {svidetelstvo.Registr}",
                                         type = type.Name
                                     };
                 foreach (var item in getmysalesman)
                 {
+                    prodavec = (int)item.Id;
                     FIO.Text = item.fio;
                     passPort.Text = item.ps;
                     kadastr.Text = item.kadastrnumber;
                     kvadrat.Text = item.ploshad;
                     adress.Text = item.adrecc;
                     serianomer.Text = item.obshee;
-                    den.Text = $"{item.summa} рублей";
+                    den.Text = $"{item.summa}";
                     dom.Text = item.type;
                 }
             }
@@ -125,6 +132,7 @@ namespace CP.Another
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Добавить или изменить покупателя
+            DOG.IsEnabled = true;
             pokupatel.Text = "";
             paspoc.Text = "";
 
@@ -137,6 +145,7 @@ namespace CP.Another
         {
             //Закрыть окно
             //Прервать поток(типо)
+            cl = false;
             potok = false;
             Close();
         }
@@ -153,9 +162,25 @@ namespace CP.Another
                 MessageBox.Show("Не заполнены данные о покупателе", "Внимательней", MessageBoxButton.OK, MessageBoxImage.None);
             else
             {
-                Thread thread = new(PDFReaders);
-                thread.IsBackground = true;
-                thread.Start();
+                MessageBoxResult result = MessageBox.Show("Вы уверены?","Заключение договора", MessageBoxButton.YesNo, MessageBoxImage.None);
+                if (result == MessageBoxResult.Yes)
+                {
+                    //id продавца и покупателя 
+                    using(RealContext db = new())
+                    {
+                        //Обновляем данные в таблице предложения, а именно меняем владельца недвижимости и делаем ее неактуальной, так как сделка состоялась
+                        db.Database.ExecuteSqlRaw("UPDATE Realty SET salesman = {0}, actual = {1} WHERE salesman = {2}", MainWindow.salesmanhik, 0, prodavec);
+
+                        //Добавить запись в таблицу сделки
+
+                    }
+                   
+                    Thread thread = new(PDFReaders);
+                    thread.IsBackground = true;
+                    thread.Start();
+                }
+                else if (result == MessageBoxResult.No)
+                    return;
             }
 
         }
@@ -163,100 +188,103 @@ namespace CP.Another
         //Верстка PDF документа
         private void PDFReaders() 
         {
-            PdfDocument pdfDoc = new PdfDocument(new PdfWriter("123.pdf"));
+            try
+            {
+                //Сохранить документ //Задаем фильтр
+                SaveFileDialog dialog = new SaveFileDialog();
 
-            //Создание документа + задаем формат pdf и A4 
-            Document doc = new Document(pdfDoc, PageSize.A4);
-
-            //Задаем стиль
-            iText.Layout.Style _styleone = new iText.Layout.Style().SetFontColor(ColorConstants.BLUE).SetFontSize(11).SetBorder(new SolidBorder(ColorConstants.BLACK, 0, 5));
-
-
-            //Чтоб поддерживал кириллицу в pdf документе
-            PdfFont f2 = PdfFontFactory.CreateFont("arial.ttf", "Identity-H");
-
-
-            //Сохранить документ //Задаем фильтр
-            //SaveFileDialog dialog = new SaveFileDialog();
-
-            //dialog.FileName = "123";
-            //dialog.DefaultExt = "pdf";
-            //dialog.Filter = "PDF document (*.pdf)|*.pdf";
-
-            //Открываем окно виндовс для сохранения документа
-            //if (dialog.ShowDialog() == true)
-            //{
-           
-                Dispatcher.Invoke(() =>
+                dialog.FileName = "Договор купли-продажи";
+                dialog.DefaultExt = "pdf";
+                dialog.Filter = "PDF document (*.pdf)|*.pdf";
+                //Открываем окно виндовс для сохранения документа
+                if (dialog.ShowDialog() == true)
                 {
-                    //string str = dialog.FileName;
+                    PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dialog.FileName));
 
-                    //Формат документа = pdf
-                    //PdfDocument pdfDoc = new PdfDocument(new PdfWriter(str));
+                    //Создание документа + задаем формат pdf и A4 
+                    Document doc = new Document(pdfDoc, PageSize.A4);
 
-                    Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
-                    paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(14).SetMarginLeft(125).SetBold();
-
-                    //Вторая строка Город и дата
-                    Cell cell3 = new Cell().Add(new Paragraph($"город Томск\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0{DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
-                    //Продавец
-
-                     
-                    Cell cell4 = new Cell().Add(new Paragraph($"Гражданин(ка): {FIO.Text},")).SetFont(f2);
-                    Cell cell5 = new Cell().Add(new Paragraph($"паспорт серии {passPort.Text}")).SetFont(f2);
-                    Cell cell6 = new Cell().Add(new Paragraph("именуем в дальнейшем продавец, с одной стороны")).SetFont(f2);
-                    Cell cell7 = new Cell().Add(new Paragraph($"и гражданин: {pokupatel.Text}")).SetFont(f2);
-                    Cell cell8 = new Cell().Add(new Paragraph($"паспорт {paspoc.Text}")).SetFont(f2);
-                    Cell cell9 = new Cell().Add(new Paragraph("именуем в дальнейшем покупатель, с другой стороны, заключили Договор о нижеследующем:")).SetFont(f2);
-
-                    Paragraph paragraph1 = new("Предмет договора");
-                    paragraph1.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(16).SetMarginLeft(185).SetBold();
-
-                    Cell cell10 = new Cell().Add(new Paragraph($"\u00A0\u00A0\u00A0\u00A0\u00A0Продавец обязуется передать в собственность Покупателя: {dom.Text}")).SetFont(f2);
-                    Cell cell11 = new Cell().Add(new Paragraph($"кадастровый номер: {kadastr.Text}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0общая площадь: {kvadrat.Text}м²")).SetFont(f2);
-                    Cell cell12 = new Cell().Add(new Paragraph($"расположенный по адресу: {adress.Text}")).SetFont(f2);
-                    Cell cell13 = new Cell().Add(new Paragraph($"а покупатель обязуется принять ее и уплатить за нее сумму в размере: {den.Text}")).SetFont(f2);
-                    Cell cell14 = new Cell().Add(new Paragraph($"\u00A0\u00A0\u00A0\u00A0\u00A0Право собственности Продавца по Договору основывается на следующих документах: ")).SetFont(f2);
-                    Cell cell15 = new Cell().Add(new Paragraph($"Свидетельство о праве собственности на {serianomer.Text}\n")).SetFont(f2);
-                    Cell cell16 = new Cell().Add(new Paragraph($"Договор купли-продажи от {DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
-                   
+                    //Задаем стиль
+                    iText.Layout.Style _styleone = new iText.Layout.Style().SetFontColor(ColorConstants.BLUE).SetFontSize(11).SetBorder(new SolidBorder(ColorConstants.BLACK, 0, 5));
 
 
-
-                    //Добавляем в документ
-                    doc.Add(paragraph);
-                    doc.Add(cell3);
-                    doc.Add(cell4);
-                    doc.Add(cell5);
-                    doc.Add(cell6);
-                    doc.Add(cell7);
-                    doc.Add(cell8);
-                    doc.Add(cell9);
-                    doc.Add(paragraph1);
-                    doc.Add(cell10);
-                    doc.Add(cell11);
-                    doc.Add(cell12);
-                    doc.Add(cell13);
-                    doc.Add(cell14);
-                    doc.Add(cell15);
-                    doc.Add(cell16);
+                    //Чтоб поддерживал кириллицу в pdf документе
+                    PdfFont f2 = PdfFontFactory.CreateFont("arial.ttf", "Identity-H");
 
 
-                    //Закрываем документ
+                    Dispatcher.Invoke(() =>
+                    {
+                        Paragraph paragraph = new("ДОГОВОР КУПЛИ-ПРОДАЖИ КВАРТИРЫ");
+                        paragraph.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(14).SetMarginLeft(125).SetBold();
 
-                });
-            
-            doc.Close();
+                        //Вторая строка Город и дата
+                        Cell cell3 = new Cell().Add(new Paragraph($"город Томск\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0{DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
+                        Cell cell4 = new Cell().Add(new Paragraph($"Гражданин(ка): {FIO.Text},")).SetFont(f2);
+                        Cell cell5 = new Cell().Add(new Paragraph($"паспорт серии {passPort.Text}")).SetFont(f2);
+                        Cell cell6 = new Cell().Add(new Paragraph("именуем в дальнейшем продавец, с одной стороны")).SetFont(f2);
+                        Cell cell7 = new Cell().Add(new Paragraph($"и гражданин: {pokupatel.Text}")).SetFont(f2);
+                        Cell cell8 = new Cell().Add(new Paragraph($"паспорт {paspoc.Text}")).SetFont(f2);
+                        Cell cell9 = new Cell().Add(new Paragraph("именуем в дальнейшем покупатель, с другой стороны, заключили Договор о нижеследующем:")).SetFont(f2);
 
-                //string commandText = @"C:\Users\toshm\OneDrive\Рабочий стол\1.pdf";
-              
-                var proc = new Process();
-                proc.StartInfo.FileName = "123.pdf";
-                proc.StartInfo.UseShellExecute = true;
-                proc.Start();
-             
+                        Paragraph paragraph1 = new("Предмет договора");
+                        paragraph1.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.RIGHT).SetFont(f2).SetFontSize(16).SetMarginLeft(185).SetBold();
+
+                        Cell cell10 = new Cell().Add(new Paragraph($"\u00A0\u00A0\u00A0\u00A0\u00A0Продавец обязуется передать в собственность Покупателя: {dom.Text}")).SetFont(f2);
+                        Cell cell11 = new Cell().Add(new Paragraph($"кадастровый номер: {kadastr.Text}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0общая площадь: {kvadrat.Text}")).SetFont(f2);
+                        Cell cell12 = new Cell().Add(new Paragraph($"расположенный по адресу: {adress.Text}")).SetFont(f2);
+                        Cell cell13 = new Cell().Add(new Paragraph($"а покупатель обязуется принять ее и уплатить за нее сумму в размере: {den.Text}")).SetFont(f2);
+                        Cell cell14 = new Cell().Add(new Paragraph($"\u00A0\u00A0\u00A0\u00A0\u00A0Право собственности Продавца по Договору основывается на следующих документах: ")).SetFont(f2);
+                        Cell cell15 = new Cell().Add(new Paragraph($"Свидетельство о праве собственности на {serianomer.Text}\n")).SetFont(f2);
+                        Cell cell16 = new Cell().Add(new Paragraph($"Договор купли-продажи от {DateTime.Now.ToString().Substring(0, 10)}")).SetFont(f2);
+
+                        //Добавляем в документ
+                        doc.Add(paragraph);
+                        doc.Add(cell3);
+                        doc.Add(cell4);
+                        doc.Add(cell5);
+                        doc.Add(cell6);
+                        doc.Add(cell7);
+                        doc.Add(cell8);
+                        doc.Add(cell9);
+                        doc.Add(paragraph1);
+                        doc.Add(cell10);
+                        doc.Add(cell11);
+                        doc.Add(cell12);
+                        doc.Add(cell13);
+                        doc.Add(cell14);
+                        doc.Add(cell15);
+                        doc.Add(cell16);
+                        doc.Close();
+                    });
+                }
+
+                MessageBoxResult result = MessageBox.Show("Договор заключен!\nОткрыть документ?", "Документ успешно сохранен!", MessageBoxButton.YesNo, MessageBoxImage.None);
+
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    var proc = new Process();
+                    proc.StartInfo.FileName = dialog.FileName;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.Start();
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    return;
+                }
+            }
+            catch (Exception fer)
+            {
+                MessageBox.Show(fer.Message, "Что то пошло не так:(");
+            }
         }
 
-      
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            e.Cancel = cl;
+        }
+
+
     }
 }

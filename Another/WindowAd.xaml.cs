@@ -23,6 +23,7 @@ namespace CP.Another
     {
         private int idAD;
         int mestniyrieltor = 0;
+        bool cl = true;
         public WindowAd(int id, int realtor)
         {
             InitializeComponent();
@@ -145,9 +146,14 @@ namespace CP.Another
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            cl = false;
             Close();
         }
 
-       
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            e.Cancel = cl;
+        }
     }
 }

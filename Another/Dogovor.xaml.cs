@@ -1,4 +1,5 @@
-﻿using iText.Kernel.Colors;
+﻿using CP.Models;
+using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
@@ -6,8 +7,10 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.VisualBasic.Logging;
 using Microsoft.Win32;
+using Org.BouncyCastle.Utilities.Collections;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,17 +34,20 @@ namespace CP.Another
     public partial class Dogovor : Window
     {
      
-        int iddd = 0;
+        private int iddd = 0;
         public static int actual = 0;
-        bool potok = true;
-        bool cl = true;
-        int prodavec = 0;
+        private bool potok = true;
+        private bool cl = true;
+        private int prodavec = 0;
+        private int rieltor = 0;
+        private double summaComis = 0;
 
 
         public Dogovor(int t, int realtoR)
         {
             InitializeComponent();
             iddd = t;
+            rieltor = realtoR;
             ZapolnitDogovor();
             new Thread(Update).Start();
         }
@@ -77,7 +83,8 @@ namespace CP.Another
                                         ploshad = $"{real.Square} м²",
                                         adrecc = real.Adress,
                                         obshee = $"{type.Name} серия: {svidetelstvo.Serial} №{svidetelstvo.Number} от {svidetelstvo.Dateof} \nрегистрационный номер: {svidetelstvo.Registr}",
-                                        type = type.Name
+                                        type = type.Name,
+                                        summaComis = real.Price
                                     };
                 foreach (var item in getmysalesman)
                 {
@@ -168,10 +175,19 @@ namespace CP.Another
                     //id продавца и покупателя 
                     using(RealContext db = new())
                     {
-                        //Обновляем данные в таблице предложения, а именно меняем владельца недвижимости и делаем ее неактуальной, так как сделка состоялась
-                        db.Database.ExecuteSqlRaw("UPDATE Realty SET salesman = {0}, actual = {1} WHERE salesman = {2}", MainWindow.salesmanhik, 0, prodavec);
+                        try
+                        {
+                            //Обновляем данные в таблице Предложения, а именно меняем владельца недвижимости и делаем ее неактуальной, так как сделка состоялась
+                            db.Database.ExecuteSqlRaw("UPDATE Realty SET salesman = {0}, actual = {1} WHERE salesman = {2}", MainWindow.salesmanhik, 0, prodavec);
 
-                        //Добавить запись в таблицу сделки
+                            //Добавить запись в таблицу Сделки
+                            db.Database.ExecuteSqlRaw("INSERT INTO Deals(realtor, offerCode, Buyer, transactionDate, commission, RealtorReward, dealtype)VALUES({0}, {1}, {2}, {3}, {4})", rieltor, iddd, MainWindow.salesmanhik, DateTime.Now.ToString().Substring(0, 10), summaComis / 100 * 5, summaComis / 100 * 1.2, "Продажа");
+                        }
+                        catch (Exception er)
+                        {
+                            MessageBox.Show(er.Message, "Произошла ошибка");
+                        }
+                      
 
                     }
                    

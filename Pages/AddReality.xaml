@@ -54,6 +54,30 @@
             <TextBox Grid.Row="7" x:Name="area" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="8" Text="Год постройки" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox Grid.Row="8" x:Name="yearOfDesc" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Grid.Row="9" Text="Материал" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="9" x:Name="material" SelectedIndex="0" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14">
+                <TextBlock Text="Кирпич"/>
+                <TextBlock Text="Панель"/>
+                <TextBlock Text="Металлический"/>
+                <TextBlock Text="Дерево"/>
+            </ComboBox>
+            <TextBlock Grid.Row="10" Text="Материал" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="10" x:Name="finish" SelectedIndex="0" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14">
+                <TextBlock Text="В хорошем состоянии"/>
+                <TextBlock Text="В отличном состоянии"/>
+                <TextBlock Text="Требуется ремонт"/>
+                <TextBlock Text="Черновая отделка"/>
+            </ComboBox>
+            <TextBlock Grid.Row="11" Text="Санузел" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="11" x:Name="sunuzel" SelectedIndex="0" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Grid.Row="12" Text="Балкон/Лоджия" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="12" x:Name="balcon" SelectedIndex="0" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14">
+                <TextBlock Text="Балкон"/>
+                <TextBlock Text="Лоджия"/>
+                <TextBlock Text="2 Лоджии"/>
+                <TextBlock Text="Нет"/>
+            </ComboBox>
+            
         </Grid>
     </Border>
 

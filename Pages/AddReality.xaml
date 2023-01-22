@@ -61,7 +61,7 @@
                 <TextBlock Text="Металлический"/>
                 <TextBlock Text="Дерево"/>
             </ComboBox>
-            <TextBlock Grid.Row="10" Text="Материал" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="10" Text="Отделка" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <ComboBox Grid.Row="10" x:Name="finish" SelectedIndex="0" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14">
                 <TextBlock Text="В хорошем состоянии"/>
                 <TextBlock Text="В отличном состоянии"/>

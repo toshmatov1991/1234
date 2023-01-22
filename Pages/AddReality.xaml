@@ -14,6 +14,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -25,19 +27,24 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Тип объявления" FontSize="15" FontWeight="DemiBold" Margin="6,15,76,13"/>
-            <ComboBox Grid.Column="0" Grid.ColumnSpan="2" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="125,12,68,11" SelectedIndex="0" FontSize="14">
+            <TextBlock Text="Тип объявления" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="DemiBold"/>
+            <ComboBox Grid.Column="1" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14">
                 <TextBlock Text="Продажа"/>
                 <TextBlock Text="Аренда"/>
             </ComboBox>
-            <TextBlock Text="Категория" FontSize="15" FontWeight="DemiBold" Margin="6,1,76,27" Grid.Row="1"/>
-            <ComboBox Grid.Column="0" x:Name="category" Grid.Row="1" Grid.ColumnSpan="2" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="165,1,108,23" SelectedIndex="0" FontSize="14"/>
-            <TextBlock Text="Район" FontSize="15" FontWeight="DemiBold" Margin="6,28,76,48" Grid.Row="1" Grid.RowSpan="2"/>
-            <ComboBox x:Name="rayon" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="165,28,108,44" SelectedIndex="0" FontSize="14" Grid.RowSpan="2"/>
-            <TextBlock Text="Адрес" FontSize="15"  FontWeight="DemiBold" Margin="6,15,76,13" Grid.Row="3"/>
-            <ComboBox x:Name="adres" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="125,12,68,11" SelectedIndex="0" FontSize="14"/>
-
+            <TextBlock Text="Категория" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="DemiBold" Grid.Row="1"/>
+            <ComboBox Grid.Column="1" x:Name="category" Grid.Row="1" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
+            <TextBlock Text="Район" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="DemiBold" Grid.Row="2"/>
+            <ComboBox x:Name="rayon" Grid.Column="1" Grid.Row="2" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
+            <TextBlock Text="Адрес" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" Grid.Row="3" VerticalAlignment="Center"/>
+            <ComboBox x:Name="adres" Grid.Column="1" Grid.Row="3" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
+            
         </Grid>
     </Border>
 

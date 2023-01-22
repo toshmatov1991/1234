@@ -15,14 +15,24 @@ using System.Windows.Shapes;
 
 namespace CP.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddReality.xaml
-    /// </summary>
     public partial class AddReality : Page
     {
         public AddReality()
         {
             InitializeComponent();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

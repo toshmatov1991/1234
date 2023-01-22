@@ -77,8 +77,19 @@
                 <TextBlock Text="2 Лоджии"/>
                 <TextBlock Text="Нет"/>
             </ComboBox>
+            <TextBlock Grid.Row="13" Text="Стоимость" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="13" x:Name="price" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="Описание" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" x:Name="description" TextWrapping="Wrap" Grid.RowSpan="2" Grid.ColumnSpan="4" Grid.Column="2" Foreground="Black" FontSize="14"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Фотографии" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <Button Grid.Row="3" Content="Добавить фотографии" Grid.Column="3" Grid.ColumnSpan="3" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Margin="53,0,53,0"/>
+            <DockPanel LastChildFill="True" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="6" Grid.RowSpan="5">
+                <UniformGrid x:Name="panel"/>
+            </DockPanel>
+            <TextBlock Grid.Row="9" Grid.Column="2" Text="Владелец" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <Button Content="Добавить владельца" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="10" x:Name="sobstvennik" Grid.ColumnSpan="4" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             
         </Grid>
     </Border>
-
 </Page>

@@ -10,8 +10,8 @@
     <Border Padding="7">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.4*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -34,17 +34,26 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Тип объявления" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="DemiBold"/>
-            <ComboBox Grid.Column="1" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14">
+            <ComboBox Grid.Column="1" HorizontalAlignment="Center" Width="170" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14">
                 <TextBlock Text="Продажа"/>
                 <TextBlock Text="Аренда"/>
             </ComboBox>
             <TextBlock Text="Категория" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="DemiBold" Grid.Row="1"/>
-            <ComboBox Grid.Column="1" x:Name="category" Grid.Row="1" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Center" x:Name="category" Grid.Row="1" Width="170" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
             <TextBlock Text="Район" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="DemiBold" Grid.Row="2"/>
-            <ComboBox x:Name="rayon" Grid.Column="1" Grid.Row="2" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
+            <ComboBox x:Name="rayon" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" Width="170" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
             <TextBlock Text="Адрес" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" Grid.Row="3" VerticalAlignment="Center"/>
-            <ComboBox x:Name="adres" Grid.Column="1" Grid.Row="3" Width="120" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14"/>
-            
+            <TextBox x:Name="adres" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Text="Количество этажей" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="countEtazh" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="4" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Text="Этаж" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="Etazh" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Grid.Row="6" Text="Количество комнат" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="6" x:Name="countRoom" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Grid.Row="7" Text="Площадь" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="7" x:Name="area" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBlock Grid.Row="8" Text="Год постройки" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="8" x:Name="yearOfDesc" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
         </Grid>
     </Border>
 

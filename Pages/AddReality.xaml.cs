@@ -235,18 +235,20 @@ namespace CP.Pages
                     MessageBox.Show("Вы допустили ошибку, числовые поля не должны содержать буквы", "Вот балбес");
                 else
                 {
+
                     //Здесь уже происходит добавление записей в БД
                     using (RealContext db = new())
                     {
                         //После добавления в отдельные таблицы, мне нужны будут id последних записей для главной таблицы
-                       
+
                         //Фотки(Есть)
                         db.Photos.Add(photo);
+                        db.SaveChanges();
+
                         var fotoid = db.Photos.OrderBy(u => u.Id).Last();//(fotoid.Id;)
 
                         //Свидетельство добавить данные в таблицу свидетельства
                         db.Database.ExecuteSqlRaw("INSERT INTO Proof(serial, number, dateof, registr) VALUES({0}, {1}, {2}, {3})", seria.Text, number.Text, datase.Text, registr.Text);
-
                         //Получить id Того самого свидетельства
                         var svidetel = db.Proofs.OrderBy(u => u.Id).Last();//(svidetel.Id;)
 
@@ -261,36 +263,45 @@ namespace CP.Pages
 
                         //Санузел id
                         var sun = db.BathroomTypes.Where(u => u.Type == sunuzel.Text).FirstOrDefault();//(svidetel.Id;)
-
-                        Realty realty = new()
+                        try
                         {
-                            TypeObject = type.Id,
-                            Area = ray.Id,
-                            Adress = adres.Text,
-                            NumberOfStoreys = Convert.ToInt64(countEtazh.Text),
-                            Floor = Convert.ToInt64(Etazh.Text),
-                            NumberOfRooms = Convert.ToInt64(countRoom.Text),
-                            Square = Convert.ToDouble(area.Text),
-                            YearOfConstruction = Convert.ToInt64(yearOfDesc.Text),
-                            Description = description.Text,
-                            Price = price.Text,
-                            Salesman = MainWindow.salesmanhik,
-                            Actual = 1,
-                            IdPhoto = fotoid.Id,
-                            Material = material.Text,
-                            Finishing = finish.Text,
-                            BathroomId = sun.Id,
-                            BalconyGlazing = balcon.Text,
-                            Certificate = svidetel.Id,
-                            ProOrAre = proare.Text,
-                            NameReal = NameForReal(Convert.ToInt64(countRoom.Text), category.Text)
-                        };
+                            Realty realty = new()
+                            {
+                                TypeObject = type.Id,
+                                Area = ray.Id,
+                                Adress = adres.Text,
+                                NumberOfStoreys = Convert.ToInt64(countEtazh.Text),
+                                Floor = Convert.ToInt64(Etazh.Text),
+                                NumberOfRooms = Convert.ToInt64(countRoom.Text),
+                                Square = Convert.ToDouble(area.Text),
+                                YearOfConstruction = yearOfDesc.Text,
+                                Description = description.Text,
+                                Price = price.Text,
+                                Salesman = MainWindow.salesmanhik,
+                                Actual = 1,
+                                IdPhoto = fotoid.Id,
+                                Material = material.Text,
+                                Finishing = finish.Text,
+                                BathroomId = sun.Id,
+                                BalconyGlazing = balcon.Text,
+                                Certificate = svidetel.Id,
+                                ProOrAre = proare.Text,
+                                NameReal = NameForReal(Convert.ToInt64(countRoom.Text), category.Text)
 
+                            };
 
+                            db.Realties.Add(realty);
+                            db.SaveChanges();
+                            MessageBox.Show("Успешно");
+                        }
+                        catch (Exception rex)
+                        {
+                            MessageBox.Show(rex.Message, "Что то пошло не так");
+                        }
 
-
-                        db.SaveChanges();
                     }
+                    
+                  
 
                 }
             }

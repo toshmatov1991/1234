@@ -21,7 +21,7 @@ public partial class Realty
 
     public double Square { get; set; }
 
-    public long YearOfConstruction { get; set; }
+    public string? YearOfConstruction { get; set; }
 
     public string? Description { get; set; }
 

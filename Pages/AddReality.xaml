@@ -49,7 +49,7 @@
             <TextBlock Text="Этаж" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBox x:Name="Etazh" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="6" Text="Количество комнат" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="6" x:Name="countRoom" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBox Grid.Row="6" Text="1" x:Name="countRoom" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="7" Text="Площадь м²" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox Grid.Row="7" x:Name="area" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="8" Text="Год постройки" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>

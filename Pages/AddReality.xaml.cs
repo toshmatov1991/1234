@@ -271,7 +271,7 @@ namespace CP.Pages
                             Floor = Convert.ToInt64(Etazh.Text),
                             NumberOfRooms = Convert.ToInt64(countRoom.Text),
                             Square = Convert.ToDouble(area.Text),
-                            YearOfConstruction= Convert.ToInt64(yearOfDesc.Text),
+                            YearOfConstruction = Convert.ToInt64(yearOfDesc.Text),
                             Description = description.Text,
                             Price = price.Text,
                             Salesman = MainWindow.salesmanhik,
@@ -282,8 +282,8 @@ namespace CP.Pages
                             BathroomId = sun.Id,
                             BalconyGlazing = balcon.Text,
                             Certificate = svidetel.Id,
-                            ProOrAre = proare.Text, 
-                            NameReal = ""
+                            ProOrAre = proare.Text,
+                            NameReal = NameForReal(Convert.ToInt64(countRoom.Text), category.Text)
                         };
 
 
@@ -297,7 +297,26 @@ namespace CP.Pages
            
 
 
-            
+            static string NameForReal(long t, string str)
+            {
+                if (t == 1 && str == "Квартира")
+                    str = "1-ком. квартира";
+                else if (t == 2 && str == "Квартира")
+                    str = "2-ком. квартира";
+                else if (t > 2 && str == "Квартира")
+                    str = "3-ком. квартира";
+                else if (str == "Гараж")
+                    str = "Гараж";
+                else if (str == "Дом/дача")
+                    str = "Дом/дача";
+                else if (str == "Земля")
+                    str = "Земля";
+                else if (str == "Коммерческая недвижимость")
+                    str = "Коммерческая недвижимость";
+
+
+                return str;
+            }
 
 
 

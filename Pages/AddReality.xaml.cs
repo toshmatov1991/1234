@@ -212,20 +212,44 @@ namespace CP.Pages
         {
             //Если все ок, то поток закрываю potok
             potok= false;
-            
+
             //Сначала проверяю на пустоту
             var mass = new List<string>() { adres.Text, countEtazh.Text, Etazh.Text, countRoom.Text, area.Text, yearOfDesc.Text, price.Text, description.Text, sobstvennik.Text, seria.Text, number.Text, datase.Text, registr.Text };
+            int temp = 0;
+            foreach (var item in mass)
+            {
+                if (string.IsNullOrWhiteSpace(item) || string.IsNullOrEmpty(item))
+                {
+                    temp++;
+                }
+            }
+
+            if(temp> 0)
+            {
+                MessageBox.Show("Вы пропустили поле", "Вот балбес ;D");
+            }
+            else if(temp == 0)
+            {
+                //Далее проверка на числа
+                //Числа
+                var chislaa = countEtazh.Text + Etazh.Text + area.Text + price.Text + seria.Text + number.Text;
+                chislaa = chislaa.Replace(".", "");
+                chislaa = chislaa.Replace(",", "");
+                if (!Chislo(chislaa))
+                    MessageBox.Show("Вы допустили ошибку, числовые поля не должны содержать буквы", "Вот балбес");
+                else
+                {
+                    //Здесь уже происходит добавление записи в БД
+
+                }
+            }
+           
 
 
-
-            if(string.IsNullOrWhiteSpace(adres.Text) || )
             
 
-            //Только Числа
-            //var chislaa = countEtazh.Text + Etazh.Text + area.Text + price.Text + seria.Text + number.Text;
 
 
-  
 
 
 

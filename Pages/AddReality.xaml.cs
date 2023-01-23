@@ -220,6 +220,12 @@ namespace CP.Pages
         {
             //аналогично закрываю potok
             potok = false;
+
+
+
+
+
+
         }
     }
 }

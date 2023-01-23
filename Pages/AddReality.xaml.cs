@@ -1,5 +1,6 @@
 ﻿using CP.Another;
 using CP.Models;
+using iText.Layout.Element;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System;
@@ -73,7 +74,7 @@ namespace CP.Pages
                 "All files (*.*)|*.*",
                 Multiselect = true
             };
-            Image ImageName;
+            System.Windows.Controls.Image ImageName;
             BitmapImage mpImg;
             List<string> images = new List<string>() { "", "", "", "", "", "", "", "", "", "" };
             if (ofdPicture.ShowDialog() == true)
@@ -87,7 +88,7 @@ namespace CP.Pages
                     //Список картинок(пути к ним)
                     images[temp] = item;
                     temp++;
-                    ImageName = new Image();
+                    ImageName = new System.Windows.Controls.Image();
                     mpImg = new BitmapImage();
                     mpImg.BeginInit();
                     mpImg.UriSource = new Uri(item);
@@ -140,11 +141,6 @@ namespace CP.Pages
 
                         if (images[9].Length > 0)
                             photo.Image10 = imageBit(images[9]);
-
-                        //db.Photos.Add(photo);
-                        //db.SaveChanges();
-                        MessageBox.Show("Фотографии добавлены");
-
                     }
                 }
                 catch (Exception ex)
@@ -239,7 +235,48 @@ namespace CP.Pages
                     MessageBox.Show("Вы допустили ошибку, числовые поля не должны содержать буквы", "Вот балбес");
                 else
                 {
-                    //Здесь уже происходит добавление записи в БД
+                    //Здесь уже происходит добавление записей в БД
+                    using (RealContext db = new())
+                    {
+                        //После добавления в отдельные таблицы, мне нужны будут id последних записей для главной таблицы
+                       
+                        //Фотки(Есть)
+                        db.Photos.Add(photo);
+                        var fotoid = db.Photos.OrderBy(u => u.Id).Last();//(fotoid.Id;)
+
+                        //Свидетельство добавить данные в таблицу свидетельства
+                        db.Database.ExecuteSqlRaw("INSERT INTO Proof(serial, number, dateof, registr) VALUES({0}, {1}, {2}, {3})", seria.Text, number.Text, datase.Text, registr.Text);
+
+                        //Получить id Того самого свидетельства
+                        var svidetel = db.Proofs.OrderBy(u => u.Id).Last();//(svidetel.Id;)
+
+                        //Клиент
+                        //MainWindow.salesmanhik;
+
+                        //Объекты
+                        var type = db.ObjectTypes.Where(u => u.Name == category.Text).FirstOrDefault();
+
+                        //Районы
+                        var ray = db.Districts.Where(u => u.Name == rayon.Text).FirstOrDefault();//(svidetel.Id;)
+                        var r = ray.Id;
+
+                        //Санузел id
+                        var sun = db.BathroomTypes.Where(u => u.Type == sunuzel.Text).FirstOrDefault();//(svidetel.Id;)
+                        var s = sun.Id;
+
+                        Realty realty = new()
+                        {
+                            TypeObject = type.Id,
+                            Area = ray.Id,
+                            Adress = adres.Text,
+
+                        };
+
+
+
+
+                        db.SaveChanges();
+                    }
 
                 }
             }

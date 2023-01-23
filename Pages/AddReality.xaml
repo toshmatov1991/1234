@@ -50,10 +50,10 @@
             <TextBox x:Name="Etazh" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="6" Text="Количество комнат" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox Grid.Row="6" x:Name="countRoom" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
-            <TextBlock Grid.Row="7" Text="Площадь" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="7" Text="Площадь м²" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox Grid.Row="7" x:Name="area" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="8" Text="Год постройки" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="8" x:Name="yearOfDesc" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <DatePicker Grid.Row="8" x:Name="yearOfDesc" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="9" Text="Материал" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <ComboBox Grid.Row="9" x:Name="material" SelectedIndex="0" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14">
                 <TextBlock Text="Кирпич"/>
@@ -77,7 +77,7 @@
                 <TextBlock Text="2 Лоджии"/>
                 <TextBlock Text="Нет"/>
             </ComboBox>
-            <TextBlock Grid.Row="13" Text="Стоимость" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="13" Text="Стоимость, рубли" HorizontalAlignment="Right" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox Grid.Row="13" x:Name="price" HorizontalAlignment="Center" Grid.Column="1" Width="170" Height="25" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="Описание" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" x:Name="description" TextWrapping="Wrap" Grid.RowSpan="2" Grid.ColumnSpan="4" Grid.Column="2" Foreground="Black" FontSize="14"/>
@@ -90,14 +90,14 @@
             <Button Content="Добавить владельца" Grid.Row="8" Grid.Column="2" VerticalContentAlignment="Center" Grid.ColumnSpan="3" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Margin="100,0,91,0" Height="27" Click="Button_Click_1"/>
             <TextBlock Grid.Row="9" x:Name="sobstvennik" Grid.ColumnSpan="4" Text="Иванов Иван Иванович" Grid.Column="2" FontSize="15" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="10" Grid.ColumnSpan="2" Text="Свидетельство о праве собственности" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="11" Text="Серия:" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="11" Text="Серия" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox x:Name="seria" Grid.Row="11" Grid.Column="2" FontSize="15" VerticalAlignment="Center" Margin="53,0,17,0"/>
             <Button Content="Добавить объявление" Height="38" Width="200" HorizontalAlignment="Center" Grid.Row="13" Grid.ColumnSpan="4" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Click="Button_Click_2"/>
-            <TextBlock Grid.Row="11" Text="Номер:" HorizontalAlignment="Left" Grid.Column="3" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="11" Text="Номер" HorizontalAlignment="Left" Grid.Column="3" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox x:Name="number" Grid.Row="11" Grid.Column="3" FontSize="15" VerticalAlignment="Center" Margin="58,0,1,0"/>
-            <TextBlock Grid.Row="11" Text="Дата выдачи:" Grid.ColumnSpan="2" Grid.Column="4" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Margin="9,0,3,0"/>
+            <TextBlock Grid.Row="11" Text="Дата выдачи" Grid.ColumnSpan="2" Grid.Column="4" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Margin="9,0,3,0"/>
             <DatePicker x:Name="datase" Grid.Row="11" Grid.Column="4" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Width="115" Grid.ColumnSpan="2" Margin="105,0,0,0"/>
-            <TextBlock Grid.Row="12" Text="Регистрационный номер:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="12" Text="Регистрационный номер" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox x:Name="registr" Grid.Row="12" Grid.ColumnSpan="2" Grid.Column="3" FontSize="15" VerticalAlignment="Center" Margin="34,0,25,0"/>
         </Grid>
     </Border>

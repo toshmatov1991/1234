@@ -212,20 +212,45 @@ namespace CP.Pages
         {
             //Если все ок, то поток закрываю potok
             potok= false;
+            
+            //Сначала проверяю на пустоту
+            var mass = new List<string>() { adres.Text, countEtazh.Text, Etazh.Text, countRoom.Text, area.Text, yearOfDesc.Text, price.Text, description.Text, sobstvennik.Text, seria.Text, number.Text, datase.Text, registr.Text };
+
+
+
+            if(string.IsNullOrWhiteSpace(adres.Text) || )
+            
+
+            //Только Числа
+            //var chislaa = countEtazh.Text + Etazh.Text + area.Text + price.Text + seria.Text + number.Text;
+
+
+  
+
+
+
+
+
         }
 
 
-        //Добавить свидетельство
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+
+        private bool Chislo(string str)
         {
-            //аналогично закрываю potok
-            potok = false;
-
-
-
-
-
-
+            //countEtazh - количество этажей
+            //Etazh - Этаж
+            //area - площадь
+            //price - стоимость
+            //seria - серия
+            //number - номер
+            double numb;
+            bool fer = double.TryParse(str, out numb);
+            return fer;
         }
+
+
+
+
+
     }
 }

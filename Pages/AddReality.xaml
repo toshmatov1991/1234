@@ -88,7 +88,7 @@
             </DockPanel>
             <TextBlock Grid.Row="8" Grid.Column="2" Text="Владелец" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <Button Content="Добавить владельца" Grid.Row="8" Grid.Column="2" VerticalContentAlignment="Center" Grid.ColumnSpan="3" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Margin="100,0,91,0" Height="27" Click="Button_Click_1"/>
-            <TextBlock Grid.Row="9" x:Name="sobstvennik" Grid.ColumnSpan="4" Text="Иванов Иван Иванович" Grid.Column="2" FontSize="15" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="9" x:Name="sobstvennik" Grid.ColumnSpan="4" Grid.Column="2" FontSize="15" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="10" Grid.ColumnSpan="2" Text="Свидетельство о праве собственности" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="11" Text="Серия" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBox x:Name="seria" Grid.Row="11" Grid.Column="2" FontSize="15" VerticalAlignment="Center" Margin="53,0,17,0"/>

@@ -31,7 +31,6 @@ namespace CP.Pages
             new Thread(UpDateData).Start();
         }
 
-
         //Заполнить Comboboxes данными из связанных таблиц(решено)
         private void UpDateData()
         {
@@ -61,8 +60,9 @@ namespace CP.Pages
                 });
             }
         }
-
+        #region Добавить фото(решено)
         //Добавить фотки
+        Photo photo = new();
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             potok = false;
@@ -111,8 +111,6 @@ namespace CP.Pages
                 {
                     using (RealContext db = new())
                     {
-                        Photo photo = new();
-
                         if (images[0].Length > 0)
                             photo.Image1 = imageBit(images[0]);
 
@@ -169,9 +167,7 @@ namespace CP.Pages
             }
 
         }
-
-
-
+        #endregion
         #region Добавить владельца(решено)
         //Добавить владельца
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -211,7 +207,6 @@ namespace CP.Pages
 
         #endregion
 
-
         //Добавить объявление
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -223,6 +218,7 @@ namespace CP.Pages
         //Добавить свидетельство
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            //аналогично закрываю potok
             potok = false;
         }
     }

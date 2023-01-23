@@ -42,7 +42,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock Text="Вы можете выбрать покупателя из базы данных клиентов компании или добавить нового клиента: " Grid.Row="5" FontSize="18" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,6,0,0"/>
+        <TextBlock Text="Вы можете выбрать клиента/покупателя из базы данных клиентов компании или добавить нового клиента: " Grid.Row="5" FontSize="18" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,6,0,0"/>
         <TextBlock Text="Фамилия" Foreground="Brown" Grid.Row="6" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,10,0,0"/>
         <TextBlock Text="Отчество" Foreground="Brown" Grid.Row="6" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,70,0,0" Grid.RowSpan="2"/>
         <TextBlock Text="Номер телефона" Foreground="Brown" Grid.Row="7" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,17,0,0"/>

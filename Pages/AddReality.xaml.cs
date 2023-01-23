@@ -1,4 +1,5 @@
-﻿using CP.Models;
+﻿using CP.Another;
+using CP.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System;
@@ -22,10 +23,14 @@ namespace CP.Pages
 {
     public partial class AddReality : Page
     {
+        private static int act = 0;
+        private bool potok = true;
+
         public AddReality()
         {
             InitializeComponent();
             new Thread(UpDateData).Start();
+            new Thread(UpDateToClient).Start();
         }
 
 
@@ -166,5 +171,40 @@ namespace CP.Pages
             }
 
         }
+
+        //Добавить владельца
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            sobstvennik.Text = "";
+            SalessMan salessMan = new();
+            salessMan.ShowDialog();
+
+        }
+
+        private void UpDateToClient()
+        {
+            while (potok)
+            {
+                if (act != MainWindow.salesmanhik && MainWindow.salesmanhik > 0)
+                {
+                    using (RealContext db = new())
+                    {
+                        var getmypoc = db.Clients.FromSqlRaw("SELECT * FROM Client").Where(u => u.Id == MainWindow.salesmanhik).ToList();
+                        foreach (var item in getmypoc)
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                sobstvennik.Text = $"{item.Firstname} {item.Name} {item.Lastname}";
+                            });
+                            break;
+                        }
+                        act = MainWindow.salesmanhik;
+                    }
+                }
+            }
+        }
+
+
+
     }
 }

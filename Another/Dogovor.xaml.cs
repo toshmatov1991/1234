@@ -35,7 +35,7 @@ namespace CP.Another
     {
      
         private int iddd = 0;
-        public static int actual = 0;
+        private static int actual = 0;
         private bool potok = true;
         private bool cl = true;
         private int prodavec = 0;

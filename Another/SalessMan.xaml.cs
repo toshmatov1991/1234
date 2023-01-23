@@ -12,6 +12,13 @@ namespace CP.Another
     {
         //Переменная для того чтобы не выбрать в качестве покупателя продавца
         int r = 0;
+
+        public SalessMan()
+        {
+            InitializeComponent();
+            GetMyClients();
+        }
+
         public SalessMan(int reald)
         {
             //Здесь просто задаю id покупателя

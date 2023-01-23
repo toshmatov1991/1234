@@ -34,7 +34,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Тип объявления" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="DemiBold"/>
-            <ComboBox Grid.Column="1" HorizontalAlignment="Center" Width="170" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14">
+            <ComboBox x:Name="proare" Grid.Column="1" HorizontalAlignment="Center" Width="170" Height="25" Background="Aqua" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" FontSize="14">
                 <TextBlock Text="Продажа"/>
                 <TextBlock Text="Аренда"/>
             </ComboBox>

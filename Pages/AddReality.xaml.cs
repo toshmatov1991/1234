@@ -258,18 +258,32 @@ namespace CP.Pages
 
                         //Районы
                         var ray = db.Districts.Where(u => u.Name == rayon.Text).FirstOrDefault();//(svidetel.Id;)
-                        var r = ray.Id;
 
                         //Санузел id
                         var sun = db.BathroomTypes.Where(u => u.Type == sunuzel.Text).FirstOrDefault();//(svidetel.Id;)
-                        var s = sun.Id;
 
                         Realty realty = new()
                         {
                             TypeObject = type.Id,
                             Area = ray.Id,
                             Adress = adres.Text,
-
+                            NumberOfStoreys = Convert.ToInt64(countEtazh.Text),
+                            Floor = Convert.ToInt64(Etazh.Text),
+                            NumberOfRooms = Convert.ToInt64(countRoom.Text),
+                            Square = Convert.ToDouble(area.Text),
+                            YearOfConstruction= Convert.ToInt64(yearOfDesc.Text),
+                            Description = description.Text,
+                            Price = price.Text,
+                            Salesman = MainWindow.salesmanhik,
+                            Actual = 1,
+                            IdPhoto = fotoid.Id,
+                            Material = material.Text,
+                            Finishing = finish.Text,
+                            BathroomId = sun.Id,
+                            BalconyGlazing = balcon.Text,
+                            Certificate = svidetel.Id,
+                            ProOrAre = proare.Text,
+                            NameReal = ""
                         };
 
 

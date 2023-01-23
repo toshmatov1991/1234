@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CP.Models;
+using CP.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,15 +30,18 @@ namespace CP
         private void LeFt(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Pages.Prodazha(qwe);
+            AddReality.potok = false;
         }
 
         private void AdDRealse(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Pages.AddReality();
+            AddReality.potok = true;
         }
 
         private void SeeArhive(object sender, MouseButtonEventArgs e)
         {
+            AddReality.potok = false;
             MainFrame.Content = new Pages.Arhiv();
         }
     }

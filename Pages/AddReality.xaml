@@ -90,9 +90,9 @@
             <Button Content="Добавить владельца" Grid.Row="8" Grid.Column="2" VerticalContentAlignment="Center" Grid.ColumnSpan="3" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Margin="100,0,91,0" Height="27" Click="Button_Click_1"/>
             <TextBlock Grid.Row="9" x:Name="sobstvennik" Grid.ColumnSpan="4" Text="Иванов Иван Иванович" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="10" Grid.ColumnSpan="2" Text="Свидетельство о собственности" HorizontalAlignment="Left" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
-            <Button Content="Добавить свидетельство" HorizontalAlignment="Left" Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="4" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Width="266" Margin="14,0,0,0"/>
+            <Button Content="Добавить свидетельство" HorizontalAlignment="Left" Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="4" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Width="266" Margin="14,0,0,0" Click="Button_Click_3"/>
             <TextBlock Grid.Row="11" x:Name="svidetelstvo" Grid.ColumnSpan="4" Text="Номер 34534 Серия 546456" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
-            <Button Content="Добавить объявление" Grid.RowSpan="2" Height="55" Width="200" HorizontalAlignment="Center" Grid.Row="12" Grid.ColumnSpan="4" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center"/>
+            <Button Content="Добавить объявление" Grid.RowSpan="2" Height="55" Width="200" HorizontalAlignment="Center" Grid.Row="12" Grid.ColumnSpan="4" Grid.Column="2" FontSize="15"  FontWeight="DemiBold" VerticalAlignment="Center" Click="Button_Click_2"/>
         </Grid>
     </Border>
 </Page>

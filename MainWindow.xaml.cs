@@ -26,6 +26,7 @@ namespace CP
     public partial class MainWindow : Window
     {
         public static int salesmanhik = 0;
+
         public MainWindow()
         {
             InitializeComponent();

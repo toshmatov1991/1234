@@ -24,12 +24,11 @@ namespace CP.Pages
     public partial class AddReality : Page
     {
         private static int act = 0;
-
+        public static bool potok = true;
         public AddReality()
         {
             InitializeComponent();
             new Thread(UpDateData).Start();
-            new Thread(UpDateToClient).Start();
         }
 
 
@@ -66,7 +65,7 @@ namespace CP.Pages
         //Добавить фотки
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            potok = false;
             OpenFileDialog ofdPicture = new()
             {
                 Filter =
@@ -171,18 +170,23 @@ namespace CP.Pages
 
         }
 
+
+
+        #region Добавить владельца(решено)
         //Добавить владельца
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            potok = true;
+            new Thread(UpDateToClient).Start();
             sobstvennik.Text = "";
             SalessMan salessMan = new();
             salessMan.ShowDialog();
-
         }
 
+        //Обновление данных о клиенте
         private void UpDateToClient()
         {
-            while (true)
+            while (potok)
             {
                 if (act != MainWindow.salesmanhik && MainWindow.salesmanhik > 0)
                 {
@@ -205,5 +209,21 @@ namespace CP.Pages
 
 
 
+        #endregion
+
+
+        //Добавить объявление
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //Если все ок, то поток закрываю potok
+            potok= false;
+        }
+
+
+        //Добавить свидетельство
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            potok = false;
+        }
     }
 }

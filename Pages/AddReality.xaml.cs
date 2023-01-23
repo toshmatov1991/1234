@@ -162,6 +162,7 @@ namespace CP.Pages
                 BinaryReader _binReader = new(_fileStream);
                 bytes = _binReader.ReadBytes((int)_numBytes); // изображение в байтах
                 return bytes;
+
             }
 
         }

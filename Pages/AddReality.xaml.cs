@@ -24,7 +24,6 @@ namespace CP.Pages
     public partial class AddReality : Page
     {
         private static int act = 0;
-        private bool potok = true;
 
         public AddReality()
         {
@@ -183,7 +182,7 @@ namespace CP.Pages
 
         private void UpDateToClient()
         {
-            while (potok)
+            while (true)
             {
                 if (act != MainWindow.salesmanhik && MainWindow.salesmanhik > 0)
                 {

@@ -282,7 +282,7 @@ namespace CP.Pages
                             BathroomId = sun.Id,
                             BalconyGlazing = balcon.Text,
                             Certificate = svidetel.Id,
-                            ProOrAre = proare.Text,
+                            ProOrAre = proare.Text, 
                             NameReal = ""
                         };
 

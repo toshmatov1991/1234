@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +34,7 @@ namespace CP.Another
 
         private void df_Click(object sender, RoutedEventArgs e)
         {
+            User.fer = false;
             Close();
         }
     }

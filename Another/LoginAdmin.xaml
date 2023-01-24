@@ -8,6 +8,7 @@
     <Grid>
         <TextBlock Text="Пароль Администратора" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="19" Margin="0,17,0,0"/>
         <PasswordBox x:Name="passe" PasswordChar="*" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,40,0,0" KeyUp="GoAdm"/>
-        <Button Background="Red" x:Name="df" Margin="174,0,2,78" Click="df_Click"/>
+        <Button Background="Red" x:Name="df" Margin="162,0,2,70" Click="df_Click"/>
+        <TextBlock Text="Закрыть" VerticalAlignment="Top" Margin="114,0,38,0" />
     </Grid>
 </Window>

@@ -31,9 +31,6 @@ namespace CP
         {
             InitializeComponent();
             StartToBD();
-            User user = new("Приветики", 1);
-            user.Show();
-            Close();
         }
 
         bool logOne = true;

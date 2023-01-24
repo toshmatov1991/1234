@@ -36,9 +36,16 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=commis, Mode=OneWay}" Header="Комиссия агенства" Width="120"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=comagent, Mode=OneWay}" Header="Вознаграждение риелтора" Width="180"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=typeDeals, Mode=OneWay}" Header="Тип сделки" Width="120"/>
-                    </GridView> 
+                    </GridView>
                 </ListView.View>
             </ListView>
+            <TextBlock Text="Поиск" FontStyle="Italic" Grid.Column="3" HorizontalAlignment="Center" FontSize="15" VerticalAlignment="Top" Grid.Row="6" Margin="0,3,0,0" />
+            <TextBox x:Name="ert" Grid.Column="2" FontSize="15" HorizontalContentAlignment="Left" VerticalAlignment="Top" Grid.Row="6" Grid.ColumnSpan="3" Margin="190,28,190,0" KeyUp="Search" />
+            <TextBlock Text="Общая выручка компании составляет: " x:Name="viruhka" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="17" Width="523"/>
+
+
+
+
         </Grid>
     </Border>
 </Page>

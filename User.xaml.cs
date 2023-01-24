@@ -24,7 +24,8 @@ namespace CP
             InitializeComponent();
             qwe = us;
             Title = str;
-            MainFrame.Content = new Pages.Prodazha(qwe);
+            //MainFrame.Content = new Pages.Prodazha(qwe);
+            MainFrame.Content = new Pages.Arhiv();
         }
 
         private void LeFt(object sender, MouseButtonEventArgs e)

@@ -7,8 +7,42 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Arhiv">
-
-    <Grid>
-        <TextBlock Text="Архив" HorizontalAlignment="Center" FontSize="55" VerticalAlignment="Center"/>
-    </Grid>
+    <Border Padding="7">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Архив сделок компании" HorizontalAlignment="Center" Grid.ColumnSpan="5" VerticalAlignment="Center" FontSize="33" FontStyle="Italic"/>
+            <ListView x:Name="listviewCards" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=id, Mode=OneWay}" Header="Риелтор" Width="107"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=firstn, Mode=OneWay}" Header="Недвижимость" Width="105"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=name, Mode=OneWay}" Header="Продавец" Width="105"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=lastn, Mode=OneWay}" Header="Дата сделки" Width="90"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=birth, Mode=OneWay}" Header="Комиссия агенства" Width="112"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=gr, Mode=OneWay}" Header="Вознаграждение риелтора" Width="161"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=fac, Mode=OneWay}" Header="Тип сделки" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+            
+            
+            
+        </Grid>
+    </Border>
 </Page>

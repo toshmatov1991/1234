@@ -330,7 +330,11 @@ namespace CP.Pages
             }
 
 
-
+            static bool Chislo(string str)
+            {
+                bool fer = double.TryParse(str, out double numb);
+                return fer;
+            }
 
 
 
@@ -340,18 +344,7 @@ namespace CP.Pages
 
 
 
-        private bool Chislo(string str)
-        {
-            //countEtazh - количество этажей
-            //Etazh - Этаж
-            //area - площадь
-            //price - стоимость
-            //seria - серия
-            //number - номер
-            double numb;
-            bool fer = double.TryParse(str, out numb);
-            return fer;
-        }
+       
 
 
 

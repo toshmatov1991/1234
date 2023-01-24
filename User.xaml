@@ -22,9 +22,10 @@
         
      
         <TabControl Height="30">
-            <TabItem Header="Недвижимость" FontSize="18" Width="260" Foreground="Blue" FontWeight="Bold" FontStyle="Italic" x:Name="prodazha" MouseLeftButtonUp="LeFt"/>
-            <TabItem Header="Добавить объявление" FontSize="18" Width="260" Foreground="Blue" FontWeight="Bold" FontStyle="Italic" x:Name="addreal" MouseLeftButtonUp="AdDRealse" />
-            <TabItem Header="Архив" Width="260" FontSize="18" Foreground="Blue" FontWeight="Bold" FontStyle="Italic" x:Name="arhives" MouseLeftButtonUp="SeeArhive" />
+            <TabItem Header="Недвижимость" FontSize="18" Width="260" Foreground="Blue" FontWeight="Bold" FontStyle="Italic" MouseLeftButtonUp="LeFt"/>
+            <TabItem Header="Добавить объявление" FontSize="18" Width="260" Foreground="Blue" FontWeight="Bold" FontStyle="Italic"  MouseLeftButtonUp="AdDRealse" />
+            <TabItem Header="Архив" Width="260" FontSize="18" Foreground="Blue" FontWeight="Bold" FontStyle="Italic" MouseLeftButtonUp="SeeArhive" />
+            <TabItem Header="Администрирование" Width="260" FontSize="18" Foreground="Blue" FontWeight="Bold" FontStyle="Italic" MouseLeftButtonUp="NuLadno"/>
         </TabControl>
         <Frame Name="MainFrame" Grid.Row="1" Grid.RowSpan="6" Padding="5" Background="White" NavigationUIVisibility="Hidden"/>
     </Grid>

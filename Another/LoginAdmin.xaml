@@ -1,0 +1,13 @@
+﻿<Window x:Class="CP.Another.LoginAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" WindowStyle="None"  WindowStartupLocation="CenterScreen"
+        Title="LoginAdmin" Height="100" Width="200">
+    <Grid>
+        <TextBlock Text="Пароль Администратора" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="19" Margin="0,17,0,0"/>
+        <PasswordBox x:Name="passe" PasswordChar="*" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="25" Margin="0,40,0,0" KeyUp="GoAdm"/>
+        <Button Background="Red" x:Name="df" Margin="174,0,2,78" Click="df_Click"/>
+    </Grid>
+</Window>

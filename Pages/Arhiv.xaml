@@ -36,13 +36,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=commis, Mode=OneWay}" Header="Комиссия агенства" Width="120"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=comagent, Mode=OneWay}" Header="Вознаграждение риелтора" Width="180"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=typeDeals, Mode=OneWay}" Header="Тип сделки" Width="120"/>
-                    </GridView>
+                    </GridView> 
                 </ListView.View>
             </ListView>
-            
-
-
-
         </Grid>
     </Border>
 </Page>

@@ -292,7 +292,7 @@ namespace CP.Pages
 
                             db.Realties.Add(realty);
                             db.SaveChanges();
-                            MessageBox.Show("Успешно");
+                            MessageBox.Show("Объявление добавлено", "Довольно успешно, красавчик");
                         }
                         catch (Exception rex)
                         {
@@ -300,9 +300,6 @@ namespace CP.Pages
                         }
 
                     }
-                    
-                  
-
                 }
             }
            
@@ -335,10 +332,6 @@ namespace CP.Pages
                 bool fer = double.TryParse(str, out double numb);
                 return fer;
             }
-
-
-
-
 
         }
 

@@ -6,8 +6,25 @@
       mc:Ignorable="d" Background="White"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Addmin">
-
-    <Grid>
-        <TextBlock Text="Админ"/>
+    <Grid x:Name="password_input">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="2" x:Name="qwe">
+            <TextBlock Text="Введите пароль" HorizontalAlignment="Center"  FontSize="17"/>
+            <PasswordBox PasswordChar="*" FontSize="15" x:Name="pass"  Width="200" Height="25" KeyUp="Go"/>
+        </StackPanel>
+        <StackPanel>
+            
+        </StackPanel>
     </Grid>
 </Page>

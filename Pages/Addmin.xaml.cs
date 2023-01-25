@@ -15,14 +15,23 @@ using System.Windows.Shapes;
 
 namespace CP.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Addmin.xaml
-    /// </summary>
     public partial class Addmin : Page
     {
         public Addmin()
         {
             InitializeComponent();
+            bace.Visibility = Visibility.Hidden;
+            pass.Focus();
+        }
+
+        private void Go(object sender, KeyEventArgs e)
+        {
+            if (pass.Password == "123")
+            {
+                qwe.Visibility = Visibility.Hidden;
+                MessageBox.Show("Добро пожаловать, ваше администратейшество!)");
+            }
+               
         }
     }
 }

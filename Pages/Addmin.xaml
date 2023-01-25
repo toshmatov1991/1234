@@ -19,12 +19,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Visibility="Visible" Grid.Column="1" Grid.Row="2" x:Name="qwe">
+        <StackPanel Visibility="Hidden"  Grid.Column="1" Grid.Row="2" x:Name="qwe">
             <TextBlock Text="Введите пароль" HorizontalAlignment="Center"  FontSize="17"/>
             <PasswordBox PasswordChar="*" FontSize="15" x:Name="pass"  Width="200" Height="25" KeyUp="Go"/>
         </StackPanel>
-        <TextBlock x:Name="tec" Visibility="Hidden" Text="Список пользователей системы" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="35" FontWeight="Bold" FontStyle="Italic"/>
-        <ListView x:Name="listviewCards" Visibility="Hidden" HorizontalAlignment="Left" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2" MouseDoubleClick="Fer">
+        <TextBlock x:Name="tec" Visibility="Visible" Text="Список пользователей системы" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="35" FontWeight="Bold" FontStyle="Italic"/>
+        <ListView x:Name="listviewCards" Visibility="Visible" HorizontalAlignment="Left" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2" MouseDoubleClick="Fer">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=fir, Mode=OneWay}" Header="Фамилия" Width="100"/>
@@ -36,5 +36,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="98,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top"/>
+        <TextBox x:Name="fam" Grid.Column="2" HorizontalAlignment="Left" Margin="171,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="98,66,0,8" Grid.Row="1" TextWrapping="Wrap" Text="Логин"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="98,44,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Отчество" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="98,22,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top"/>
+        <TextBox x:Name="log" Grid.Column="2" HorizontalAlignment="Left" Margin="171,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="las" Grid.Column="2" HorizontalAlignment="Left" Margin="171,44,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="nam" Grid.Column="2" HorizontalAlignment="Left" Margin="171,22,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="98,22,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Контакт" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="98,88,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <TextBox x:Name="con" Grid.Column="2" HorizontalAlignment="Left" Margin="171,22,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pas" Grid.Column="2" HorizontalAlignment="Left" Margin="171,88,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
+
     </Grid>
 </Page>

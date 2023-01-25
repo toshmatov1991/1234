@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,7 +21,24 @@ namespace CP.Pages
         public Addmin()
         {
             InitializeComponent();
-            pass.Focus();
+            //pass.Focus();
+            tec.Visibility = Visibility.Visible;
+            listviewCards.Visibility = Visibility.Visible;
+            using (RealContext db = new())
+            {
+                var df = from g in db.Realtors
+                         select new
+                         {
+                             g.Id,
+                             fir = g.Firstname,
+                             nam = g.Name,
+                             las = g.Lastname,
+                             tel = g.Numberphone,
+                             log = g.Login,
+                             pas = g.Password
+                         };
+                listviewCards.ItemsSource = df.ToList();
+            }
         }
 
         private void Go(object sender, KeyEventArgs e)
@@ -54,7 +72,40 @@ namespace CP.Pages
         private void Fer(object sender, MouseButtonEventArgs e)
         {
             //Двойной клик
-            MessageBox.Show(listviewCards.SelectedItem.ToString());
+            string str = "";
+            for (int i = 0; i < listviewCards.SelectedItem.ToString().Length; i++)
+            {
+                if (char.IsDigit(listviewCards.SelectedItem.ToString()[i]))
+                    str += listviewCards.SelectedItem.ToString()[i];
+                if (listviewCards.SelectedItem.ToString()[i] == ',')
+                    break;
+            }
+            using(RealContext db = new())
+            {
+                var get = db.Realtors.Where(u => u.Id == Convert.ToInt64(str)).ToList().FirstOrDefault();
+                fam.Text = get.Firstname;
+                nam.Text = get.Name;
+                las.Text = get.Lastname;
+                log.Text = get.Login;
+                pas.Text = get.Password;
+                con.Text = get.Numberphone;
+            }
+
+
+
+            /*
+            fam
+            nam
+            las
+            log
+            pas
+            con
+             */
+
+
+
+
+
         }
     }
 }

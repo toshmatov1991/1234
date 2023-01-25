@@ -20,7 +20,6 @@ namespace CP.Pages
         public Addmin()
         {
             InitializeComponent();
-            bace.Visibility = Visibility.Hidden;
             pass.Focus();
         }
 
@@ -30,8 +29,32 @@ namespace CP.Pages
             {
                 qwe.Visibility = Visibility.Hidden;
                 MessageBox.Show("Добро пожаловать, ваше администратейшество!)");
+                tec.Visibility = Visibility.Visible;
+                listviewCards.Visibility = Visibility.Visible;
+                using (RealContext db = new())
+                {
+                    var df = from g in db.Realtors
+                             select new
+                             {
+                                 g.Id,
+                                 fir = g.Firstname,
+                                 nam = g.Name,
+                                 las = g.Lastname,
+                                 tel = g.Numberphone,
+                                 log = g.Login,
+                                 pas = g.Password
+                             };
+                    listviewCards.ItemsSource = df.ToList();
+                }
+                   
             }
                
+        }
+
+        private void Fer(object sender, MouseButtonEventArgs e)
+        {
+            //Двойной клик
+            MessageBox.Show(listviewCards.SelectedItem.ToString());
         }
     }
 }

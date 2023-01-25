@@ -19,12 +19,22 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="2" x:Name="qwe">
+        <StackPanel Visibility="Visible" Grid.Column="1" Grid.Row="2" x:Name="qwe">
             <TextBlock Text="Введите пароль" HorizontalAlignment="Center"  FontSize="17"/>
             <PasswordBox PasswordChar="*" FontSize="15" x:Name="pass"  Width="200" Height="25" KeyUp="Go"/>
         </StackPanel>
-        <StackPanel>
-            
-        </StackPanel>
+        <TextBlock x:Name="tec" Visibility="Hidden" Text="Список пользователей системы" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="35" FontWeight="Bold" FontStyle="Italic"/>
+        <ListView x:Name="listviewCards" Visibility="Hidden" HorizontalAlignment="Left" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2" MouseDoubleClick="Fer">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=fir, Mode=OneWay}" Header="Фамилия" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=nam, Mode=OneWay}" Header="Имя" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=las, Mode=OneWay}" Header="Отчество" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=log, Mode=OneWay}" Header="Логин" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=pas, Mode=OneWay}" Header="Пароль" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=tel, Mode=OneWay}" Header="Контакт" Width="110"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

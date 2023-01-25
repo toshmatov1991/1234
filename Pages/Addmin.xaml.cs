@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CP.Models;
+using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
@@ -18,37 +21,20 @@ namespace CP.Pages
 {
     public partial class Addmin : Page
     {
+        private int fds = 0;
         public Addmin()
         {
             InitializeComponent();
-            //pass.Focus();
-            tec.Visibility = Visibility.Visible;
-            listviewCards.Visibility = Visibility.Visible;
-            using (RealContext db = new())
-            {
-                var df = from g in db.Realtors
-                         select new
-                         {
-                             g.Id,
-                             fir = g.Firstname,
-                             nam = g.Name,
-                             las = g.Lastname,
-                             tel = g.Numberphone,
-                             log = g.Login,
-                             pas = g.Password
-                         };
-                listviewCards.ItemsSource = df.ToList();
-            }
+            pass.Focus();
         }
 
         private void Go(object sender, KeyEventArgs e)
         {
             if (pass.Password == "123")
             {
-                qwe.Visibility = Visibility.Hidden;
+                PasswordShowOff();
                 MessageBox.Show("Добро пожаловать, ваше администратейшество!)");
-                tec.Visibility = Visibility.Visible;
-                listviewCards.Visibility = Visibility.Visible;
+                BaseShow();
                 using (RealContext db = new())
                 {
                     var df = from g in db.Realtors
@@ -80,7 +66,8 @@ namespace CP.Pages
                 if (listviewCards.SelectedItem.ToString()[i] == ',')
                     break;
             }
-            using(RealContext db = new())
+            fds = Convert.ToInt32(str);
+            using (RealContext db = new())
             {
                 var get = db.Realtors.Where(u => u.Id == Convert.ToInt64(str)).ToList().FirstOrDefault();
                 fam.Text = get.Firstname;
@@ -90,22 +77,117 @@ namespace CP.Pages
                 pas.Text = get.Password;
                 con.Text = get.Numberphone;
             }
+            dob.IsEnabled = false;
+            izm.IsEnabled = true;
 
-
-
-            /*
-            fam
-            nam
-            las
-            log
-            pas
-            con
-             */
-
-
-
-
-
+    
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Добавить
+            using (RealContext db = new())
+            {
+                var Realt = new Realtor();
+                Realt.Firstname = fam.Text;
+                Realt.Name = nam.Text;
+                Realt.Lastname = las.Text;
+                Realt.Login = log.Text;
+                Realt.Password = pas.Text;
+                Realt.Numberphone = con.Text;
+
+                db.Realtors.Add(Realt);
+
+                db.SaveChanges();
+                MessageBox.Show("Добавлена новая запись");
+                
+                var df = from g in db.Realtors
+                         select new
+                         {
+                             g.Id,
+                             fir = g.Firstname,
+                             nam = g.Name,
+                             las = g.Lastname,
+                             tel = g.Numberphone,
+                             log = g.Login,
+                             pas = g.Password
+                         };
+                listviewCards.ItemsSource = df.ToList();
+                
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Изменить
+            using (RealContext db = new())
+            {
+                var ert = db.Realtors.Where(u => u.Id == fds).FirstOrDefault();
+                ert.Firstname =  fam.Text;
+                ert.Name =  nam.Text;
+                ert.Lastname =  las.Text;
+                ert.Login =  log.Text;
+                ert.Password =  pas.Text;
+                ert.Numberphone = con.Text;
+
+                db.SaveChanges();
+                MessageBox.Show("Запись обновлена");
+                var df = from g in db.Realtors
+                         select new
+                         {
+                             g.Id,
+                             fir = g.Firstname,
+                             nam = g.Name,
+                             las = g.Lastname,
+                             tel = g.Numberphone,
+                             log = g.Login,
+                             pas = g.Password
+                         };
+                listviewCards.ItemsSource = df.ToList();
+            }
+        }
+
+        private void izm_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            //Очистить
+            dob.IsEnabled = true;
+            izm.IsEnabled = false;
+            fam.Text = "";
+            nam.Text = "";
+            las.Text = "";
+            log.Text = "";
+            pas.Text = "";
+            con.Text = "";
+        }
+
+        private void PasswordShowOff()
+        {
+            qwe.Visibility = Visibility.Hidden;
+        }
+
+        private void BaseShow()
+        {
+            //Индийский код, да
+            tec.Visibility = Visibility.Visible;
+            listviewCards.Visibility = Visibility.Visible;
+            q.Visibility = Visibility.Visible;
+            fam.Visibility = Visibility.Visible;
+            w.Visibility = Visibility.Visible;
+            e.Visibility = Visibility.Visible;
+            r.Visibility = Visibility.Visible;
+            log.Visibility = Visibility.Visible;
+            las.Visibility = Visibility.Visible;
+            nam.Visibility = Visibility.Visible;
+            y.Visibility = Visibility.Visible;
+            u.Visibility = Visibility.Visible;
+            con.Visibility = Visibility.Visible;
+            pas.Visibility = Visibility.Visible;
+            dob.Visibility = Visibility.Visible;
+            izm.Visibility = Visibility.Visible;
+            izm_Copy.Visibility = Visibility.Visible;
+        }
+
+
+
     }
 }

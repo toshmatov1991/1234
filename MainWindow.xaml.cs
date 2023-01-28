@@ -15,23 +15,9 @@ namespace CP
         public MainWindow()
         {
             InitializeComponent();
-            StartToBD();
         }
 
         bool logOne = true;
-
-        private static void StartToBD()
-        {
-            using (RealContext db = new()) 
-            {
-                var adm = db.Admins.ToList();
-            foreach (var item in adm) { }
-            var usr = db.Realtors.ToList();
-            foreach (var i in usr) { }
-            };
-            
-        }
-
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //Вход
@@ -55,33 +41,22 @@ namespace CP
             {
                 using (RealContext db = new())
                 {
-                    // Сначала проверяем входит ли Админ
-                    var GetMyUserMafaFacker = await db.Admins.FirstOrDefaultAsync();
-                    if (GetMyUserMafaFacker.Login == login.Text && GetMyUserMafaFacker.Password == password.Password)
+                    var GetUsersNotIsAdmin = await db.Realtors.ToListAsync();
+                    int temp = 0;
+                    foreach (var item in GetUsersNotIsAdmin)
                     {
-                        AdminWindow window = new();
-                        window.Show();
-                        Close();
+                        if (item.Login == login.Text && item.Password == password.Password)
+                        {
+                            temp++;
+                            User user = new($"{item.Firstname} {item.Name} {item.Lastname}", (int)item.Id);
+                            user.Show();
+                            Close();
+                            break;
+                        }
                     }
-                    else
+                    if (temp == 0)
                     {
-                        var GetUsersNotIsAdmin = await db.Realtors.ToListAsync();
-                        int temp = 0;
-                        foreach (var item in GetUsersNotIsAdmin)
-                        {
-                            if (item.Login == login.Text && item.Password == password.Password)
-                            {
-                                temp++;
-                                User user = new($"{item.Firstname} {item.Name} {item.Lastname}", (int)item.Id);
-                                user.Show();
-                                Close();
-                                break;
-                            }
-                        }
-                        if (temp == 0)
-                        {
-                            MessageBox.Show("Повторите попытку", "Неправильный логин или пароль", MessageBoxButton.OK, MessageBoxImage.Stop);
-                        }
+                        MessageBox.Show("Повторите попытку", "Неправильный логин или пароль", MessageBoxButton.OK, MessageBoxImage.Stop);
                     }
                 }
             }
@@ -153,7 +128,6 @@ namespace CP
 
             });
         }
-
 
         private void GoOpen(object sender, KeyEventArgs e)
         {

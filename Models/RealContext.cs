@@ -14,7 +14,6 @@ public partial class RealContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<Admin> Admins { get; set; }
 
     public virtual DbSet<BathroomType> BathroomTypes { get; set; }
 
@@ -42,15 +41,6 @@ public partial class RealContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Admin>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("Admin");
-
-            entity.Property(e => e.Login).HasColumnName("login");
-            entity.Property(e => e.Password).HasColumnName("password");
-        });
 
         modelBuilder.Entity<BathroomType>(entity =>
         {

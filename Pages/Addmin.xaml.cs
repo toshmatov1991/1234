@@ -85,36 +85,52 @@ namespace CP.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Добавить
-            using (RealContext db = new())
+            int temp = 0;
+            var der = new List<string>() { fam.Text, nam.Text, las.Text, log.Text, pas.Text, con.Text };
+            foreach (var item in der)
             {
-                var Realt = new Realtor();
-                Realt.Firstname = fam.Text;
-                Realt.Name = nam.Text;
-                Realt.Lastname = las.Text;
-                Realt.Login = log.Text;
-                Realt.Password = pas.Text;
-                Realt.Numberphone = con.Text;
-
-                db.Realtors.Add(Realt);
-
-                db.SaveChanges();
-                MessageBox.Show("Добавлена новая запись");
-                
-                var df = from g in db.Realtors
-                         select new
-                         {
-                             g.Id,
-                             fir = g.Firstname,
-                             nam = g.Name,
-                             las = g.Lastname,
-                             tel = g.Numberphone,
-                             log = g.Login,
-                             pas = g.Password
-                         };
-                listviewCards.ItemsSource = df.ToList();
-                
+                if (item == null || item == "")
+                {
+                    temp++;
+                }
+                    
             }
+            if(temp == 0)
+            {
+                //Добавить
+                using (RealContext db = new())
+                {
+                    var Realt = new Realtor();
+                    Realt.Firstname = fam.Text;
+                    Realt.Name = nam.Text;
+                    Realt.Lastname = las.Text;
+                    Realt.Login = log.Text;
+                    Realt.Password = pas.Text;
+                    Realt.Numberphone = con.Text;
+
+                    db.Realtors.Add(Realt);
+
+                    db.SaveChanges();
+                    MessageBox.Show("Добавлена новая запись");
+
+                    var df = from g in db.Realtors
+                             select new
+                             {
+                                 g.Id,
+                                 fir = g.Firstname,
+                                 nam = g.Name,
+                                 las = g.Lastname,
+                                 tel = g.Numberphone,
+                                 log = g.Login,
+                                 pas = g.Password
+                             };
+                    listviewCards.ItemsSource = df.ToList();
+
+                }
+            }
+            else if(temp > 0)
+                MessageBox.Show("Вы пропустили поле или несколько полей");
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -49,8 +49,8 @@
         <TextBlock x:Name="u" Visibility="Hidden" Grid.Column="2" HorizontalAlignment="Left" Margin="98,88,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <TextBox x:Name="con" Visibility="Hidden" Grid.Column="2" HorizontalAlignment="Left" Margin="171,22,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pas" Visibility="Hidden" Grid.Column="2" HorizontalAlignment="Left" Margin="171,88,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
-        <Button  x:Name="dob" Visibility="Visible" Grid.Column="2" Content="Добавить" HorizontalAlignment="Left" Margin="169,52,0,18" Grid.Row="2" Width="100" Click="Button_Click"/>
-        <Button  x:Name="izm" Visibility="Visible" Grid.Column="2" Content="Изменить" HorizontalAlignment="Left" Margin="169,3,0,72" Grid.Row="3" Width="100" Click="Button_Click_1"/>
-        <Button x:Name="izm_Copy" Visibility="Visible" Grid.Column="2" Content="Очистить" HorizontalAlignment="Left" Margin="169,60,0,10" Grid.Row="3" Width="100" Click="izm_Copy_Click"/>
+        <Button  x:Name="dob" Visibility="Hidden" Grid.Column="2" Content="Добавить" HorizontalAlignment="Left" Margin="169,52,0,18" Grid.Row="2" Width="100" Click="Button_Click"/>
+        <Button  x:Name="izm" Visibility="Hidden" Grid.Column="2" Content="Изменить" HorizontalAlignment="Left" Margin="169,3,0,72" Grid.Row="3" Width="100" Click="Button_Click_1"/>
+        <Button x:Name="izm_Copy" Visibility="Hidden" Grid.Column="2" Content="Очистить" HorizontalAlignment="Left" Margin="169,60,0,10" Grid.Row="3" Width="100" Click="izm_Copy_Click"/>
     </Grid>
 </Page>

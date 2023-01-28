@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CP.Models;
+﻿namespace CP.Models;
 
 public partial class Admin
 {
